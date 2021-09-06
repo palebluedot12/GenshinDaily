@@ -44,6 +44,8 @@ class HomeFragment : Fragment() {
     var Textflag_tartaglia = 0
     var Textflag_battle_pass_weekly = 0
     var Textflag_reputation_weekly = 0
+    var Textflag_yata = 0
+    var Textflag_signora = 0
     //요일,날짜 저장
     var currentday = dayGenerator()
     var currentdate = dateGenerator()
@@ -101,7 +103,6 @@ class HomeFragment : Fragment() {
                 weeklyreset()
             }
         }
-
 
         adView.loadAd(AdRequest.Builder().build())
 
@@ -174,12 +175,21 @@ class HomeFragment : Fragment() {
             weeklysaveddate = dateGenerator()
         })
 
+        yata.setOnClickListener(View.OnClickListener {
+            onTextClicked_yata()
+            weeklysavedday = dayGenerator()
+            weeklysaveddate = dateGenerator()
+        })
+
+        signora.setOnClickListener(View.OnClickListener {
+            onTextClicked_signora()
+            weeklysavedday = dayGenerator()
+            weeklysaveddate = dateGenerator()
+        })
+
         //요일 바뀌면 체크리스트 줄그인거 다 지우기. 여기 수정해야됨.
         //이거는 time이 00일때를 "지나야" 초기화가 되는 방식이고...
         //if currentDate != savedDate 이런 식으로?
-
-
-        //레진충전시간 계산 버튼. 아무것도없이 버튼만 누르면 팅김.
         resintimer_button.setOnClickListener { view ->
             var resinvalue : Int
             try {
@@ -194,7 +204,6 @@ class HomeFragment : Fragment() {
                     afterhourxml.text = pair.first.toString()
                     afterminutexml.text = pair.second.toString()
                 }
-
                 else  Toast.makeText(activity, "0에서 160까지의 숫자를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
 
@@ -204,12 +213,11 @@ class HomeFragment : Fragment() {
                 afterhourxml.text = pair.first.toString()
                 afterminutexml.text = pair.second.toString()
             }
-
         }
 
         resin_switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked)Toast.makeText(activity, "알림을 켰습니다.\n(스위치를 켠 상태로 계산버튼을 클릭해야\n 알람이 작동됩니다.)", Toast.LENGTH_LONG).show()
-            if(isChecked == false) {
+            if(!isChecked) {
                 Toast.makeText(activity, "알림을 껐습니다.", Toast.LENGTH_LONG).show()
                 alarm_off(100, "레진")
             }
@@ -249,8 +257,15 @@ class HomeFragment : Fragment() {
         rosaria_talent.visibility = View.GONE
         eula_talent.visibility = View.GONE
         yanfei_talent.visibility = View.GONE
+        kazuha_talent.visibility = View.GONE
+        ayaka_talent.visibility = View.GONE
+        yoimiya_talent.visibility = View.GONE
+        sayu_talent.visibility = View.GONE
+        raiden_talent.visibility = View.GONE
+        sara_talent.visibility = View.GONE
+        aloy_talent.visibility = View.GONE
 
-        if(day.text == "월" || day.text == "목" || day.text == "일") //자유, 번영
+        if(day.text == "월" || day.text == "목" || day.text == "일") //자유, 번영, 부세
         {
             amber_talent.visibility = View.VISIBLE
             barbara_talent.visibility = View.VISIBLE
@@ -262,10 +277,12 @@ class HomeFragment : Fragment() {
             tartaglia_talent.visibility = View.VISIBLE
             keqing_talent.visibility = View.VISIBLE
             diona_talent.visibility = View.VISIBLE
+            yoimiya_talent.visibility = View.VISIBLE
+            aloy_talent.visibility = View.VISIBLE
 
         }
 
-        if(day.text =="화" || day.text == "금" || day.text == "일") //투쟁, 근면
+        if(day.text =="화" || day.text == "금" || day.text == "일") //투쟁, 근면, 풍아 
         {
             jean_talent.visibility = View.VISIBLE
             diluc_talent.visibility = View.VISIBLE
@@ -278,9 +295,12 @@ class HomeFragment : Fragment() {
             ganyu_talent.visibility = View.VISIBLE
             hutao_talent.visibility = View.VISIBLE
             eula_talent.visibility = View.VISIBLE
+            kazuha_talent.visibility = View.VISIBLE
+            ayaka_talent.visibility = View.VISIBLE
+            sara_talent.visibility = View.VISIBLE
         }
 
-        if(day.text =="수" || day.text == "토" || day.text == "일") //시문, 황금
+        if(day.text =="수" || day.text == "토" || day.text == "일") //시문, 황금, 천광
         {
             lisa_talent.visibility = View.VISIBLE
             kaeya_talent.visibility = View.VISIBLE
@@ -293,6 +313,8 @@ class HomeFragment : Fragment() {
             albedo_talent.visibility = View.VISIBLE
             rosaria_talent.visibility = View.VISIBLE
             yanfei_talent.visibility = View.VISIBLE
+            sayu_talent.visibility = View.VISIBLE
+            raiden_talent.visibility = View.VISIBLE
         }
 
         //요일별 무기
@@ -318,6 +340,9 @@ class HomeFragment : Fragment() {
         dark_iron_sword.visibility = View.GONE
         favonius_sword.visibility = View.GONE
         the_alley_flash.visibility = View.GONE
+        freedom_sworn.visibility = View.GONE
+        mistsplitter_reforged.visibility = View.GONE
+        amenoma_kageuta_blade.visibility = View.GONE
         //여기까지 한손검
 
         wolf_gravestone.visibility = View.GONE
@@ -340,6 +365,8 @@ class HomeFragment : Fragment() {
         ferrous_shadow.visibility = View.GONE
         lithic_blade.visibility = View.GONE
         song_of_broken_pines.visibility = View.GONE
+        katsuragi_slasher.visibility = View.GONE
+        luxurious_sea_lord.visibility = View.GONE
         //양손검
 
         skyward_atlas.visibility = View.GONE
@@ -361,6 +388,9 @@ class HomeFragment : Fragment() {
         thrilling_tales_of_dragon_slayers.visibility = View.GONE
         magic_guide.visibility = View.GONE
         wine_and_song1.visibility = View.GONE
+        everlasting_moonglow.visibility = View.GONE
+        dodoco_tales.visibility = View.GONE
+        white_dragon_ring.visibility = View.GONE
         //법구
 
         primordial_jade_spear.visibility = View.GONE
@@ -378,6 +408,9 @@ class HomeFragment : Fragment() {
         halberd.visibility = View.GONE
         white_tassel.visibility = View.GONE
         lithic_spear.visibility = View.GONE
+        engulfing_lightning.visibility = View.GONE
+        kitain_cross_spear.visibility = View.GONE
+        the_catch.visibility = View.GONE
         //장병기
 
         skyward_harp.visibility = View.GONE
@@ -400,10 +433,13 @@ class HomeFragment : Fragment() {
         elegy_for_the_end.visibility = View.GONE
         alley_hunter.visibility = View.GONE
         windblume_ode.visibility = View.GONE
+        thundering_pulse.visibility = View.GONE
+        demon_slayer_bow.visibility = View.GONE
+        predator.visibility = View.GONE
+        yuya_waltz.visibility = View.GONE
         //활
 
-
-        if(day.text =="월" || day.text == "목" || day.text == "일") //고탑 왕, 고운 한림
+        if(day.text =="월" || day.text == "목" || day.text == "일") //고탑 왕, 고운 한림, 먼바다
         {
             aquila.visibility = View.VISIBLE
             summit_shaper.visibility = View.VISIBLE
@@ -435,9 +471,14 @@ class HomeFragment : Fragment() {
             lithic_blade.visibility = View.VISIBLE
             the_alley_flash.visibility = View.VISIBLE
             song_of_broken_pines.visibility = View.VISIBLE
+            mistsplitter_reforged.visibility = View.VISIBLE
+            amenoma_kageuta_blade.visibility = View.VISIBLE
+            everlasting_moonglow.visibility = View.VISIBLE
+            white_dragon_ring.visibility = View.VISIBLE
+            yuya_waltz.visibility = View.VISIBLE
         }
 
-        if(day.text =="화" || day.text == "금" || day.text == "일") //칼바람 울프, 안개구름
+        if(day.text =="화" || day.text == "금" || day.text == "일") //칼바람 울프, 안개구름, 나루카미
         {
             skyward_blade.visibility = View.VISIBLE
             primordial_jade_cutter.visibility = View.VISIBLE
@@ -472,9 +513,14 @@ class HomeFragment : Fragment() {
             sharpshooter_oath.visibility = View.VISIBLE
             elegy_for_the_end.visibility = View.VISIBLE
             wine_and_song1.visibility = View.VISIBLE
+            katsuragi_slasher.visibility = View.VISIBLE
+            dodoco_tales.visibility = View.VISIBLE
+            thundering_pulse.visibility = View.VISIBLE
+            demon_slayer_bow.visibility = View.VISIBLE
+            predator.visibility = View.VISIBLE
         }
 
-        if(day.text =="수" || day.text == "토" || day.text == "일") //라이언 투사의 족쇄, 흑운철
+        if(day.text =="수" || day.text == "토" || day.text == "일") //라이언 투사의 족쇄, 흑운철, 금석극화
         {
             iron_sting.visibility = View.VISIBLE
             sacrificial_sword.visibility = View.VISIBLE
@@ -509,15 +555,19 @@ class HomeFragment : Fragment() {
             lithic_spear.visibility = View.VISIBLE
             alley_hunter.visibility = View.VISIBLE
             windblume_ode.visibility = View.VISIBLE
+            freedom_sworn.visibility = View.VISIBLE
+            engulfing_lightning.visibility = View.VISIBLE
+            luxurious_sea_lord.visibility = View.VISIBLE
+            engulfing_lightning.visibility = View.VISIBLE
+            kitain_cross_spear.visibility = View.VISIBLE
+            the_catch.visibility = View.VISIBLE
         }
-
         /*switch1.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked)
             {
                 showSettingpopup()
             }
         }*/
-
         aquila.setOnClickListener{
             Toast.makeText(activity, "매의 검", Toast.LENGTH_SHORT).show()
         }
@@ -584,6 +634,15 @@ class HomeFragment : Fragment() {
         the_alley_flash.setOnClickListener{
             Toast.makeText(activity, "뒷골목의 섬광", Toast.LENGTH_SHORT).show()
         }
+        freedom_sworn.setOnClickListener{
+            Toast.makeText(activity, "오래된 자유의 서약", Toast.LENGTH_SHORT).show()
+        }
+        mistsplitter_reforged.setOnClickListener{
+            Toast.makeText(activity, "안개를 가르는 회광", Toast.LENGTH_SHORT).show()
+        }
+        amenoma_kageuta_blade.setOnClickListener{
+            Toast.makeText(activity, "아메노마 카게우치가타나", Toast.LENGTH_SHORT).show()
+        }
         //여기까지 한손검
 
         wolf_gravestone.setOnClickListener{
@@ -646,6 +705,12 @@ class HomeFragment : Fragment() {
         song_of_broken_pines.setOnClickListener{
             Toast.makeText(activity, "송뢰가 울릴 무렵", Toast.LENGTH_SHORT).show()
         }
+        katsuragi_slasher.setOnClickListener{
+            Toast.makeText(activity, "카츠라기를 벤 나가마사", Toast.LENGTH_SHORT).show()
+        }
+        luxurious_sea_lord.setOnClickListener{
+            Toast.makeText(activity, "진주를 문 해황", Toast.LENGTH_SHORT).show()
+        }
         //양손검
 
         skyward_atlas.setOnClickListener{
@@ -705,6 +770,15 @@ class HomeFragment : Fragment() {
         wine_and_song1.setOnClickListener{
             Toast.makeText(activity, "뒷골목의 술과 시", Toast.LENGTH_SHORT).show()
         }
+        everlasting_moonglow.setOnClickListener{
+            Toast.makeText(activity, "불멸의 달빛", Toast.LENGTH_SHORT).show()
+        }
+        dodoco_tales.setOnClickListener{
+            Toast.makeText(activity, "도도코 이야기집", Toast.LENGTH_SHORT).show()
+        }
+        white_dragon_ring.setOnClickListener{
+            Toast.makeText(activity, "하쿠신의 고리", Toast.LENGTH_SHORT).show()
+        }
         //여기까지 법구
 
         primordial_jade_spear.setOnClickListener{
@@ -752,7 +826,15 @@ class HomeFragment : Fragment() {
         lithic_spear.setOnClickListener{
             Toast.makeText(activity, "천암 장창", Toast.LENGTH_SHORT).show()
         }
-
+        engulfing_lightning.setOnClickListener{
+            Toast.makeText(activity, "예초의 번개", Toast.LENGTH_SHORT).show()
+        }
+        kitain_cross_spear.setOnClickListener{
+            Toast.makeText(activity, "키타인 십자창", Toast.LENGTH_SHORT).show()
+        }
+        the_catch.setOnClickListener{
+            Toast.makeText(activity, "「어획」", Toast.LENGTH_SHORT).show()
+        }
         //창
 
         skyward_harp.setOnClickListener{
@@ -815,11 +897,20 @@ class HomeFragment : Fragment() {
         windblume_ode.setOnClickListener{
             Toast.makeText(activity, "바람 꽃의 노래", Toast.LENGTH_SHORT).show()
         }
-
+        thundering_pulse.setOnClickListener{
+            Toast.makeText(activity, "비뢰의 고동", Toast.LENGTH_SHORT).show()
+        }
+        yuya_waltz.setOnClickListener{
+            Toast.makeText(activity, "유야의 왈츠", Toast.LENGTH_SHORT).show()
+        }
+        demon_slayer_bow.setOnClickListener{
+            Toast.makeText(activity, "파마궁", Toast.LENGTH_SHORT).show()
+        }
+        predator.setOnClickListener{
+            Toast.makeText(activity, "포식자", Toast.LENGTH_SHORT).show()
+        }
         //활
-
     }
-
     /*private fun showSettingpopup() {
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.resinalarmpopup, null)
@@ -837,7 +928,6 @@ class HomeFragment : Fragment() {
         alertDialog.setView(view)
         alertDialog.show()
     }*/
-
     override fun onPause() {
         super.onPause()
         kakaoAdview?.pause()
@@ -846,7 +936,6 @@ class HomeFragment : Fragment() {
         super.onResume()
         kakaoAdview?.resume()
     }
-
     override fun onStop() {
         super.onStop()
         Log.d("destroy","on")
@@ -916,12 +1005,20 @@ class HomeFragment : Fragment() {
         if(Textflag_reputation_weekly == 1){
             reputation_weekly.setTextColor(Color.parseColor("#939597"))
         }
+        Textflag_yata = pref.getInt("yata_flag", 0)
+        yata.paintFlags = pref.getInt("yata_status", 0)
+        if(Textflag_yata == 1){
+            yata.setTextColor(Color.parseColor("#939597"))
+        }
+        Textflag_signora = pref.getInt("signora_flag", 0)
+        signora.paintFlags = pref.getInt("signora_status", 0)
+        if(Textflag_signora == 1){
+            signora.setTextColor(Color.parseColor("#939597"))
+        }
         weeklysavedday = pref.getString("weekly_flag", "").toString()
         weeklysaveddate = pref.getString("weekly_date_flag","").toString()
         resin_switch.isChecked = pref.getBoolean("resin_switch_isChecked", true)
     }
-
-
 
     private fun saveData(){ //값하고 지우는 행동까지 저장해보자.
         val pref = requireActivity().getSharedPreferences("pref", 0)
@@ -950,6 +1047,10 @@ class HomeFragment : Fragment() {
         edit.putInt("monster_status", monster.paintFlags)
         edit.putInt("reputation_flag", Textflag_reputation_weekly)
         edit.putInt("reputation_status", reputation_weekly.paintFlags)
+        edit.putInt("yata_flag", Textflag_yata)
+        edit.putInt("yata_status", yata.paintFlags)
+        edit.putInt("signora_flag", Textflag_signora)
+        edit.putInt("signora_status", signora.paintFlags)
         edit.putString("weekly_flag", weeklysavedday)
         edit.putString("weekly_date_flag", weeklysaveddate)
         edit.putBoolean("resin_switch_isChecked", resin_switch.isChecked)
@@ -1002,6 +1103,19 @@ class HomeFragment : Fragment() {
         battle_pass_weekly.setPaintFlags(0);
         battle_pass_weekly.setTextColor(Color.parseColor("#000000"))
         Textflag_battle_pass_weekly = 0
+
+        reputation_weekly.setPaintFlags(0);
+        reputation_weekly.setTextColor(Color.parseColor("#000000"))
+        Textflag_reputation_weekly = 0
+
+        yata.setPaintFlags(0);
+        yata.setTextColor(Color.parseColor("#000000"))
+        Textflag_yata = 0
+
+        signora.setPaintFlags(0);
+        signora.setTextColor(Color.parseColor("#000000"))
+        Textflag_signora = 0
+
     }
 
     fun onTextClicked_illgan(){
@@ -1087,6 +1201,7 @@ class HomeFragment : Fragment() {
             Textflag_battle_pass = 0
         }
     }
+
     fun onTextClicked_monster(){
         if(Textflag_monster == 0) {
             monster.setPaintFlags(battle_pass.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -1167,7 +1282,34 @@ class HomeFragment : Fragment() {
             reputation_weekly.setTextColor(Color.parseColor("#000000"))
             Textflag_reputation_weekly = 0
         }
+    }
 
+    fun onTextClicked_yata() {
+        if (Textflag_yata == 0) {
+            yata.setPaintFlags(yata.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            yata.setTextColor(Color.parseColor("#939597"))
+            Textflag_yata = 1
+        }
+        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
+        else {
+            yata.setPaintFlags(0);
+            yata.setTextColor(Color.parseColor("#000000"))
+            Textflag_yata = 0
+        }
+    }
+
+    fun onTextClicked_signora() {
+        if (Textflag_signora == 0) {
+            signora.setPaintFlags(signora.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            signora.setTextColor(Color.parseColor("#939597"))
+            Textflag_signora = 1
+        }
+        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
+        else {
+            signora.setPaintFlags(0);
+            signora.setTextColor(Color.parseColor("#000000"))
+            Textflag_signora = 0
+        }
     }
 
     fun dayGenerator() :String{
@@ -1255,7 +1397,6 @@ class HomeFragment : Fragment() {
         {
             afterhour = afterhour - 24
         }
-
         val pair = Pair(afterhour, afterminute) //pair 로 시간, 분 두개 return
 
         return pair
@@ -1269,11 +1410,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun alarm_on(time : Int, param : String,id:Int) {
-
 //        alarmMgr = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 //        alarmIntent = Intent(activity, AlarmReceiver::class.java).let { intent ->
 //            PendingIntent.getBroadcast(activity, 0, intent, 0) //Broadcast Receiver를 실행.
 //        }
+        Log.d("alarm_on", param)
         val pendingIntent = getIntent(requireActivity(), id, param,id)
         val alarm = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         // 여기서 알림 시간 설정
@@ -1283,7 +1424,7 @@ class HomeFragment : Fragment() {
 
         alarm.setExact(
             AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis + ((160-time) * 480 * 1000),
+            calendar.timeInMillis + ((160-time) * 1000 * 10),
             pendingIntent
         )
 
@@ -1302,8 +1443,8 @@ class HomeFragment : Fragment() {
         getIntent(requireContext(), id, param, id).apply {
             alarmManager.cancel(this)
         }
+        Log.d("alarm_off", param)
     }
-
 
     }
 

@@ -25,6 +25,8 @@ class OptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /*
         var items = arrayOf<String>("한국어","English")
         spinner.adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, items)
 
@@ -59,8 +61,7 @@ class OptionFragment : Fragment() {
 
         }
 
+         */
+
     }
-
-
-
 }

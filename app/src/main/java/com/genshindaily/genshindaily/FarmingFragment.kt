@@ -48,7 +48,6 @@ class FarmingFragment : Fragment() {
     var Textflag_tongtong = 0
     var Textflag_windwheel = 0
 
-
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
     private lateinit var alarmIntent2: PendingIntent
@@ -69,6 +68,7 @@ class FarmingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadData()
         adView2.loadAd(AdRequest.Builder().build()) //구글광고
+
         //카카오 광고
         kakaoAdview2.run {
             setClientId("DAN-jx2L2xstDOGjpBcZ")

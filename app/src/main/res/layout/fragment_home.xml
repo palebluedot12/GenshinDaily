@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:includeFontPadding="false"
-                android:text="@string/day"
+                android:text="요일입니다"
                 android:textColor="@color/black"
                 android:textSize="35dp"
                 android:layout_marginTop="15dp"/>
@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/day_change_time"
+            android:text="(한국시간 새벽5시 날짜 변경)"
             android:textSize="15dp"
             />
         <View
@@ -118,7 +118,6 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
             />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -442,6 +441,64 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@null"
+                android:src="@drawable/azhdaha"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="야타 용왕"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:id="@+id/yata"
+                android:layout_marginLeft="8dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/signora"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시뇨라"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:id="@+id/signora"
+                android:layout_marginLeft="8dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
                 android:src="@drawable/battle_pass_exp"
                 android:layout_gravity="center"/>
             <TextView
@@ -526,8 +583,8 @@
                     app:civ_border_width="1dp"
                     app:civ_border_color="@color/five_stars"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/icon_33_eula"
-                    android:id="@+id/eula_talent"/>
+                    android:src="@drawable/icon_40_aloy"
+                    android:id="@+id/aloy_talent"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
@@ -535,8 +592,44 @@
                     app:civ_border_width="1dp"
                     app:civ_border_color="@color/five_stars"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/icon_31_rosaria"
-                    android:id="@+id/rosaria_talent"/>
+                    android:src="@drawable/icon_38_raiden"
+                    android:id="@+id/raiden_talent"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_36_yoimiya"
+                    android:id="@+id/yoimiya_talent"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_35_ayaka"
+                    android:id="@+id/ayaka_talent"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_34_kazuha"
+                    android:id="@+id/kazuha_talent"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_33_eula"
+                    android:id="@+id/eula_talent"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
@@ -656,6 +749,33 @@
                     android:id="@+id/hutao_talent"/>
 
                 <!--5성-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_39_sara"
+                    android:id="@+id/sara_talent"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_37_sayu"
+                    android:id="@+id/sayu_talent"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_31_rosaria"
+                    android:id="@+id/rosaria_talent"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
@@ -851,8 +971,53 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/thundering_pulse"
+                    android:id="@+id/thundering_pulse"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/everlasting_moonglow"
+                    android:id="@+id/everlasting_moonglow"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/engulfing_lightning"
+                    android:id="@+id/engulfing_lightning"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/mistsplitter_reforged"
+                    android:id="@+id/mistsplitter_reforged"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/five_stars"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/freedom_sworn"
+                    android:id="@+id/freedom_sworn"/>
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -1016,8 +1181,87 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="18dp"
-                >
+                android:layout_marginTop="18dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/yuya_waltz"
+                    android:id="@+id/yuya_waltz"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/predator"
+                    android:id="@+id/predator"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/demon_slayer_bow"
+                    android:id="@+id/demon_slayer_bow"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/white_dragon_ring"
+                    android:id="@+id/white_dragon_ring"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/dodoco_tales"
+                    android:id="@+id/dodoco_tales"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/the_catch"
+                    android:id="@+id/the_catch"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/kitain_cross_spear"
+                    android:id="@+id/kitain_cross_spear"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/luxurious_sea_lord"
+                    android:id="@+id/luxurious_sea_lord"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/katsuragi_slasher"
+                    android:id="@+id/katsuragi_slasher"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/purple_500"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/amenoma_kageuta_blade"
+                    android:id="@+id/amenoma_kageuta_blade"/>
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
