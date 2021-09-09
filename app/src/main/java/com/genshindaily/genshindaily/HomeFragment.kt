@@ -1,5 +1,6 @@
 package com.genshindaily.genshindaily
 
+import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ComponentName
@@ -19,14 +20,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.kakao.adfit.ads.AdListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_farming.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.lang.NumberFormatException
 import java.util.*
+
 
 class HomeFragment : Fragment() {
 
@@ -63,9 +66,14 @@ class HomeFragment : Fragment() {
         return view
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
+        MobileAds.initialize(activity) {}
+        adView.loadAd(AdRequest.Builder().build()) //구글 배너
+
+
         //카카오 광고
         kakaoAdview.run {
             setClientId("DAN-ikDQEklRA3qRWh1g")
@@ -103,8 +111,6 @@ class HomeFragment : Fragment() {
                 weeklyreset()
             }
         }
-
-        adView.loadAd(AdRequest.Builder().build())
 
         day.text = dayGenerator() // dayGenerator -> dayString 반환
 
@@ -204,7 +210,7 @@ class HomeFragment : Fragment() {
                     afterhourxml.text = pair.first.toString()
                     afterminutexml.text = pair.second.toString()
                 }
-                else  Toast.makeText(activity, "0에서 160까지의 숫자를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(activity, "0에서 160까지의 숫자를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
 
             catch(e: NumberFormatException) {
@@ -1018,6 +1024,9 @@ class HomeFragment : Fragment() {
         weeklysavedday = pref.getString("weekly_flag", "").toString()
         weeklysaveddate = pref.getString("weekly_date_flag","").toString()
         resin_switch.isChecked = pref.getBoolean("resin_switch_isChecked", true)
+
+        afterhourxml.text = pref.getString("resin_afterhour", "").toString()
+        afterminutexml.text = pref.getString("resin_afterminute", "").toString()
     }
 
     private fun saveData(){ //값하고 지우는 행동까지 저장해보자.
@@ -1053,6 +1062,8 @@ class HomeFragment : Fragment() {
         edit.putInt("signora_status", signora.paintFlags)
         edit.putString("weekly_flag", weeklysavedday)
         edit.putString("weekly_date_flag", weeklysaveddate)
+        edit.putString("resin_afterhour",afterhourxml.text.toString())
+        edit.putString("resin_afterminute",afterminutexml.text.toString())
         edit.putBoolean("resin_switch_isChecked", resin_switch.isChecked)
         edit.apply()
     }
@@ -1424,17 +1435,17 @@ class HomeFragment : Fragment() {
 
         alarm.setExact(
             AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis + ((160-time) * 1000 * 10),
+            calendar.timeInMillis + ((160-time) * 1000 * 480),
             pendingIntent
         )
 
         //부팅후에도 리시버를 받을 수 있게 만들기
-        val receiver = ComponentName(requireActivity(), SampleBootReceiver::class.java)
+        /*val receiver = ComponentName(requireActivity(), SampleBootReceiver::class.java)
 
         requireActivity().packageManager.setComponentEnabledSetting(
             receiver,
             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-            PackageManager.DONT_KILL_APP)
+            PackageManager.DONT_KILL_APP)*/
     }
 
     fun alarm_off (id:Int, param: String){

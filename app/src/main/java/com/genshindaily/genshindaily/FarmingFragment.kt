@@ -47,6 +47,15 @@ class FarmingFragment : Fragment() {
     var Textflag_qingxin = 0
     var Textflag_tongtong = 0
     var Textflag_windwheel = 0
+    var Textflag_ghost_pungdeng = 0
+    var Textflag_crystal_golsu = 0
+    var Textflag_sanho_pearl = 0
+    var Textflag_cherry_blossom_sugu = 0
+    var Textflag_yulimple = 0
+    var Textflag_hyul_gok = 0
+    var Textflag_amakumocho = 0
+    var Textflag_sea_bulocho = 0
+
 
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
@@ -111,6 +120,14 @@ class FarmingFragment : Fragment() {
                 alarm_off(18, "청심")
                 alarm_off(19, "통통연꽃")
                 alarm_off(20, "풍차국화")
+                alarm_off(21, "수정 골수")
+                alarm_off(22, "귀신 풍뎅이")
+                alarm_off(23, "벚꽃 수구")
+                alarm_off(24, "혈곡")
+                alarm_off(25, "울림풀")
+                alarm_off(26, "바다 불로초")
+                alarm_off(27, "산호 진주")
+                alarm_off(28, "아마쿠모초 열매")
             }
         }
 
@@ -197,6 +214,54 @@ class FarmingFragment : Fragment() {
             if(Textflag_windwheel == 1 && farming_switch.isChecked) alarm_on(172800,"풍차국화",20) else alarm_off(20,"풍차국화")
         })
 
+        crystal_golsu.setOnClickListener(View.OnClickListener {
+            onTextClicked_crystal_golsu()
+            if(Textflag_crystal_golsu == 1 && farming_switch.isChecked) alarm_on(172800,"수정 골수",21) else alarm_off(21,"수정 골수")
+
+        })
+
+        ghost_pungdeng.setOnClickListener(View.OnClickListener {
+            onTextClicked_ghost_pungdeng()
+            if(Textflag_ghost_pungdeng == 1 && farming_switch.isChecked) alarm_on(172800,"귀신 풍뎅이",22) else alarm_off(22,"귀신 풍뎅이")
+
+        })
+
+        cherry_blossom_sugu.setOnClickListener(View.OnClickListener {
+            onTextClicked_cherry_blossom_sugu()
+            if(Textflag_cherry_blossom_sugu == 1 && farming_switch.isChecked) alarm_on(172800,"벚꽃 수구",23) else alarm_off(23,"벚꽃 수구")
+
+        })
+
+        hyul_gok.setOnClickListener(View.OnClickListener {
+            onTextClicked_hyul_gok()
+            if(Textflag_hyul_gok == 1 && farming_switch.isChecked) alarm_on(172800,"혈곡",24) else alarm_off(24,"혈곡")
+
+        })
+
+        yulimple.setOnClickListener(View.OnClickListener {
+            onTextClicked_yulimple()
+            if(Textflag_yulimple == 1 && farming_switch.isChecked) alarm_on(172800,"울림풀",25) else alarm_off(25,"울림풀")
+
+        })
+
+        sea_bulocho.setOnClickListener(View.OnClickListener {
+            onTextClicked_sea_bulocho()
+            if(Textflag_sea_bulocho == 1 && farming_switch.isChecked) alarm_on(172800,"바다 불로초",26) else alarm_off(26,"바다 불로초")
+
+        })
+
+        sanho_pearl.setOnClickListener(View.OnClickListener {
+            onTextClicked_sanho_pearl()
+            if(Textflag_sanho_pearl == 1 && farming_switch.isChecked) alarm_on(172800,"산호 진주",27) else alarm_off(27,"산호 진주")
+
+        })
+
+        amakumocho.setOnClickListener(View.OnClickListener {
+            onTextClicked_amakumocho()
+            if(Textflag_amakumocho == 1 && farming_switch.isChecked) alarm_on(172800,"아마쿠모초 열매",28) else alarm_off(28,"아마쿠모초 열매")
+
+        })
+
     }//onViewCreated
 
     override fun onStop() {
@@ -232,12 +297,12 @@ class FarmingFragment : Fragment() {
         )
 
         //부팅후에도 리시버를 받을 수 있게 만들기
-        val receiver = ComponentName(requireActivity(), SampleBootReceiver::class.java)
+        /*val receiver = ComponentName(requireActivity(), SampleBootReceiver::class.java)
 
         requireActivity().packageManager.setComponentEnabledSetting(
                 receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP)
+                PackageManager.DONT_KILL_APP)*/
     }
 
     fun alarm_off (id:Int, param: String){
@@ -559,12 +624,27 @@ class FarmingFragment : Fragment() {
             farming_afterhour_white_iron_chunk.text = current_time(48)
 
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             white_iron_chunk.setPaintFlags(0);
             white_iron_chunk.setTextColor(Color.parseColor("#000000"))
             Textflag_white_iron_chunk = 0
             farming_afterhour_white_iron_chunk.text = ""
+        }
+    }
+
+    private fun onTextClicked_ghost_pungdeng() {
+        if(Textflag_ghost_pungdeng == 0) {
+            ghost_pungdeng.setPaintFlags(ghost_pungdeng.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            ghost_pungdeng.setTextColor(Color.parseColor("#939597"))
+            Textflag_ghost_pungdeng = 1
+            farming_afterhour_ghost_pungdeng.text = current_time(48)
+
+        }
+        else{
+            ghost_pungdeng.setPaintFlags(0);
+            ghost_pungdeng.setTextColor(Color.parseColor("#000000"))
+            Textflag_ghost_pungdeng = 0
+            farming_afterhour_ghost_pungdeng.text = ""
         }
     }
 
@@ -587,6 +667,118 @@ class FarmingFragment : Fragment() {
         }
     }
 
+    private fun onTextClicked_crystal_golsu() {
+        if(Textflag_crystal_golsu == 0) {
+            crystal_golsu.setPaintFlags(crystal_golsu.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            crystal_golsu.setTextColor(Color.parseColor("#939597"))
+            Textflag_crystal_golsu = 1
+            farming_afterhour_crystal_golsu.text = current_time(48)
+
+        }
+        else{
+            crystal_golsu.setPaintFlags(0);
+            crystal_golsu.setTextColor(Color.parseColor("#000000"))
+            Textflag_crystal_golsu = 0
+            farming_afterhour_crystal_golsu.text = ""
+        }
+    }
+
+    private fun onTextClicked_sanho_pearl() {
+        if(Textflag_sanho_pearl == 0) {
+            sanho_pearl.setPaintFlags(sanho_pearl.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            sanho_pearl.setTextColor(Color.parseColor("#939597"))
+            Textflag_sanho_pearl = 1
+            farming_afterhour_sanho_pearl.text = current_time(48)
+
+        }
+        else{
+            sanho_pearl.setPaintFlags(0);
+            sanho_pearl.setTextColor(Color.parseColor("#000000"))
+            Textflag_sanho_pearl = 0
+            farming_afterhour_sanho_pearl.text = ""
+        }
+    }
+
+    private fun onTextClicked_cherry_blossom_sugu() {
+        if(Textflag_cherry_blossom_sugu == 0) {
+            cherry_blossom_sugu.setPaintFlags(cherry_blossom_sugu.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            cherry_blossom_sugu.setTextColor(Color.parseColor("#939597"))
+            Textflag_cherry_blossom_sugu = 1
+            farming_afterhour_cherry_blossom_sugu.text = current_time(48)
+
+        }
+        else{
+            cherry_blossom_sugu.setPaintFlags(0);
+            cherry_blossom_sugu.setTextColor(Color.parseColor("#000000"))
+            Textflag_cherry_blossom_sugu = 0
+            farming_afterhour_cherry_blossom_sugu.text = ""
+        }
+    }
+
+    private fun onTextClicked_yulimple() {
+        if(Textflag_yulimple == 0) {
+            yulimple.setPaintFlags(yulimple.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            yulimple.setTextColor(Color.parseColor("#939597"))
+            Textflag_yulimple = 1
+            farming_afterhour_yulimple.text = current_time(48)
+
+        }
+        else{
+            yulimple.setPaintFlags(0);
+            yulimple.setTextColor(Color.parseColor("#000000"))
+            Textflag_yulimple = 0
+            farming_afterhour_yulimple.text = ""
+        }
+    }
+
+    private fun onTextClicked_hyul_gok() {
+        if(Textflag_hyul_gok == 0) {
+            hyul_gok.setPaintFlags(hyul_gok.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            hyul_gok.setTextColor(Color.parseColor("#939597"))
+            Textflag_hyul_gok = 1
+            farming_afterhour_hyul_gok.text = current_time(48)
+
+        }
+        else{
+            hyul_gok.setPaintFlags(0);
+            hyul_gok.setTextColor(Color.parseColor("#000000"))
+            Textflag_hyul_gok = 0
+            farming_afterhour_hyul_gok.text = ""
+        }
+    }
+
+    private fun onTextClicked_amakumocho() {
+        if(Textflag_amakumocho == 0) {
+            amakumocho.setPaintFlags(amakumocho.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            amakumocho.setTextColor(Color.parseColor("#939597"))
+            Textflag_amakumocho = 1
+            farming_afterhour_amakumocho.text = current_time(48)
+
+        }
+        else{
+            amakumocho.setPaintFlags(0);
+            amakumocho.setTextColor(Color.parseColor("#000000"))
+            Textflag_amakumocho = 0
+            farming_afterhour_amakumocho.text = ""
+        }
+    }
+
+    private fun onTextClicked_sea_bulocho() {
+        if(Textflag_sea_bulocho == 0) {
+            sea_bulocho.setPaintFlags(sea_bulocho.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            sea_bulocho.setTextColor(Color.parseColor("#939597"))
+            Textflag_sea_bulocho = 1
+            farming_afterhour_sea_bulocho.text = current_time(48)
+
+        }
+        else{
+            sea_bulocho.setPaintFlags(0);
+            sea_bulocho.setTextColor(Color.parseColor("#000000"))
+            Textflag_sea_bulocho = 0
+            farming_afterhour_sea_bulocho.text = ""
+        }
+    }
+
     fun current_time(material : Int): String {
         val instance = Calendar.getInstance()
         val year = instance.get(Calendar.YEAR)
@@ -595,33 +787,78 @@ class FarmingFragment : Fragment() {
         val hour = instance.get(Calendar.HOUR_OF_DAY)
         val minute = instance.get(Calendar.MINUTE)
 
-        monthStr = "${month}월 "
-        dateStr = "${date}일 "
-
-        if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+        if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) //31일까지
         {
             if(date == 31)
             {
-
+                monthStr = "${month+1}월 "
+                if(material == 24) dateStr = "1일"
+                if(material == 48) dateStr = "2일"
             }
             else
             {
+                monthStr = "${month}월 "
+                if(material == 24) dateStr = "${date+1}일"
+
+                if(material == 48) {
+                    if(date == 30) {
+                        monthStr = "${month + 1}월"
+                        dateStr = "1일"
+                    }
+                    else
+                        dateStr = "${date+2}일"
+                }
 
             }
         }
 
-        if(month == 2 || month == 4 || month == 6 || month == 9 || month == 11)
+        if(month == 4 || month == 6 || month == 9 || month == 11) //30일까지
             {
                 if(date == 30)
                 {
-
+                    monthStr = "${month+1}월 "
+                    if(material == 24) dateStr = "1일"
+                    if(material == 48) dateStr = "2일"
                 }
                 else
                 {
+                    monthStr = "${month}월 "
+                    if(material == 24) dateStr = "${date+1}일"
 
+                    if(material == 48) {
+                        if(date == 29) {
+                            monthStr = "${month + 1}월"
+                            dateStr = "1일"
+                        }
+                        else
+                            dateStr = "${date+2}일"
+                    }
                 }
             }
 
+        if(month ==2)
+        {
+            if(date == 28)
+            {
+                monthStr = "${month+1}월 "
+                if(material == 24) dateStr = "1일"
+                if(material == 48) dateStr = "2일"
+            }
+            else
+            {
+                monthStr = "${month}월 "
+                if(material == 24) dateStr = "${date+1}일"
+
+                if(material == 48) {
+                    if(date == 27) {
+                        monthStr = "${month + 1}월"
+                        dateStr = "1일"
+                    }
+                    else
+                        dateStr = "${date+2}일"
+                }
+            }
+        }
 
 //        when(material)
 //        {
@@ -643,6 +880,7 @@ class FarmingFragment : Fragment() {
         minStr = "${minute}분"
 
         return  monthStr + dateStr + hourStr + minStr
+        Log.d("aftertime : " , monthStr + dateStr + hourStr + minStr)
     }
 
     private fun saveData(){ //값하고 지우는 행동까지 저장해보자.
@@ -708,6 +946,31 @@ class FarmingFragment : Fragment() {
         edit.putInt("windwheel_flag", Textflag_windwheel)
         edit.putInt("windwheel_status", windwheel_aster.paintFlags)
         edit.putString("windwheel_aftertime", farming_afterhour_windwheel_aster.text as String?)
+        edit.putInt("ghost_pungdeng_flag", Textflag_ghost_pungdeng)
+        edit.putInt("ghost_pungdeng_status", ghost_pungdeng.paintFlags)
+        edit.putString("ghost_pungdeng_aftertime", farming_afterhour_ghost_pungdeng.text as String?)
+        edit.putInt("crystal_golsu_flag", Textflag_crystal_golsu)
+        edit.putInt("crystal_golsu_status", crystal_golsu.paintFlags)
+        edit.putString("crystal_golsu_aftertime", farming_afterhour_crystal_golsu.text as String?)
+        edit.putInt("cherry_blossom_sugu_flag", Textflag_cherry_blossom_sugu)
+        edit.putInt("cherry_blossom_sugu_status", cherry_blossom_sugu.paintFlags)
+        edit.putString("cherry_blossom_sugu_aftertime", farming_afterhour_cherry_blossom_sugu.text as String?)
+        edit.putInt("hyul_gok_flag", Textflag_hyul_gok)
+        edit.putInt("hyul_gok_status", hyul_gok.paintFlags)
+        edit.putString("hyul_gok_aftertime", farming_afterhour_hyul_gok.text as String?)
+        edit.putInt("yulimple_flag", Textflag_yulimple)
+        edit.putInt("yulimple_status", yulimple.paintFlags)
+        edit.putString("yulimple_aftertime", farming_afterhour_yulimple.text as String?)
+        edit.putInt("sea_bulocho_flag", Textflag_sea_bulocho)
+        edit.putInt("sea_bulocho_status", sea_bulocho.paintFlags)
+        edit.putString("sea_bulocho_aftertime", farming_afterhour_sea_bulocho.text as String?)
+        edit.putInt("sanho_pearl_flag", Textflag_sanho_pearl)
+        edit.putInt("sanho_pearl_status", sanho_pearl.paintFlags)
+        edit.putString("sanho_pearl_aftertime", farming_afterhour_sanho_pearl.text as String?)
+        edit.putInt("amakumocho_flag", Textflag_amakumocho)
+        edit.putInt("amakumocho_status", amakumocho.paintFlags)
+        edit.putString("amakumocho_aftertime", farming_afterhour_amakumocho.text as String?)
+
         edit.putBoolean("farming_switch_isChecked", farming_switch.isChecked)
 //        edit.putString("weekly_flag", weeklysavedday)
 //        edit.putString("weekly_date_flag", weeklysaveddate)
@@ -862,6 +1125,70 @@ class FarmingFragment : Fragment() {
         if(Textflag_windwheel == 1){
             windwheel_aster.setTextColor(Color.parseColor("#939597"))
         }
+
+        Textflag_crystal_chunk = pref.getInt("crystal_chunk_flag", 0)
+        crystal_chunk.paintFlags = pref.getInt("crystal_chunk_status", 0)
+        farming_afterhour_crystal_chunk.text = pref.getString("crystal_chunk_aftertime", "")
+        if(Textflag_crystal_chunk == 1){
+            crystal_chunk.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_ghost_pungdeng = pref.getInt("ghost_pungdeng_flag", 0)
+        ghost_pungdeng.paintFlags = pref.getInt("ghost_pungdeng_status", 0)
+        farming_afterhour_ghost_pungdeng.text = pref.getString("ghost_pungdeng_aftertime", "")
+        if(Textflag_ghost_pungdeng == 1){
+            ghost_pungdeng.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_cherry_blossom_sugu = pref.getInt("cherry_blossom_sugu_flag", 0)
+        cherry_blossom_sugu.paintFlags = pref.getInt("cherry_blossom_sugu_status", 0)
+        farming_afterhour_cherry_blossom_sugu.text = pref.getString("cherry_blossom_sugu_aftertime", "")
+        if(Textflag_cherry_blossom_sugu == 1){
+            cherry_blossom_sugu.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_crystal_golsu = pref.getInt("crystal_golsu_flag", 0)
+        crystal_golsu.paintFlags = pref.getInt("crystal_golsu_status", 0)
+        farming_afterhour_crystal_golsu.text = pref.getString("crystal_golsu_aftertime", "")
+        if(Textflag_crystal_golsu == 1){
+            crystal_golsu.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_hyul_gok = pref.getInt("hyul_gok_flag", 0)
+        hyul_gok.paintFlags = pref.getInt("hyul_gok_status", 0)
+        farming_afterhour_hyul_gok.text = pref.getString("hyul_gok_aftertime", "")
+        if(Textflag_hyul_gok == 1){
+            hyul_gok.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_yulimple = pref.getInt("yulimple_flag", 0)
+        yulimple.paintFlags = pref.getInt("yulimple_status", 0)
+        farming_afterhour_yulimple.text = pref.getString("yulimple_aftertime", "")
+        if(Textflag_yulimple == 1){
+            yulimple.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_sea_bulocho = pref.getInt("sea_bulocho_flag", 0)
+        sea_bulocho.paintFlags = pref.getInt("sea_bulocho_status", 0)
+        farming_afterhour_sea_bulocho.text = pref.getString("sea_bulocho_aftertime", "")
+        if(Textflag_sea_bulocho == 1){
+            sea_bulocho.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_sanho_pearl = pref.getInt("sanho_pearl_flag", 0)
+        sanho_pearl.paintFlags = pref.getInt("sanho_pearl_status", 0)
+        farming_afterhour_sanho_pearl.text = pref.getString("sanho_pearl_aftertime", "")
+        if(Textflag_sanho_pearl == 1){
+            sanho_pearl.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_amakumocho = pref.getInt("amakumocho_flag", 0)
+        amakumocho.paintFlags = pref.getInt("amakumocho_status", 0)
+        farming_afterhour_amakumocho.text = pref.getString("amakumocho_aftertime", "")
+        if(Textflag_amakumocho == 1){
+            amakumocho.setTextColor(Color.parseColor("#939597"))
+        }
+
 
         farming_switch.isChecked = pref.getBoolean("farming_switch_isChecked", true)
 

@@ -4,9 +4,11 @@ package com.genshindaily.genshindaily
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,10 +22,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.google.android.ads.nativetemplates.TemplateView
-import com.google.android.gms.ads.AdLoader
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.kakao.adfit.ads.AdListener
@@ -33,6 +35,9 @@ import kotlinx.android.synthetic.main.fragment_farming.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.lang.NumberFormatException
 import java.util.*
+import javax.xml.datatype.DatatypeConstants.DURATION
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,16 +46,22 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val farmingFragment = FarmingFragment()
     private val optionFragment = OptionFragment()
-    private var adLoader: AdLoader? = null
+    private final var TAG = "MainActivity"
+    private var mInterstitialAd: InterstitialAd? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //야간모드 해제
+        MobileAds.initialize(this) {}
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //야간모드
         replaceFragment(homeFragment)
-        MobileAds.initialize(this){}
+
+        // createAd()
+
        // createAd()
-       adLoader?.loadAd(AdRequest.Builder().build())
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -60,9 +71,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
       } //onCreate
-
 
     private fun replaceFragment(fragment: Fragment){
         if(fragment != null){
