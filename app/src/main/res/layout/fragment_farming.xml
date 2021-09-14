@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/farming_switch"
-            android:text="리젠 완료 알람  "
+            android:text="@string/materials_alarm"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"/>
 
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="단조 재료"
+            android:text="@string/Forge_materials"
             android:textSize="11dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="철광"
+                android:text="@string/iron_chunk"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="백철"
+                android:text="@string/white_iron_chunk"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -153,7 +153,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성은 광석"
+                android:text="@string/starsilver"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -194,7 +194,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전기 수정"
+                android:text="@string/electro_crystal"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -235,7 +235,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="수정덩이"
+                android:text="@string/crystal_chunk"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -272,7 +272,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="특산물 - 몬드"
+            android:text="@string/Specialties_Mondstadt"
             android:textSize="11dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
@@ -294,7 +294,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="고리고리 열매"
+                android:text="@string/wolfhook"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -335,7 +335,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="낙락베리"
+                android:text="@string/valberry"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -384,7 +384,7 @@
                 android:clickable="true"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:includeFontPadding="false"
-                android:text="등불꽃"
+                android:text="@string/small_lamp_grass"
                 android:textColor="@color/black"
                 android:textSize="17dp" />
             <TextView
@@ -417,7 +417,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="민들레 씨앗"
+                android:text="@string/dandelion_seed"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -458,7 +458,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="바람버섯"
+                android:text="@string/philanemo_mushroom"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -499,7 +499,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="세실리아꽃"
+                android:text="@string/cecilia"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -540,7 +540,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="통통연꽃"
+                android:text="@string/calla_lily"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -581,7 +581,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="풍차국화"
+                android:text="@string/windwheel_aster"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -618,7 +618,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="특산물 - 리월"
+            android:text="@string/specialties_liyue"
             android:textSize="11dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
@@ -640,7 +640,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="콜 라피스"
+                android:text="@string/cor_lapis"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -681,7 +681,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="야박석"
+                android:text="@string/noctilucous"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -722,7 +722,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="절운고추"
+                android:text="@string/jueyun"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -763,7 +763,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="유리주머니"
+                android:text="@string/violetgrass"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -804,7 +804,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="청심"
+                android:text="@string/qingxin"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -845,7 +845,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예상꽃"
+                android:text="@string/silk_flower"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -886,7 +886,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="유리백합"
+                android:text="@string/glaze_lily"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -923,7 +923,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="특산물 - 이나즈마"
+            android:text="@string/specialties_inazuma"
             android:textSize="11dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
@@ -945,7 +945,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="귀신 풍뎅이"
+                android:text="@string/ghost_pungdeng"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -986,7 +986,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="벚꽃 수구"
+                android:text="@string/cherry_blossom"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1027,7 +1027,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="수정 골수"
+                android:text="@string/crystal_golsu"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1068,7 +1068,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="혈곡"
+                android:text="@string/hyulgok"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1109,7 +1109,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="울림풀"
+                android:text="@string/yulimple"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1150,7 +1150,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="바다 불로초"
+                android:text="@string/sea_bulocho"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1191,7 +1191,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="산호 진주"
+                android:text="@string/sanho_pearl"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1232,7 +1232,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아마쿠모초 열매"
+                android:text="@string/amakumocho"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"

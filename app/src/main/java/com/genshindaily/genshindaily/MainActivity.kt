@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MobileAds.initialize(this) {}
+        //MobileAds.initialize(this) {}
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //야간모드
         replaceFragment(homeFragment)

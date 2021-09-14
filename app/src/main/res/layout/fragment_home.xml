@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:includeFontPadding="false"
-                android:text="요일입니다"
+                android:text="@string/day"
                 android:textColor="@color/black"
                 android:textSize="35dp"
                 android:layout_marginTop="15dp"/>
@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="(한국시간 새벽5시 날짜 변경)"
+            android:text="@string/day_change_time"
             android:textSize="15dp"
             />
         <View
@@ -113,7 +113,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="일간 체크리스트"
+            android:text="@string/daily_illganChecklist"
             android:textSize="11dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
@@ -136,7 +136,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="일간퀘스트"
+                android:text="@string/daily_illganQuest"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -165,7 +165,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="레진"
+                android:text="@string/daily_resin"
                 android:includeFontPadding="false"
                 android:textSize="17dp"
                 android:layout_marginTop="5dp"
@@ -195,7 +195,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="성유물 파밍"
+                android:text="@string/daily_artifact"
                 android:textSize="17dp"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:includeFontPadding="false"
@@ -224,7 +224,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="캐릭터 특성 레벨업"
+                android:text="@string/daily_charTalent"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -253,7 +253,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="캐릭터 돌파"
+                android:text="@string/daily_charAscend"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -282,7 +282,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="일간 기행"
+                android:text="@string/daily_battlepass"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -311,7 +311,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="몬스터 토벌"
+                android:text="@string/daily_enemies"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -336,7 +336,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주간 체크리스트"
+            android:text="@string/weekly_checlist"
             android:textSize="11dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
@@ -359,7 +359,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="안드리우스"
+                android:text="@string/weekly_andrius"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -388,7 +388,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="드발린"
+                android:text="@string/weekly_dvalin"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -417,7 +417,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="타르탈리아"
+                android:text="@string/weekly_tartaglia"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -446,7 +446,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="야타 용왕"
+                android:text="@string/weekly_azhdaha"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -475,7 +475,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="시뇨라"
+                android:text="@string/weekly_signora"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -504,7 +504,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="주간 기행"
+                android:text="@string/weekly_battlepass"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -533,7 +533,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="주간 평판"
+                android:text="@string/weekly_reputation"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -559,7 +559,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="오늘의 특성 레벨업 가능 캐릭터"
+            android:text="@string/today_talent_available"
             android:textSize="11dp"
             android:layout_marginBottom="13dp"
             android:layout_marginLeft="15dp"
@@ -954,7 +954,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="오늘의 레벨업 가능 무기"
+            android:text="@string/today_weapon_availabe"
             android:textSize="11dp"
             android:layout_marginBottom="13dp"
             android:layout_marginLeft="15dp"
@@ -1920,7 +1920,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="레진 알리미"
+            android:text="@string/resin_alarm"
             android:textSize="11dp"
             android:layout_marginBottom="13dp"
             android:layout_marginLeft="15dp"
@@ -1933,7 +1933,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="(24시간 기준)"
+            android:text="@string/twentyfour_hours"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
@@ -1960,7 +1960,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text=" 시 "
+                android:text="@string/resin_si"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1986,7 +1986,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text=" 분"
+                android:text="@string/resin_boon"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -1998,7 +1998,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="에 완충됩니다!"
+                android:text="@string/resin_regenerate_complete"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:textSize="17dp"
@@ -2041,7 +2041,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/resintimer_button"
-                android:text="완충시간 계산"
+                android:text="@string/resin_calculate_time_button"
                 android:layout_marginLeft="10dp"
                 android:textColor="#000000"
                 android:textSize="16dp"
@@ -2055,7 +2055,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/resin_switch"
-                android:text="레진 알람"
+                android:text="@string/alarm_switch"
                 android:textSize="15dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp" />

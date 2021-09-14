@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
     var Textflag_yata = 0
     var Textflag_signora = 0
     //요일,날짜 저장
-    var currentday = dayGenerator()
+    var currentday = "" //이게 왜 null??????
     var currentdate = dateGenerator()
     var savedday : String = ""
     var weeklysavedday : String = ""
@@ -93,20 +93,23 @@ class HomeFragment : Fragment() {
         loadData() //체크리스트 저장값 로드. 여기서 saveddate 가져와야됨.
 
         savedday = App.prefs.myEditText.toString()
-        Log.d("saveddate : ", savedday)
-        Log.d("currentdate: ", currentday)
+        Log.d("savedday : ", savedday)
+        Log.d("currentday: ", currentday)
         Log.d("weekly: ", weeklysavedday)
         Log.d("weeklysaveddate", weeklysaveddate)
         Log.d("currentdate: ", currentdate)
 
+        currentday = dayGenerator()//일단 해결은 됐는데 이거 왜 위에있으면 null뜸?? 이해가 안되네..
+
         if(currentday != savedday) //체크리스트 클릭할때 저장해둔 요일이랑 현재 요일이 일치하지 않으면, 즉 날이 바뀌었으면 reset
         {
             dailyreset()
+            Log.d("dailyreset","hoxy?")
         }
 
-        if(currentdate != weeklysaveddate)
+        if(currentdate != weeklysaveddate) // 이방식은 오류가 있음. 추후 수정
         {
-            if(currentday == "월")
+            if(currentday == "월" || currentday == "MONDAY")
             {
                 weeklyreset()
             }
@@ -204,8 +207,8 @@ class HomeFragment : Fragment() {
                 if(resinvalue in 0..160) {
                     var pair = resintimer(resinvalue)
                     if (resin_switch.isChecked) {
-                        alarm_on(resinvalue, "레진", 100)
-                        Toast.makeText(activity, "레진 알람이 설정되었습니다.", Toast.LENGTH_SHORT).show()
+                        alarm_on(resinvalue, activity?.getString(R.string.daily_resin).toString(), 100)
+                        Toast.makeText(activity, activity?.getString(R.string.resin_alarm_activated).toString(), Toast.LENGTH_SHORT).show()
                     }
                     afterhourxml.text = pair.first.toString()
                     afterminutexml.text = pair.second.toString()
@@ -222,9 +225,9 @@ class HomeFragment : Fragment() {
         }
 
         resin_switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked)Toast.makeText(activity, "알림을 켰습니다.\n(스위치를 켠 상태로 계산버튼을 클릭해야\n 알람이 작동됩니다.)", Toast.LENGTH_LONG).show()
+            if(isChecked)Toast.makeText(activity, activity?.getString(R.string.alarm_toast).toString(), Toast.LENGTH_LONG).show()
             if(!isChecked) {
-                Toast.makeText(activity, "알림을 껐습니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, activity?.getString(R.string.resin_alarm_off).toString(), Toast.LENGTH_LONG).show()
                 alarm_off(100, "레진")
             }
         }
@@ -271,7 +274,7 @@ class HomeFragment : Fragment() {
         sara_talent.visibility = View.GONE
         aloy_talent.visibility = View.GONE
 
-        if(day.text == "월" || day.text == "목" || day.text == "일") //자유, 번영, 부세
+        if(day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") //자유, 번영, 부세
         {
             amber_talent.visibility = View.VISIBLE
             barbara_talent.visibility = View.VISIBLE
@@ -288,7 +291,7 @@ class HomeFragment : Fragment() {
 
         }
 
-        if(day.text =="화" || day.text == "금" || day.text == "일") //투쟁, 근면, 풍아 
+        if(day.text =="화" || day.text =="TUESDAY" || day.text == "금" || day.text =="FRIDAY" || day.text == "일" || day.text =="SUNDAY") //투쟁, 근면, 풍아
         {
             jean_talent.visibility = View.VISIBLE
             diluc_talent.visibility = View.VISIBLE
@@ -306,7 +309,7 @@ class HomeFragment : Fragment() {
             sara_talent.visibility = View.VISIBLE
         }
 
-        if(day.text =="수" || day.text == "토" || day.text == "일") //시문, 황금, 천광
+        if(day.text =="수" || day.text =="WEDNESDAY" || day.text == "토" || day.text =="SATURDAY" || day.text == "일" || day.text =="SUNDAY") //시문, 황금, 천광
         {
             lisa_talent.visibility = View.VISIBLE
             kaeya_talent.visibility = View.VISIBLE
@@ -445,7 +448,7 @@ class HomeFragment : Fragment() {
         yuya_waltz.visibility = View.GONE
         //활
 
-        if(day.text =="월" || day.text == "목" || day.text == "일") //고탑 왕, 고운 한림, 먼바다
+        if(day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") //고탑 왕, 고운 한림, 먼바다
         {
             aquila.visibility = View.VISIBLE
             summit_shaper.visibility = View.VISIBLE
@@ -484,7 +487,7 @@ class HomeFragment : Fragment() {
             yuya_waltz.visibility = View.VISIBLE
         }
 
-        if(day.text =="화" || day.text == "금" || day.text == "일") //칼바람 울프, 안개구름, 나루카미
+        if(day.text =="화" || day.text =="TUESDAY" || day.text == "금" || day.text =="FRIDAY" || day.text == "일" || day.text =="SUNDAY") //칼바람 울프, 안개구름, 나루카미
         {
             skyward_blade.visibility = View.VISIBLE
             primordial_jade_cutter.visibility = View.VISIBLE
@@ -526,7 +529,7 @@ class HomeFragment : Fragment() {
             predator.visibility = View.VISIBLE
         }
 
-        if(day.text =="수" || day.text == "토" || day.text == "일") //라이언 투사의 족쇄, 흑운철, 금석극화
+        if(day.text =="수" || day.text =="WEDNESDAY" || day.text == "토" || day.text =="SATURDAY" || day.text == "일" || day.text =="SUNDAY") //라이언 투사의 족쇄, 흑운철, 금석극화
         {
             iron_sting.visibility = View.VISIBLE
             sacrificial_sword.visibility = View.VISIBLE
@@ -575,345 +578,345 @@ class HomeFragment : Fragment() {
             }
         }*/
         aquila.setOnClickListener{
-            Toast.makeText(activity, "매의 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.aquila_favonia).toString(), Toast.LENGTH_SHORT).show()
         }
         skyward_blade.setOnClickListener{
-            Toast.makeText(activity, "천공의 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.skyward_blade).toString(), Toast.LENGTH_SHORT).show()
         }
         summit_shaper.setOnClickListener{
-            Toast.makeText(activity, "참봉의 칼날", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.summit_shaper).toString(), Toast.LENGTH_SHORT).show()
         }
         primordial_jade_cutter.setOnClickListener{
-            Toast.makeText(activity, "반암결록", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.primordial_jade_cutter).toString(), Toast.LENGTH_SHORT).show()
         }
         the_flute.setOnClickListener{
-            Toast.makeText(activity, "피리검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.the_flute).toString(), Toast.LENGTH_SHORT).show()
         }
         iron_sting.setOnClickListener{
-            Toast.makeText(activity, "강철 벌침", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.iron_sting).toString(), Toast.LENGTH_SHORT).show()
         }
         prototype_rancour.setOnClickListener{
-            Toast.makeText(activity, "참암 프로토타입", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.prototype_rancour).toString(), Toast.LENGTH_SHORT).show()
         }
         the_black_sword.setOnClickListener{
-            Toast.makeText(activity, "칠흑검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.the_black_sword).toString(), Toast.LENGTH_SHORT).show()
         }
         royal_longsword.setOnClickListener{
-            Toast.makeText(activity, "왕실의 장검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.royal_longsword).toString(), Toast.LENGTH_SHORT).show()
         }
         lions_roar.setOnClickListener{
-            Toast.makeText(activity, "용의 포효", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.lions_roar).toString(), Toast.LENGTH_SHORT).show()
         }
         sacrificial_sword.setOnClickListener{
-            Toast.makeText(activity, "제례검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.sacrificial_sword).toString(), Toast.LENGTH_SHORT).show()
         }
         blackcliff_longsword.setOnClickListener{
-            Toast.makeText(activity, "흑암 장검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.blackcliff_longsword).toString(), Toast.LENGTH_SHORT).show()
         }
         sword_of_descension.setOnClickListener{
-            Toast.makeText(activity, "강림의 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.sword_of_descension).toString(), Toast.LENGTH_SHORT).show()
         }
         festering_desire.setOnClickListener{
-            Toast.makeText(activity, "부식의 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.festering_desire).toString(), Toast.LENGTH_SHORT).show()
         }
         fillet_blade.setOnClickListener{
-            Toast.makeText(activity, "흘호 생선회칼", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.fillet_blade).toString(), Toast.LENGTH_SHORT).show()
         }
         harbinger_of_dawn.setOnClickListener{
-            Toast.makeText(activity, "여명신검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.harbinger_of_dawn).toString(), Toast.LENGTH_SHORT).show()
         }
         cool_steel.setOnClickListener{
-            Toast.makeText(activity, "차가운 칼날", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.cool_steel).toString(), Toast.LENGTH_SHORT).show()
         }
         skyrider_sword.setOnClickListener{
-            Toast.makeText(activity, "비천어검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.skyrider_sword).toString(), Toast.LENGTH_SHORT).show()
         }
         travelers_handy_sword.setOnClickListener{
-            Toast.makeText(activity, "여행자의 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.travelers_handy_sword).toString(), Toast.LENGTH_SHORT).show()
         }
         dark_iron_sword.setOnClickListener{
-            Toast.makeText(activity, "암철검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.dark_iron_sword).toString(), Toast.LENGTH_SHORT).show()
         }
         favonius_sword.setOnClickListener{
-            Toast.makeText(activity, "페보니우스 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.favonius_sword).toString(), Toast.LENGTH_SHORT).show()
         }
         the_alley_flash.setOnClickListener{
-            Toast.makeText(activity, "뒷골목의 섬광", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.the_alley_flash).toString(), Toast.LENGTH_SHORT).show()
         }
         freedom_sworn.setOnClickListener{
-            Toast.makeText(activity, "오래된 자유의 서약", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.freedom_sworn).toString(), Toast.LENGTH_SHORT).show()
         }
         mistsplitter_reforged.setOnClickListener{
-            Toast.makeText(activity, "안개를 가르는 회광", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.mistsplitter_reforged).toString(), Toast.LENGTH_SHORT).show()
         }
         amenoma_kageuta_blade.setOnClickListener{
-            Toast.makeText(activity, "아메노마 카게우치가타나", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.amenoma_kageuta_blade).toString(), Toast.LENGTH_SHORT).show()
         }
         //여기까지 한손검
 
         wolf_gravestone.setOnClickListener{
-            Toast.makeText(activity, "늑대의 말로", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.wolfs_gravestone).toString(), Toast.LENGTH_SHORT).show()
         }
         skyward_pride1.setOnClickListener{
-            Toast.makeText(activity, "천공의 긍지", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.skyward_pride).toString(), Toast.LENGTH_SHORT).show()
         }
         the_unforged.setOnClickListener{
-            Toast.makeText(activity, "무공의 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.the_unforged).toString(), Toast.LENGTH_SHORT).show()
         }
         favonius_greatsword.setOnClickListener{
-            Toast.makeText(activity, "페보니우스 대검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.favonius_greatsword).toString(), Toast.LENGTH_SHORT).show()
         }
         serpent_spine.setOnClickListener{
-            Toast.makeText(activity, "이무기 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.serpent_spine).toString(), Toast.LENGTH_SHORT).show()
         }
         prototype_archaic.setOnClickListener{
-            Toast.makeText(activity, "고화 프로토타입", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.prototype_archaic).toString(), Toast.LENGTH_SHORT).show()
         }
         whiteblind.setOnClickListener{
-            Toast.makeText(activity, "백영검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.whiteblind).toString(), Toast.LENGTH_SHORT).show()
         }
         royal_greatsword.setOnClickListener{
-            Toast.makeText(activity, "왕실의 대검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.royal_greatsword).toString(), Toast.LENGTH_SHORT).show()
         }
         the_bell.setOnClickListener{
-            Toast.makeText(activity, "시간의 검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.the_bell).toString(), Toast.LENGTH_SHORT).show()
         }
         blackcliff_slasher.setOnClickListener{
-            Toast.makeText(activity, "흑암참도", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.blackcliff_slasher).toString(), Toast.LENGTH_SHORT).show()
         }
         rainslasher.setOnClickListener{
-            Toast.makeText(activity, "빗물 베기", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.rainslasher).toString(), Toast.LENGTH_SHORT).show()
         }
         sacrificial_greatsword.setOnClickListener{
-            Toast.makeText(activity, "제례 대검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.sacrificial_greatsword).toString(), Toast.LENGTH_SHORT).show()
         }
         snow_tombed_starsilver.setOnClickListener{
-            Toast.makeText(activity, "설장의 성은", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.snow_tombed_starsilver).toString(), Toast.LENGTH_SHORT).show()
         }
         skyrider_greatsword.setOnClickListener{
-            Toast.makeText(activity, "비천대어검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.skyrider_greatsword).toString(), Toast.LENGTH_SHORT).show()
         }
         debate_club.setOnClickListener{
-            Toast.makeText(activity, "훌륭한 대화수단", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.debate_club).toString(), Toast.LENGTH_SHORT).show()
         }
         white_iron_greatsword.setOnClickListener{
-            Toast.makeText(activity, "백철 대검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, activity?.getString(R.string.white_iron_greatsword).toString(), Toast.LENGTH_SHORT).show()
         }
         bloodtainted_greatsword.setOnClickListener{
-            Toast.makeText(activity, "드래곤 블러드 소드", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.bloodtainted_greatsword), Toast.LENGTH_SHORT).show()
         }
         ferrous_shadow.setOnClickListener{
-            Toast.makeText(activity, "강철의 그림자", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.ferrous_shadow), Toast.LENGTH_SHORT).show()
         }
         lithic_blade.setOnClickListener{
-            Toast.makeText(activity, "천암 고검", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.lithic_blade), Toast.LENGTH_SHORT).show()
         }
         song_of_broken_pines.setOnClickListener{
-            Toast.makeText(activity, "송뢰가 울릴 무렵", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.song_of_broken_pines), Toast.LENGTH_SHORT).show()
         }
         katsuragi_slasher.setOnClickListener{
-            Toast.makeText(activity, "카츠라기를 벤 나가마사", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.katsuragis_slasher), Toast.LENGTH_SHORT).show()
         }
         luxurious_sea_lord.setOnClickListener{
-            Toast.makeText(activity, "진주를 문 해황", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.luxurious_sea_lord), Toast.LENGTH_SHORT).show()
         }
         //양손검
 
         skyward_atlas.setOnClickListener{
-            Toast.makeText(activity, "천공의 두루마리", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.skyward_atlas), Toast.LENGTH_SHORT).show()
         }
         lost_prayer.setOnClickListener{
-            Toast.makeText(activity, "사풍 원서", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.lost_prayer_to_the_sacred_winds), Toast.LENGTH_SHORT).show()
         }
         memory_of_dust.setOnClickListener{
-            Toast.makeText(activity, "속세의 자물쇠", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.memory_of_dust), Toast.LENGTH_SHORT).show()
         }
         prototype_amber.setOnClickListener{
-            Toast.makeText(activity, "황금 호박 프로토타입", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.prototype_amber), Toast.LENGTH_SHORT).show()
         }
         mappa_mare.setOnClickListener{
-            Toast.makeText(activity, "만국 항해용해도", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.mappa_mare), Toast.LENGTH_SHORT).show()
         }
         solar_pearl.setOnClickListener{
-            Toast.makeText(activity, "일월의 정수", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.solar_pearl), Toast.LENGTH_SHORT).show()
         }
         royal_grimoire.setOnClickListener{
-            Toast.makeText(activity, "왕실의 비전록", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.royal_grimoire), Toast.LENGTH_SHORT).show()
         }
         eye_of_perception.setOnClickListener{
-            Toast.makeText(activity, "소심", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.eye_of_perception), Toast.LENGTH_SHORT).show()
         }
         the_widsith.setOnClickListener{
-            Toast.makeText(activity, "음유시인의 악장", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.the_widsith), Toast.LENGTH_SHORT).show()
         }
         sacrificial_fragments.setOnClickListener{
-            Toast.makeText(activity, "제례의 악장", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.sacrificial_fragments), Toast.LENGTH_SHORT).show()
         }
         favonius_codex.setOnClickListener{
-            Toast.makeText(activity, "페보니우스 비전", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.favonius_codex), Toast.LENGTH_SHORT).show()
         }
         blackcliff_agate.setOnClickListener{
-            Toast.makeText(activity, "흑암 홍옥", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.blackcliff_agate), Toast.LENGTH_SHORT).show()
         }
         frostbearer.setOnClickListener{
-            Toast.makeText(activity, "인동의 열매", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.frostbearer), Toast.LENGTH_SHORT).show()
         }
         twin_nephrite.setOnClickListener{
-            Toast.makeText(activity, "1급 보옥", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.twin_nephrite), Toast.LENGTH_SHORT).show()
         }
         emerald_orb.setOnClickListener{
-            Toast.makeText(activity, "비취 오브", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.emerald_orb), Toast.LENGTH_SHORT).show()
         }
         otherworldly_story.setOnClickListener{
-            Toast.makeText(activity, "이세계 여행기", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.otherworldly_story), Toast.LENGTH_SHORT).show()
         }
         thrilling_tales_of_dragon_slayers.setOnClickListener{
-            Toast.makeText(activity, "드래곤 슬레이어 영웅담", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.thrilling_tales_of_dragon_slayer), Toast.LENGTH_SHORT).show()
         }
         magic_guide.setOnClickListener{
-            Toast.makeText(activity, "마도 서론", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.magic_guide), Toast.LENGTH_SHORT).show()
         }
         wine_and_song1.setOnClickListener{
-            Toast.makeText(activity, "뒷골목의 술과 시", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.wine_and_song), Toast.LENGTH_SHORT).show()
         }
         everlasting_moonglow.setOnClickListener{
-            Toast.makeText(activity, "불멸의 달빛", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.everlasting_moonglow), Toast.LENGTH_SHORT).show()
         }
         dodoco_tales.setOnClickListener{
-            Toast.makeText(activity, "도도코 이야기집", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.dodoco_tales), Toast.LENGTH_SHORT).show()
         }
         white_dragon_ring.setOnClickListener{
-            Toast.makeText(activity, "하쿠신의 고리", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.white_dragon_ring), Toast.LENGTH_SHORT).show()
         }
         //여기까지 법구
 
         primordial_jade_spear.setOnClickListener{
-            Toast.makeText(activity, "화박연", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.primordial_jade_winged_spear), Toast.LENGTH_SHORT).show()
         }
         skyward_spine.setOnClickListener{
-            Toast.makeText(activity, "천공의 마루", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.skyward_spine), Toast.LENGTH_SHORT).show()
         }
         vortex_vanquisher.setOnClickListener{
-            Toast.makeText(activity, "관홍의 창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.vortex_vanquisher), Toast.LENGTH_SHORT).show()
         }
         prototype_starglitter.setOnClickListener{
-            Toast.makeText(activity, "별의 낫 프로토타입", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.prototype_starglitter), Toast.LENGTH_SHORT).show()
         }
         crescent_pike.setOnClickListener{
-            Toast.makeText(activity, "유월창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.crescent_pike), Toast.LENGTH_SHORT).show()
         }
         deathmatch.setOnClickListener{
-            Toast.makeText(activity, "결투의 창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.deathmatch), Toast.LENGTH_SHORT).show()
         }
         blackcliff_pole.setOnClickListener{
-            Toast.makeText(activity, "흑암창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.blackcliff_pole), Toast.LENGTH_SHORT).show()
         }
         favonius_lance.setOnClickListener{
-            Toast.makeText(activity, "페보니우스 장창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.favonius_lance), Toast.LENGTH_SHORT).show()
         }
         dragons_bane.setOnClickListener{
-            Toast.makeText(activity, "용학살창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.dragons_bane), Toast.LENGTH_SHORT).show()
         }
         royal_spear.setOnClickListener{
-            Toast.makeText(activity, "왕실의 장창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.royal_spear), Toast.LENGTH_SHORT).show()
         }
         dragonspine_spear.setOnClickListener{
-            Toast.makeText(activity, "용의 척추", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.dragonspine_spear), Toast.LENGTH_SHORT).show()
         }
         blacktassel.setOnClickListener{
-            Toast.makeText(activity, "흑술창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.black_tassel), Toast.LENGTH_SHORT).show()
         }
         halberd.setOnClickListener{
-            Toast.makeText(activity, "미늘창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.halberd), Toast.LENGTH_SHORT).show()
         }
         white_tassel.setOnClickListener{
-            Toast.makeText(activity, "백술창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.white_tassel), Toast.LENGTH_SHORT).show()
         }
         lithic_spear.setOnClickListener{
-            Toast.makeText(activity, "천암 장창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.lithic_spear), Toast.LENGTH_SHORT).show()
         }
         engulfing_lightning.setOnClickListener{
-            Toast.makeText(activity, "예초의 번개", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.engulfing_lightning), Toast.LENGTH_SHORT).show()
         }
         kitain_cross_spear.setOnClickListener{
-            Toast.makeText(activity, "키타인 십자창", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.kitain_cross_spear), Toast.LENGTH_SHORT).show()
         }
         the_catch.setOnClickListener{
-            Toast.makeText(activity, "「어획」", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.the_catch), Toast.LENGTH_SHORT).show()
+        }
+        staff_of_homa.setOnClickListener{
+            Toast.makeText(activity, getString(R.string.staff_of_homa), Toast.LENGTH_SHORT).show()
         }
         //창
 
         skyward_harp.setOnClickListener{
-            Toast.makeText(activity, "천공의 날개", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.skyward_harp), Toast.LENGTH_SHORT).show()
         }
         amos_bow.setOnClickListener{
-            Toast.makeText(activity, "아모스의 활", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.amoss_bow), Toast.LENGTH_SHORT).show()
         }
         favonius_warbow.setOnClickListener{
-            Toast.makeText(activity, "페보니우스 활", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.favonius_warbow), Toast.LENGTH_SHORT).show()
         }
         prototype_crescent.setOnClickListener{
-            Toast.makeText(activity, "담월 프로토타입", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.prototype_crescent), Toast.LENGTH_SHORT).show()
         }
         compound_bow.setOnClickListener{
-            Toast.makeText(activity, "강철궁", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.compound_bow), Toast.LENGTH_SHORT).show()
         }
         the_viridescent_hunt.setOnClickListener{
-            Toast.makeText(activity, "청록의 사냥활", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.the_virdescent_hunt), Toast.LENGTH_SHORT).show()
         }
         royal_bow.setOnClickListener{
-            Toast.makeText(activity, "왕실의 장궁", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.royal_bow), Toast.LENGTH_SHORT).show()
         }
         rust.setOnClickListener{
-            Toast.makeText(activity, "녹슨 활", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.rust), Toast.LENGTH_SHORT).show()
         }
         sacrificial_bow.setOnClickListener{
-            Toast.makeText(activity, "제례활", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.sacrificial_bow), Toast.LENGTH_SHORT).show()
         }
         the_stringless.setOnClickListener{
-            Toast.makeText(activity, "절현", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.the_stringless), Toast.LENGTH_SHORT).show()
         }
         blackcliff_warbow.setOnClickListener{
-            Toast.makeText(activity, "흑암 배틀 보우", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.blackcliff_warbow), Toast.LENGTH_SHORT).show()
         }
         slingshot.setOnClickListener{
-            Toast.makeText(activity, "탄궁", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.slingshot), Toast.LENGTH_SHORT).show()
         }
         messenger.setOnClickListener{
-            Toast.makeText(activity, "전령", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.messenger), Toast.LENGTH_SHORT).show()
         }
         recurve_bow.setOnClickListener{
-            Toast.makeText(activity, "곡궁", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.recurve_bow), Toast.LENGTH_SHORT).show()
         }
         sharpshooter_oath.setOnClickListener{
-            Toast.makeText(activity, "신궁의 서약", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.sharpshooters_oath), Toast.LENGTH_SHORT).show()
         }
         raven_bow.setOnClickListener{
-            Toast.makeText(activity, "까마귀깃 활", Toast.LENGTH_SHORT).show()
-        }
-        staff_of_homa.setOnClickListener{
-            Toast.makeText(activity, "호마의 지팡이", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.raven_bow), Toast.LENGTH_SHORT).show()
         }
         elegy_for_the_end.setOnClickListener{
-            Toast.makeText(activity, "종말 탄식의 노래", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.elegy_for_the_end), Toast.LENGTH_SHORT).show()
         }
         alley_hunter.setOnClickListener{
-            Toast.makeText(activity, "뒷골목 사냥꾼", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.alley_hunter), Toast.LENGTH_SHORT).show()
         }
         windblume_ode.setOnClickListener{
-            Toast.makeText(activity, "바람 꽃의 노래", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.windblume_ode), Toast.LENGTH_SHORT).show()
         }
         thundering_pulse.setOnClickListener{
-            Toast.makeText(activity, "비뢰의 고동", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.thundering_pulse), Toast.LENGTH_SHORT).show()
         }
         yuya_waltz.setOnClickListener{
-            Toast.makeText(activity, "유야의 왈츠", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.mitternachts_waltz), Toast.LENGTH_SHORT).show()
         }
         demon_slayer_bow.setOnClickListener{
-            Toast.makeText(activity, "파마궁", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.demon_slayer_bow), Toast.LENGTH_SHORT).show()
         }
         predator.setOnClickListener{
-            Toast.makeText(activity, "포식자", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.predator), Toast.LENGTH_SHORT).show()
         }
         //활
     }
@@ -1323,23 +1326,22 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun dayGenerator() :String{
-
-        val gst = TimeZone.getTimeZone("GMT+4")
+    private fun dayGenerator() :String{
+        val gst = TimeZone.getTimeZone(activity?.getString(R.string.GMT).toString())
         val instance = Calendar.getInstance(gst)
-        var day = instance.get(Calendar.DAY_OF_WEEK).toString()
-        var dayString = "오류"
+        val day = instance.get(Calendar.DAY_OF_WEEK).toString()
+        var dayString = "error"
 
         when(day){
-            "1" -> dayString = "일"
-            "2" -> dayString = "월"
-            "3" -> dayString = "화"
-            "4" -> dayString = "수"
-            "5" -> dayString = "목"
-            "6" -> dayString = "금"
-            "7" -> dayString = "토"
-            else -> "오류"
+            "1" -> dayString = activity?.getString(R.string.day_sun).toString()
+            "2" -> dayString = activity?.getString(R.string.day_mon).toString()
+            "3" -> dayString = activity?.getString(R.string.day_tue).toString()
+            "4" -> dayString = activity?.getString(R.string.day_wed).toString()
+            "5" -> dayString = activity?.getString(R.string.day_thu).toString()
+            "6" -> dayString = activity?.getString(R.string.day_fri).toString()
+            "7" -> dayString = activity?.getString(R.string.day_sat).toString()
         }
+        Log.d("daystring", dayString)
         return dayString
     }
 
@@ -1373,8 +1375,7 @@ class HomeFragment : Fragment() {
     }
 
     fun resintimer(resinvalue: Int?) : Pair<Int, Int> { //아무것도 안넣고 버튼 누르면 팅김, 25시 ~~
-        val gst = TimeZone.getTimeZone("GMT+9")
-        val instance = Calendar.getInstance(gst)
+        val instance = Calendar.getInstance()
         var hour = instance.get(Calendar.HOUR_OF_DAY).toInt()
         var minute = instance.get(Calendar.MINUTE).toInt()
         var resinleft = 0 //160과 현재 들어온 값의 차
@@ -1425,7 +1426,6 @@ class HomeFragment : Fragment() {
 //        alarmIntent = Intent(activity, AlarmReceiver::class.java).let { intent ->
 //            PendingIntent.getBroadcast(activity, 0, intent, 0) //Broadcast Receiver를 실행.
 //        }
-        Log.d("alarm_on", param)
         val pendingIntent = getIntent(requireActivity(), id, param,id)
         val alarm = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         // 여기서 알림 시간 설정
@@ -1454,7 +1454,6 @@ class HomeFragment : Fragment() {
         getIntent(requireContext(), id, param, id).apply {
             alarmManager.cancel(this)
         }
-        Log.d("alarm_off", param)
     }
 
     }

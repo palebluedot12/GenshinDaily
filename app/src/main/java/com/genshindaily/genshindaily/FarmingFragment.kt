@@ -97,168 +97,168 @@ class FarmingFragment : Fragment() {
 
         //알람 스위치
         farming_switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked)Toast.makeText(activity, "알림을 켰습니다.\n(스위치를 켠 상태로 목록을 체크해야\n 알람이 작동됩니다.)", Toast.LENGTH_LONG).show()
+            if(isChecked)Toast.makeText(activity, activity?.getString(R.string.farming_switch).toString(), Toast.LENGTH_LONG).show()
             if(!isChecked) {
-                Toast.makeText(activity, "알림을 껐습니다.", Toast.LENGTH_LONG).show()
-                alarm_off(1, "철광석")
-                alarm_off(2, "백철")
-                alarm_off(3, "콜 라피스")
-                alarm_off(4, "야박석")
-                alarm_off(5, "성은 광석")
-                alarm_off(6, "전기 수정")
-                alarm_off(7, "수정덩이")
-                alarm_off(8, "고리고리 열매")
-                alarm_off(9, "낙락베리")
-                alarm_off(10, "등불꽃")
-                alarm_off(11, "민들레 씨앗")
-                alarm_off(12, "바람버섯")
-                alarm_off(13, "세실리아꽃")
-                alarm_off(14, "예상꽃")
-                alarm_off(15, "유리백합")
-                alarm_off(16, "유리주머니")
-                alarm_off(17, "절운고추")
-                alarm_off(18, "청심")
-                alarm_off(19, "통통연꽃")
-                alarm_off(20, "풍차국화")
-                alarm_off(21, "수정 골수")
-                alarm_off(22, "귀신 풍뎅이")
-                alarm_off(23, "벚꽃 수구")
-                alarm_off(24, "혈곡")
-                alarm_off(25, "울림풀")
-                alarm_off(26, "바다 불로초")
-                alarm_off(27, "산호 진주")
-                alarm_off(28, "아마쿠모초 열매")
+                Toast.makeText(activity,activity?.getString(R.string.resin_alarm_off).toString() , Toast.LENGTH_LONG).show()
+                alarm_off(1, activity?.getString(R.string.iron_chunk).toString())
+                alarm_off(2, activity?.getString(R.string.white_iron_chunk).toString())
+                alarm_off(3, activity?.getString(R.string.cor_lapis).toString())
+                alarm_off(4, activity?.getString(R.string.noctilucous).toString())
+                alarm_off(5, activity?.getString(R.string.starsilver).toString())
+                alarm_off(6, activity?.getString(R.string.electro_crystal).toString())
+                alarm_off(7, activity?.getString(R.string.crystal_chunk).toString())
+                alarm_off(8, activity?.getString(R.string.wolfhook).toString())
+                alarm_off(9, activity?.getString(R.string.valberry).toString())
+                alarm_off(10, activity?.getString(R.string.small_lamp_grass).toString())
+                alarm_off(11, activity?.getString(R.string.dandelion_seed).toString())
+                alarm_off(12, activity?.getString(R.string.philanemo_mushroom).toString())
+                alarm_off(13, activity?.getString(R.string.cecilia).toString())
+                alarm_off(14, activity?.getString(R.string.silk_flower).toString())
+                alarm_off(15, activity?.getString(R.string.glaze_lily).toString())
+                alarm_off(16, activity?.getString(R.string.violetgrass).toString())
+                alarm_off(17, activity?.getString(R.string.jueyun).toString())
+                alarm_off(18, activity?.getString(R.string.qingxin).toString())
+                alarm_off(19, activity?.getString(R.string.calla_lily).toString())
+                alarm_off(20, activity?.getString(R.string.windwheel_aster).toString())
+                alarm_off(21, activity?.getString(R.string.crystal_golsu).toString())
+                alarm_off(22, activity?.getString(R.string.ghost_pungdeng).toString())
+                alarm_off(23, activity?.getString(R.string.cherry_blossom).toString())
+                alarm_off(24, activity?.getString(R.string.hyulgok).toString())
+                alarm_off(25, activity?.getString(R.string.yulimple).toString())
+                alarm_off(26, activity?.getString(R.string.sea_bulocho).toString())
+                alarm_off(27, activity?.getString(R.string.sanho_pearl).toString())
+                alarm_off(28, activity?.getString(R.string.amakumocho).toString())
             }
         }
 
         //86400 172800 259200
         iron_chunk.setOnClickListener(View.OnClickListener {
             onTextClicked_iron_chunk()
-            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(86400,"철광석",1) else alarm_off(1,"철광석")
+            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(86400,activity?.getString(R.string.iron_chunk).toString(),1) else alarm_off(1,activity?.getString(R.string.iron_chunk).toString())
         })
         white_iron_chunk.setOnClickListener(View.OnClickListener {
             onTextClicked_white_iron_chunk()
-            if(Textflag_white_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,"백철",2) else alarm_off(2,"백철")
+            if(Textflag_white_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.white_iron_chunk).toString(),2) else alarm_off(2,activity?.getString(R.string.white_iron_chunk).toString())
         })
         cor_lapis.setOnClickListener(View.OnClickListener {
             onTextClicked_cor_lapis()
-            if(Textflag_cor_lapis == 1 && farming_switch.isChecked) alarm_on(172800,"콜 라피스",3) else alarm_off(3,"콜 라피스")
+            if(Textflag_cor_lapis == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.cor_lapis).toString(),3) else alarm_off(3,activity?.getString(R.string.cor_lapis).toString())
         })
         yabak.setOnClickListener(View.OnClickListener {
             onTextClicked_yabak()
-            if(Textflag_yabak == 1 && farming_switch.isChecked) alarm_on(172800,"야박석",4) else alarm_off(4,"야박석")
+            if(Textflag_yabak == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.noctilucous).toString(),4) else alarm_off(4,activity?.getString(R.string.noctilucous).toString())
         })
         starsilver.setOnClickListener(View.OnClickListener {
             onTextClicked_starsilver()
-            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,"성은 광석",5) else alarm_off(5,"성은 광석")
+            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.starsilver).toString(),5) else alarm_off(5,activity?.getString(R.string.starsilver).toString())
         })
         electro_crystal.setOnClickListener(View.OnClickListener {
             onTextClicked_electro_crystal()
-            if(Textflag_electro_crystal == 1 && farming_switch.isChecked) alarm_on(172800,"전기 수정",6) else alarm_off(6,"전기 수정")
+            if(Textflag_electro_crystal == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.electro_crystal).toString(),6) else alarm_off(6,activity?.getString(R.string.electro_crystal).toString())
         })
         crystal_chunk.setOnClickListener(View.OnClickListener {
             onTextClicked_crystal_chunk()
-            if(Textflag_crystal_chunk == 1 && farming_switch.isChecked) alarm_on(259200,"수정덩이",7) else alarm_off(7,"수정 광석")
+            if(Textflag_crystal_chunk == 1 && farming_switch.isChecked) alarm_on(259200,activity?.getString(R.string.crystal_chunk).toString(),7) else alarm_off(7,activity?.getString(R.string.crystal_chunk).toString())
         })
         gori_gori.setOnClickListener(View.OnClickListener {
             onTextClicked_gori_gori()
-            if(Textflag_gori_gori == 1 && farming_switch.isChecked) alarm_on(172800,"고리고리 열매",8) else alarm_off(8,"고리고리 열매")
+            if(Textflag_gori_gori == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.wolfhook).toString(),8) else alarm_off(8,activity?.getString(R.string.wolfhook).toString())
         })
         nakrak.setOnClickListener(View.OnClickListener {
             onTextClicked_nakrak()
-            if(Textflag_nakrak == 1 && farming_switch.isChecked) alarm_on(172800,"낙락베리",9) else alarm_off(9,"낙락베리")
+            if(Textflag_nakrak == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.valberry).toString(),9) else alarm_off(9,activity?.getString(R.string.valberry).toString())
         })
         small_lamp_grass.setOnClickListener(View.OnClickListener {
             onTextClicked_small_lamp_grass()
-            if(Textflag_small_lamp_grass == 1 && farming_switch.isChecked) alarm_on(172800,"등불꽃",10) else alarm_off(10,"등불꽃")
+            if(Textflag_small_lamp_grass == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.small_lamp_grass).toString(),10) else alarm_off(10,activity?.getString(R.string.small_lamp_grass).toString())
         })
         dandelion_seed.setOnClickListener(View.OnClickListener {
             onTextClicked_dandelion_seed()
-            if(Textflag_dandelion_seed == 1 && farming_switch.isChecked) alarm_on(172800,"민들레 씨앗",11) else alarm_off(11,"민들레 씨앗")
+            if(Textflag_dandelion_seed == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.dandelion_seed).toString(),11) else alarm_off(11,activity?.getString(R.string.dandelion_seed).toString())
         })
         mushroom.setOnClickListener(View.OnClickListener {
             onTextClicked_mushroom()
-            if(Textflag_mushroom == 1 && farming_switch.isChecked) alarm_on(172800,"바람버섯",12) else alarm_off(12,"바람버섯")
+            if(Textflag_mushroom == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.philanemo_mushroom).toString(),12) else alarm_off(12,activity?.getString(R.string.philanemo_mushroom).toString())
         })
         cecilia.setOnClickListener(View.OnClickListener {
             onTextClicked_cecilia()
-            if(Textflag_cecilia == 1 && farming_switch.isChecked) alarm_on(172800,"세실리아꽃",13) else alarm_off(13,"세실리아꽃")
+            if(Textflag_cecilia == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.cecilia).toString(),13) else alarm_off(13,activity?.getString(R.string.cecilia).toString())
         })
         yesang_flower.setOnClickListener(View.OnClickListener {
             onTextClicked_yesang_flower()
-            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,"예상꽃",14) else alarm_off(14,"예상꽃")
+            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.silk_flower).toString(),14) else alarm_off(14,activity?.getString(R.string.silk_flower).toString())
         })
         yuri_lily.setOnClickListener(View.OnClickListener {
             onTextClicked_yuri_iliy()
-            if(Textflag_yuri_lily == 1 && farming_switch.isChecked) alarm_on(172800,"유리백합",15) else alarm_off(15,"유리백합")
+            if(Textflag_yuri_lily == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.glaze_lily).toString(),15) else alarm_off(15,activity?.getString(R.string.glaze_lily).toString())
         })
         yuri_zumeoni.setOnClickListener(View.OnClickListener {
             onTextClicked_yuri_zumeoni()
-            if(Textflag_yuri_zumeoni == 1 && farming_switch.isChecked) alarm_on(172800,"유리주머니",16) else alarm_off(16,"유리주머니")
+            if(Textflag_yuri_zumeoni == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.violetgrass).toString(),16) else alarm_off(16,activity?.getString(R.string.violetgrass).toString())
         })
         jueyun_chili.setOnClickListener(View.OnClickListener {
             onTextClicked_jueyun_chili()
-            if(Textflag_jueyun_chili == 1 && farming_switch.isChecked) alarm_on(172800,"절운고추",17) else alarm_off(17,"절운고추")
+            if(Textflag_jueyun_chili == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.jueyun).toString(),17) else alarm_off(17,activity?.getString(R.string.jueyun).toString())
         })
         qingxin.setOnClickListener(View.OnClickListener {
             onTextClicked_qingxin()
-            if(Textflag_qingxin == 1 && farming_switch.isChecked) alarm_on(172800,"청심",18) else alarm_off(18,"청심")
+            if(Textflag_qingxin == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.qingxin).toString(),18) else alarm_off(18,activity?.getString(R.string.qingxin).toString())
         })
         tongtong.setOnClickListener(View.OnClickListener {
             onTextClicked_tongtong()
-            if(Textflag_tongtong == 1 && farming_switch.isChecked) alarm_on(172800,"통통연꽃",19) else alarm_off(19,"통통연꽃")
+            if(Textflag_tongtong == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.calla_lily).toString(),19) else alarm_off(19,activity?.getString(R.string.calla_lily).toString())
 
         })
         windwheel_aster.setOnClickListener(View.OnClickListener {
             onTextClicked_windwheel()
-            if(Textflag_windwheel == 1 && farming_switch.isChecked) alarm_on(172800,"풍차국화",20) else alarm_off(20,"풍차국화")
+            if(Textflag_windwheel == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.windwheel_aster).toString(),20) else alarm_off(20,activity?.getString(R.string.windwheel_aster).toString())
         })
 
         crystal_golsu.setOnClickListener(View.OnClickListener {
             onTextClicked_crystal_golsu()
-            if(Textflag_crystal_golsu == 1 && farming_switch.isChecked) alarm_on(172800,"수정 골수",21) else alarm_off(21,"수정 골수")
+            if(Textflag_crystal_golsu == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.crystal_golsu).toString(),21) else alarm_off(21,activity?.getString(R.string.crystal_golsu).toString())
 
         })
 
         ghost_pungdeng.setOnClickListener(View.OnClickListener {
             onTextClicked_ghost_pungdeng()
-            if(Textflag_ghost_pungdeng == 1 && farming_switch.isChecked) alarm_on(172800,"귀신 풍뎅이",22) else alarm_off(22,"귀신 풍뎅이")
+            if(Textflag_ghost_pungdeng == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.ghost_pungdeng).toString(),22) else alarm_off(22,activity?.getString(R.string.ghost_pungdeng).toString())
 
         })
 
         cherry_blossom_sugu.setOnClickListener(View.OnClickListener {
             onTextClicked_cherry_blossom_sugu()
-            if(Textflag_cherry_blossom_sugu == 1 && farming_switch.isChecked) alarm_on(172800,"벚꽃 수구",23) else alarm_off(23,"벚꽃 수구")
+            if(Textflag_cherry_blossom_sugu == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.cherry_blossom).toString(),23) else alarm_off(23,activity?.getString(R.string.cherry_blossom).toString())
 
         })
 
         hyul_gok.setOnClickListener(View.OnClickListener {
             onTextClicked_hyul_gok()
-            if(Textflag_hyul_gok == 1 && farming_switch.isChecked) alarm_on(172800,"혈곡",24) else alarm_off(24,"혈곡")
+            if(Textflag_hyul_gok == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.hyulgok).toString(),24) else alarm_off(24,activity?.getString(R.string.hyulgok).toString())
 
         })
 
         yulimple.setOnClickListener(View.OnClickListener {
             onTextClicked_yulimple()
-            if(Textflag_yulimple == 1 && farming_switch.isChecked) alarm_on(172800,"울림풀",25) else alarm_off(25,"울림풀")
+            if(Textflag_yulimple == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.yulimple).toString(),25) else alarm_off(25,activity?.getString(R.string.yulimple).toString())
 
         })
 
         sea_bulocho.setOnClickListener(View.OnClickListener {
             onTextClicked_sea_bulocho()
-            if(Textflag_sea_bulocho == 1 && farming_switch.isChecked) alarm_on(172800,"바다 불로초",26) else alarm_off(26,"바다 불로초")
+            if(Textflag_sea_bulocho == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.sea_bulocho).toString(),26) else alarm_off(26,activity?.getString(R.string.sea_bulocho).toString())
 
         })
 
         sanho_pearl.setOnClickListener(View.OnClickListener {
             onTextClicked_sanho_pearl()
-            if(Textflag_sanho_pearl == 1 && farming_switch.isChecked) alarm_on(172800,"산호 진주",27) else alarm_off(27,"산호 진주")
+            if(Textflag_sanho_pearl == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.sanho_pearl).toString(),27) else alarm_off(27,activity?.getString(R.string.sanho_pearl).toString())
 
         })
 
         amakumocho.setOnClickListener(View.OnClickListener {
             onTextClicked_amakumocho()
-            if(Textflag_amakumocho == 1 && farming_switch.isChecked) alarm_on(172800,"아마쿠모초 열매",28) else alarm_off(28,"아마쿠모초 열매")
+            if(Textflag_amakumocho == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.amakumocho).toString(),28) else alarm_off(28,activity?.getString(R.string.amakumocho).toString())
 
         })
 
@@ -791,22 +791,22 @@ class FarmingFragment : Fragment() {
         {
             if(date == 31)
             {
-                monthStr = "${month+1}월 "
-                if(material == 24) dateStr = "1일"
-                if(material == 48) dateStr = "2일"
+                monthStr = "${month+1} / "
+                if(material == 24) dateStr = "1 "
+                if(material == 48) dateStr = "2 "
             }
             else
             {
-                monthStr = "${month}월 "
-                if(material == 24) dateStr = "${date+1}일"
+                monthStr = "${month} / "
+                if(material == 24) dateStr = "${date+1} "
 
                 if(material == 48) {
                     if(date == 30) {
-                        monthStr = "${month + 1}월"
-                        dateStr = "1일"
+                        monthStr = "${month + 1} / "
+                        dateStr = "1 "
                     }
                     else
-                        dateStr = "${date+2}일"
+                        dateStr = "${date+2} "
                 }
 
             }
@@ -816,22 +816,22 @@ class FarmingFragment : Fragment() {
             {
                 if(date == 30)
                 {
-                    monthStr = "${month+1}월 "
-                    if(material == 24) dateStr = "1일"
-                    if(material == 48) dateStr = "2일"
+                    monthStr = "${month+1} / "
+                    if(material == 24) dateStr = "1 "
+                    if(material == 48) dateStr = "2 "
                 }
                 else
                 {
-                    monthStr = "${month}월 "
-                    if(material == 24) dateStr = "${date+1}일"
+                    monthStr = "${month} / "
+                    if(material == 24) dateStr = "${date+1} "
 
                     if(material == 48) {
                         if(date == 29) {
-                            monthStr = "${month + 1}월"
-                            dateStr = "1일"
+                            monthStr = "${month + 1} / "
+                            dateStr = "1 "
                         }
                         else
-                            dateStr = "${date+2}일"
+                            dateStr = "${date+2} "
                     }
                 }
             }
@@ -840,22 +840,22 @@ class FarmingFragment : Fragment() {
         {
             if(date == 28)
             {
-                monthStr = "${month+1}월 "
-                if(material == 24) dateStr = "1일"
-                if(material == 48) dateStr = "2일"
+                monthStr = "${month+1} / "
+                if(material == 24) dateStr = "1 "
+                if(material == 48) dateStr = "2 "
             }
             else
             {
-                monthStr = "${month}월 "
-                if(material == 24) dateStr = "${date+1}일"
+                monthStr = "${month} / "
+                if(material == 24) dateStr = "${date+1} "
 
                 if(material == 48) {
                     if(date == 27) {
-                        monthStr = "${month + 1}월"
-                        dateStr = "1일"
+                        monthStr = "${month + 1} / "
+                        dateStr = "1 "
                     }
                     else
-                        dateStr = "${date+2}일"
+                        dateStr = "${date+2} "
                 }
             }
         }
@@ -869,15 +869,15 @@ class FarmingFragment : Fragment() {
 
         when(hour)
         {
-            in 1..11 -> hourStr = "오전${hour}시"
-            in 13..23 -> hourStr = "오후${hour-12}시"
-            12 -> hourStr ="오후${hour}시"
-            0 -> hourStr ="오전${hour}시"
-            24 -> hourStr ="오전${hour}시"
+            in 1..11 -> hourStr = " AM${hour} : "
+            in 13..23 -> hourStr = " PM${hour-12} : "
+            12 -> hourStr =" PM${hour} : "
+            0 -> hourStr =" AM${hour} : "
+            24 -> hourStr =" AM${hour} : "
         }
 
 
-        minStr = "${minute}분"
+        minStr = "${minute}"
 
         return  monthStr + dateStr + hourStr + minStr
         Log.d("aftertime : " , monthStr + dateStr + hourStr + minStr)

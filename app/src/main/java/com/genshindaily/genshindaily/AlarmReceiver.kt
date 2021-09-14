@@ -7,13 +7,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.provider.Settings.Global.getString
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 class AlarmReceiver() : BroadcastReceiver() {
     val CHANNEL_ID = "TEST"
-    val textContent = "리젠 완료!"
-    val textTitle = "완료되엇습니다"
+    val textContent = "Complete!"
+    val textTitle = "완료되었습니다"
 
 
     override fun onReceive(context: Context?, intent: Intent?) {
