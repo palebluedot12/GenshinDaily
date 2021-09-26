@@ -188,4 +188,9 @@
     <string name="mitternachts_waltz">유야의 왈츠</string>
     <string name="demon_slayer_bow">파마궁</string>
     <string name="predator">포식자</string>
+    <string name="parametric_transformer">매개변수 변환기</string>
+    <string name="farming_etc">기타</string>
+    <string name="fish_mond">낚시 - 몬드</string>
+    <string name="fish_liyue">낚시 - 리월</string>
+    <string name="fish_inazuma">낚시 - 이나즈마</string>
 </resources>

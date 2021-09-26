@@ -47,6 +47,66 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/farming_etc"
+            android:textSize="11dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/parametric_transformer"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/parametric_transformer"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:id="@+id/parametric_transformer"
+                android:layout_marginLeft="8dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/farming_afterhour_parametric_transformer"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_centerInParent="true"
+            android:background="#939597"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/Forge_materials"
             android:textSize="11dp"
             android:layout_marginBottom="5dp"
@@ -606,6 +666,47 @@
                 />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/fish_mond"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_mond"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:id="@+id/fish_mond"
+                android:layout_marginLeft="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/farming_afterhour_fish_mond"
+                />
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
@@ -908,6 +1009,47 @@
                 android:textColor="@color/black"
                 android:layout_marginLeft="20dp"
                 android:id="@+id/farming_afterhour_yuri_iliy"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/fish_riwol"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_liyue"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:id="@+id/fish_liyue"
+                android:layout_marginLeft="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/farming_afterhour_fish_liyue"
                 />
         </LinearLayout>
 
@@ -1254,6 +1396,47 @@
                 android:textColor="@color/black"
                 android:layout_marginLeft="20dp"
                 android:id="@+id/farming_afterhour_amakumocho"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/fish_inazuma"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_inazuma"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:id="@+id/fish_inazuma"
+                android:layout_marginLeft="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/farming_afterhour_fish_inazuma"
                 />
         </LinearLayout>
 

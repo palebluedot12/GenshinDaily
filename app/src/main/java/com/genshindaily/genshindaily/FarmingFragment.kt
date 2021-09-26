@@ -55,6 +55,11 @@ class FarmingFragment : Fragment() {
     var Textflag_hyul_gok = 0
     var Textflag_amakumocho = 0
     var Textflag_sea_bulocho = 0
+    var Textflag_parametic_transformer = 0
+    var Textflag_fish_mond = 0
+    var Textflag_fish_liyue = 0
+    var Textflag_fish_inazuma = 0
+
 
 
     private var alarmMgr: AlarmManager? = null
@@ -128,6 +133,11 @@ class FarmingFragment : Fragment() {
                 alarm_off(26, activity?.getString(R.string.sea_bulocho).toString())
                 alarm_off(27, activity?.getString(R.string.sanho_pearl).toString())
                 alarm_off(28, activity?.getString(R.string.amakumocho).toString())
+                alarm_off(29, activity?.getString(R.string.parametric_transformer).toString())
+                alarm_off(30, activity?.getString(R.string.fish_mond).toString())
+                alarm_off(31, activity?.getString(R.string.fish_liyue).toString())
+                alarm_off(32, activity?.getString(R.string.fish_inazuma).toString())
+
             }
         }
 
@@ -253,13 +263,30 @@ class FarmingFragment : Fragment() {
         sanho_pearl.setOnClickListener(View.OnClickListener {
             onTextClicked_sanho_pearl()
             if(Textflag_sanho_pearl == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.sanho_pearl).toString(),27) else alarm_off(27,activity?.getString(R.string.sanho_pearl).toString())
-
         })
 
         amakumocho.setOnClickListener(View.OnClickListener {
             onTextClicked_amakumocho()
             if(Textflag_amakumocho == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.amakumocho).toString(),28) else alarm_off(28,activity?.getString(R.string.amakumocho).toString())
-
+        })
+        parametric_transformer.setOnClickListener(View.OnClickListener {
+            onTextClicked_parametric_transformer()
+            if(Textflag_parametic_transformer == 1 && farming_switch.isChecked) alarm_on(604800,activity?.getString(R.string.parametric_transformer).toString(),29) else alarm_off(29,activity?.getString(R.string.parametric_transformer).toString())
+        })
+        fish_mond.setOnClickListener(View.OnClickListener {
+            onTextClicked_fish_mond()
+            if(Textflag_fish_mond == 1 && farming_switch.isChecked) alarm_on(259200,activity?.getString(R.string.fish_mond).toString(),30)
+            else alarm_off(30,activity?.getString(R.string.fish_mond).toString())
+        })
+        fish_liyue.setOnClickListener(View.OnClickListener {
+            onTextClicked_fish_liyue()
+            if(Textflag_fish_liyue == 1 && farming_switch.isChecked) alarm_on(259200,activity?.getString(R.string.fish_liyue).toString(),31)
+            else alarm_off(31,activity?.getString(R.string.fish_liyue).toString())
+        })
+        fish_inazuma.setOnClickListener(View.OnClickListener {
+            onTextClicked_fish_inazuma()
+            if(Textflag_fish_inazuma == 1 && farming_switch.isChecked) alarm_on(259200,activity?.getString(R.string.fish_inazuma).toString(),32)
+            else alarm_off(32,activity?.getString(R.string.fish_inazuma).toString())
         })
 
     }//onViewCreated
@@ -779,6 +806,70 @@ class FarmingFragment : Fragment() {
         }
     }
 
+    private fun onTextClicked_parametric_transformer() {
+        if(Textflag_parametic_transformer == 0) {
+            parametric_transformer.setPaintFlags(parametric_transformer.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            parametric_transformer.setTextColor(Color.parseColor("#939597"))
+            Textflag_parametic_transformer = 1
+            farming_afterhour_parametric_transformer.text = current_time(168)
+
+        }
+        else{
+            parametric_transformer.setPaintFlags(0);
+            parametric_transformer.setTextColor(Color.parseColor("#000000"))
+            Textflag_parametic_transformer = 0
+            farming_afterhour_parametric_transformer.text = ""
+        }
+    }
+
+    private fun onTextClicked_fish_mond() {
+        if(Textflag_fish_mond == 0) {
+            fish_mond.setPaintFlags(fish_mond.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            fish_mond.setTextColor(Color.parseColor("#939597"))
+            Textflag_fish_mond = 1
+            farming_afterhour_fish_mond.text = current_time(72)
+
+        }
+        else{
+            fish_mond.setPaintFlags(0);
+            fish_mond.setTextColor(Color.parseColor("#000000"))
+            Textflag_fish_mond = 0
+            farming_afterhour_fish_mond.text = ""
+        }
+    }
+
+    private fun onTextClicked_fish_liyue() {
+        if(Textflag_fish_liyue == 0) {
+            fish_liyue.setPaintFlags(fish_liyue.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            fish_liyue.setTextColor(Color.parseColor("#939597"))
+            Textflag_fish_liyue = 1
+            farming_afterhour_fish_liyue.text = current_time(72)
+
+        }
+        else{
+            fish_liyue.setPaintFlags(0);
+            fish_liyue.setTextColor(Color.parseColor("#000000"))
+            Textflag_fish_liyue = 0
+            farming_afterhour_fish_liyue.text = ""
+        }
+    }
+
+    private fun onTextClicked_fish_inazuma() {
+        if(Textflag_fish_inazuma == 0) {
+            fish_inazuma.setPaintFlags(fish_inazuma.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            fish_inazuma.setTextColor(Color.parseColor("#939597"))
+            Textflag_fish_inazuma = 1
+            farming_afterhour_fish_inazuma.text = current_time(72)
+
+        }
+        else{
+            fish_inazuma.setPaintFlags(0);
+            fish_inazuma.setTextColor(Color.parseColor("#000000"))
+            Textflag_fish_inazuma = 0
+            farming_afterhour_fish_inazuma.text = ""
+        }
+    }
+
     fun current_time(material : Int): String {
         val instance = Calendar.getInstance()
         val year = instance.get(Calendar.YEAR)
@@ -794,6 +885,8 @@ class FarmingFragment : Fragment() {
                 monthStr = "${month+1} / "
                 if(material == 24) dateStr = "1 "
                 if(material == 48) dateStr = "2 "
+                if(material == 72) dateStr = "3 "
+                if(material == 168) dateStr = "7 "
             }
             else
             {
@@ -809,6 +902,52 @@ class FarmingFragment : Fragment() {
                         dateStr = "${date+2} "
                 }
 
+                if (material == 72){
+                    if(date == 29){
+                        monthStr = "${month + 1} / "
+                        dateStr = "1 "
+                    }
+                    else if (date == 30){
+                        monthStr = "${month + 1} / "
+                        dateStr = "2 "
+                    }
+
+                    else dateStr = "${date+3} "
+                }
+
+                if(material == 168){
+                    if(date == 25){
+                        monthStr = "${month + 1} / "
+                        dateStr = "1 "
+                    }
+
+                    else if (date == 26){
+                        monthStr = "${month + 1} / "
+                        dateStr = "2 "
+                    }
+
+                    else if (date == 27){
+                        monthStr = "${month + 1} / "
+                        dateStr = "3 "
+                    }
+
+                    else if (date == 28){
+                        monthStr = "${month + 1} / "
+                        dateStr = "4 "
+                    }
+
+                    else if (date == 29){
+                        monthStr = "${month + 1} / "
+                        dateStr = "5 "
+                    }
+
+                    else if (date == 30){
+                        monthStr = "${month + 1} / "
+                        dateStr = "6 "
+                    }
+                    else dateStr = "${date+7} "
+                }
+
             }
         }
 
@@ -819,6 +958,8 @@ class FarmingFragment : Fragment() {
                     monthStr = "${month+1} / "
                     if(material == 24) dateStr = "1 "
                     if(material == 48) dateStr = "2 "
+                    if(material == 72) dateStr = "3 "
+                    if(material == 168) dateStr = "7 "
                 }
                 else
                 {
@@ -833,16 +974,74 @@ class FarmingFragment : Fragment() {
                         else
                             dateStr = "${date+2} "
                     }
+
+                    if (material == 72){
+                        if(date == 28){
+                            monthStr = "${month + 1} / "
+                            dateStr = "1 "
+                        }
+                        else if (date == 29){
+                            monthStr = "${month + 1} / "
+                            dateStr = "2 "
+                        }
+
+                        else dateStr = "${date+3} "
+                    }
+
+                    if(material == 168){
+                        Log.d("month", dateStr)
+                        Log.d("date", date.toString())
+                        if(date == 24){
+                            monthStr = "${month + 1} / "
+                            dateStr = "1 "
+                        }
+
+                        else if (date == 25){
+                            monthStr = "${month + 1} / "
+                            dateStr = "2 "
+                        }
+
+                        else if (date == 26){
+                            Log.d("26","executed?")
+                            monthStr = "${month + 1} / "
+                            dateStr = "3 "
+                        }
+
+                        else if (date == 27){
+                            Log.d("month-after", "not here?")
+                            monthStr = "${month + 1} / "
+                            dateStr = "4 "
+                        }
+
+                        else if (date == 28){
+                            monthStr = "${month + 1} / "
+                            dateStr = "5 "
+                        }
+
+                        else if (date == 29){
+                            monthStr = "${month + 1} / "
+                            dateStr = "6 "
+                        }
+
+                        else{
+                            Log.d("month-after", "are you here?")
+                            dateStr = "${date+7} "
+                        }
+
+                        Log.d("month-after", dateStr)
+                    }
                 }
             }
 
-        if(month ==2)
+        if(month == 2)
         {
             if(date == 28)
             {
                 monthStr = "${month+1} / "
                 if(material == 24) dateStr = "1 "
                 if(material == 48) dateStr = "2 "
+                if(material == 72) dateStr = "3 "
+                if(material == 168) dateStr = "7 "
             }
             else
             {
@@ -856,6 +1055,53 @@ class FarmingFragment : Fragment() {
                     }
                     else
                         dateStr = "${date+2} "
+                }
+
+                if (material == 72){
+                    if(date == 26){
+                        monthStr = "${month + 1} / "
+                        dateStr = "1 "
+                    }
+                    else if (date == 27){
+                        monthStr = "${month + 1} / "
+                        dateStr = "2 "
+                    }
+
+                    else dateStr = "${date+3} "
+                }
+
+                if(material == 168){
+                    if(date == 22){
+                        monthStr = "${month + 1} / "
+                        dateStr = "1 "
+                    }
+
+                    else if (date == 23){
+                        monthStr = "${month + 1} / "
+                        dateStr = "2 "
+                    }
+
+                    else if (date == 24){
+                        monthStr = "${month + 1} / "
+                        dateStr = "3 "
+                    }
+
+                    else if (date == 25){
+                        monthStr = "${month + 1} / "
+                        dateStr = "4 "
+                    }
+
+                    else if (date == 26){
+                        monthStr = "${month + 1} / "
+                        dateStr = "5 "
+                    }
+
+                    else if (date == 27){
+                        monthStr = "${month + 1} / "
+                        dateStr = "6 "
+                    }
+
+                    else dateStr = "${date+7} "
                 }
             }
         }
@@ -880,7 +1126,6 @@ class FarmingFragment : Fragment() {
         minStr = "${minute}"
 
         return  monthStr + dateStr + hourStr + minStr
-        Log.d("aftertime : " , monthStr + dateStr + hourStr + minStr)
     }
 
     private fun saveData(){ //값하고 지우는 행동까지 저장해보자.
@@ -970,6 +1215,18 @@ class FarmingFragment : Fragment() {
         edit.putInt("amakumocho_flag", Textflag_amakumocho)
         edit.putInt("amakumocho_status", amakumocho.paintFlags)
         edit.putString("amakumocho_aftertime", farming_afterhour_amakumocho.text as String?)
+        edit.putInt("parametic_transformer_flag", Textflag_parametic_transformer)
+        edit.putInt("parametic_transformer_status", parametric_transformer.paintFlags)
+        edit.putString("parametic_transformer_aftertime", farming_afterhour_parametric_transformer.text as String?)
+        edit.putInt("fish_mond_flag", Textflag_fish_mond)
+        edit.putInt("fish_mond_status", fish_mond.paintFlags)
+        edit.putString("fish_mond_aftertime", farming_afterhour_fish_mond.text as String?)
+        edit.putInt("fish_liyue_flag", Textflag_fish_liyue)
+        edit.putInt("fish_liyue_status", fish_liyue.paintFlags)
+        edit.putString("fish_liyue_aftertime", farming_afterhour_fish_liyue.text as String?)
+        edit.putInt("fish_inazuma_flag", Textflag_fish_inazuma)
+        edit.putInt("fish_inazuma_status", fish_inazuma.paintFlags)
+        edit.putString("fish_inazuma_aftertime", farming_afterhour_fish_inazuma.text as String?)
 
         edit.putBoolean("farming_switch_isChecked", farming_switch.isChecked)
 //        edit.putString("weekly_flag", weeklysavedday)
@@ -1187,6 +1444,34 @@ class FarmingFragment : Fragment() {
         farming_afterhour_amakumocho.text = pref.getString("amakumocho_aftertime", "")
         if(Textflag_amakumocho == 1){
             amakumocho.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_parametic_transformer = pref.getInt("parametic_transformer_flag", 0)
+        parametric_transformer.paintFlags = pref.getInt("parametic_transformer_status", 0)
+        farming_afterhour_parametric_transformer.text = pref.getString("parametic_transformer_aftertime", "")
+        if(Textflag_parametic_transformer == 1){
+            parametric_transformer.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_fish_mond = pref.getInt("fish_mond_flag", 0)
+        fish_mond.paintFlags = pref.getInt("fish_mond_status", 0)
+        farming_afterhour_fish_mond.text = pref.getString("fish_mond_aftertime", "")
+        if(Textflag_fish_mond == 1){
+            fish_mond.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_fish_liyue = pref.getInt("fish_liyue_flag", 0)
+        fish_liyue.paintFlags = pref.getInt("fish_liyue_status", 0)
+        farming_afterhour_fish_liyue.text = pref.getString("fish_liyue_aftertime", "")
+        if(Textflag_fish_liyue == 1){
+            fish_liyue.setTextColor(Color.parseColor("#939597"))
+        }
+
+        Textflag_fish_inazuma = pref.getInt("fish_inazuma_flag", 0)
+        fish_inazuma.paintFlags = pref.getInt("fish_inazuma_status", 0)
+        farming_afterhour_fish_inazuma.text = pref.getString("fish_inazuma_aftertime", "")
+        if(Textflag_fish_inazuma == 1){
+            fish_inazuma.setTextColor(Color.parseColor("#939597"))
         }
 
 

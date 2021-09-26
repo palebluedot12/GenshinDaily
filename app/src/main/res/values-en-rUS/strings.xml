@@ -188,5 +188,10 @@
     <string name="mitternachts_waltz">Mitternachts Waltz</string>
     <string name="demon_slayer_bow">Demon Slayer Bow</string>
     <string name="predator">Predator</string>
+    <string name="parametric_transformer">Parametric Transformer</string>
+    <string name="farming_etc">etc</string>
+    <string name="fish_mond">Fish - Mond</string>
+    <string name="fish_liyue">Fish - Liyue</string>
+    <string name="fish_inazuma">Fish - Inazuma</string>
 
 </resources>
