@@ -11,27 +11,35 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
+import com.fsn.cauly.CaulyAdInfo
+import com.fsn.cauly.CaulyAdInfoBuilder
+import com.fsn.cauly.CaulyCloseAd
+import com.fsn.cauly.CaulyCloseAdListener
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.kakao.adfit.ads.AdListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.checklist_dialog.*
 import kotlinx.android.synthetic.main.fragment_farming.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.illgan
 import java.lang.NumberFormatException
 import java.util.*
 
 
-class HomeFragment : Fragment() {
+class HomeFragment  : Fragment(){
 
     //일간
     var Textflag_illgan = 0
@@ -41,6 +49,9 @@ class HomeFragment : Fragment() {
     var Textflag_ascend = 0
     var Textflag_battle_pass = 0
     var Textflag_monster = 0
+
+    //일간 셋
+    var Textflag_illgandelete = 0
     //주간
     var Textflag_andrius = 0
     var Textflag_dvalin = 0
@@ -117,7 +128,7 @@ class HomeFragment : Fragment() {
 
         day.text = dayGenerator() // dayGenerator -> dayString 반환
 
-        //체크리스트. 텍스트 클릭하면 취소선 긋기. 각각 텍스트별로 모두 적용해줘야됨.
+        //일간 체크리스트.
         illgan.setOnClickListener(View.OnClickListener {
             onTextClicked_illgan()
             App.prefs.myEditText = dayGenerator()
@@ -195,6 +206,124 @@ class HomeFragment : Fragment() {
             weeklysavedday = dayGenerator()
             weeklysaveddate = dateGenerator()
         })
+
+
+        //일간 세팅
+        illganmenu.setOnClickListener {
+            val builder = AlertDialog.Builder(requireActivity())
+            val dialogView = layoutInflater.inflate(R.layout.checklist_dialog, null)
+            
+            //다이얼로그와 홈프래그먼트 연결
+            val illgandelete = dialogView.findViewById<ImageView>(R.id.illgandelete)
+            val illganplus = dialogView.findViewById<ImageView>(R.id.illganplus)
+            val illgansettingtext = dialogView.findViewById<TextView>(R.id.illgansettingtext)
+            val resindelete = dialogView.findViewById<ImageView>(R.id.resindelete)
+            val resinplus = dialogView.findViewById<ImageView>(R.id.resinplus)
+            val resinsettingtext = dialogView.findViewById<TextView>(R.id.resinsettingtext)
+            val artifactdelete = dialogView.findViewById<ImageView>(R.id.artifactdelete)
+            val artifactplus = dialogView.findViewById<ImageView>(R.id.artifactplus)
+            val artifactsettingtext = dialogView.findViewById<TextView>(R.id.artifactsettingtext)
+            val talentdelete= dialogView.findViewById<ImageView>(R.id.talentdelete)
+            val talentplus = dialogView.findViewById<ImageView>(R.id.talentplus)
+            val talentsettingtext = dialogView.findViewById<TextView>(R.id.talentsettingtext)
+            val ascenddelete = dialogView.findViewById<ImageView>(R.id.ascenddelete)
+            val ascendplus = dialogView.findViewById<ImageView>(R.id.ascendplus)
+            val ascendsettingtext = dialogView.findViewById<TextView>(R.id.ascendsettingtext)
+            val battlepassdelete = dialogView.findViewById<ImageView>(R.id.battlepassdelete)
+            val battlepassplus = dialogView.findViewById<ImageView>(R.id.battlepassplus)
+            val battlepasssettingtext = dialogView.findViewById<TextView>(R.id.battlepasssettingtext)
+            val enemydelete = dialogView.findViewById<ImageView>(R.id.enemydelete)
+            val enemyplus = dialogView.findViewById<ImageView>(R.id.enemyplus)
+            val enemysettingtext = dialogView.findViewById<TextView>(R.id.enemysettingtext)
+            
+            //함수로 만들면 작동 안하는 이유?
+            illgandelete.setOnClickListener {
+                    illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                    illgansettingtext.setTextColor(Color.parseColor("#939597"))
+                    illganline.visibility = View.GONE
+            }
+            illganplus.setOnClickListener {
+                illgansettingtext.setPaintFlags(0);
+                illgansettingtext.setTextColor(Color.parseColor("#000000"))
+                illganline.visibility = View.VISIBLE
+            }
+
+            resindelete.setOnClickListener {
+                resinsettingtext.setPaintFlags(resinsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                resinsettingtext.setTextColor(Color.parseColor("#939597"))
+                resinline.visibility = View.GONE
+            }
+            resinplus.setOnClickListener {
+                resinsettingtext.setPaintFlags(0);
+                resinsettingtext.setTextColor(Color.parseColor("#000000"))
+                resinline.visibility = View.VISIBLE
+            }
+
+            artifactdelete.setOnClickListener {
+                artifactsettingtext.setPaintFlags(artifactsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                artifactsettingtext.setTextColor(Color.parseColor("#939597"))
+                artifactline.visibility = View.GONE
+            }
+            artifactplus.setOnClickListener {
+                artifactsettingtext.setPaintFlags(0);
+                artifactsettingtext.setTextColor(Color.parseColor("#000000"))
+                artifactline.visibility = View.VISIBLE
+            }
+
+            talentdelete.setOnClickListener {
+                talentsettingtext.setPaintFlags(talentsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                talentsettingtext.setTextColor(Color.parseColor("#939597"))
+                talentline.visibility = View.GONE
+            }
+            talentplus.setOnClickListener {
+                talentsettingtext.setPaintFlags(0);
+                talentsettingtext.setTextColor(Color.parseColor("#000000"))
+                talentline.visibility = View.VISIBLE
+            }
+
+            ascenddelete.setOnClickListener {
+                ascendsettingtext.setPaintFlags(ascendsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                ascendsettingtext.setTextColor(Color.parseColor("#939597"))
+                ascendline.visibility = View.GONE
+            }
+            ascendplus.setOnClickListener {
+                ascendsettingtext.setPaintFlags(0);
+                ascendsettingtext.setTextColor(Color.parseColor("#000000"))
+                ascendline.visibility = View.VISIBLE
+            }
+
+            battlepassdelete.setOnClickListener {
+                battlepasssettingtext.setPaintFlags(battlepasssettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                battlepasssettingtext.setTextColor(Color.parseColor("#939597"))
+                battlepassline.visibility = View.GONE
+            }
+            battlepassplus.setOnClickListener {
+                battlepasssettingtext.setPaintFlags(0);
+                battlepasssettingtext.setTextColor(Color.parseColor("#000000"))
+                battlepassline.visibility = View.VISIBLE
+            }
+
+            enemydelete.setOnClickListener {
+                enemysettingtext.setPaintFlags(enemysettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                enemysettingtext.setTextColor(Color.parseColor("#939597"))
+                enemyline.visibility = View.GONE
+            }
+            enemyplus.setOnClickListener {
+                enemysettingtext.setPaintFlags(0);
+                enemysettingtext.setTextColor(Color.parseColor("#000000"))
+                enemyline.visibility = View.VISIBLE
+            }
+
+            builder.setView(dialogView)
+                .setPositiveButton("확인") { dialogInterface, i ->
+                    /* 확인일 때 main의 View의 값에 dialog View에 있는 값을 적용 */
+                }
+                .setNegativeButton("취소") { dialogInterface, i ->
+                    /* 취소일 때 아무 액션이 없으므로 빈칸 */
+                }
+                .show()
+
+        }
 
         //요일 바뀌면 체크리스트 줄그인거 다 지우기. 여기 수정해야됨.
         //이거는 time이 00일때를 "지나야" 초기화가 되는 방식이고...
@@ -1138,7 +1267,6 @@ class HomeFragment : Fragment() {
             illgan.setTextColor(Color.parseColor("#939597"))
             Textflag_illgan = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             illgan.setPaintFlags(0);
             illgan.setTextColor(Color.parseColor("#000000"))
@@ -1152,7 +1280,6 @@ class HomeFragment : Fragment() {
             resin.setTextColor(Color.parseColor("#939597"))
             Textflag_resin = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             resin.setPaintFlags(0);
             resin.setTextColor(Color.parseColor("#000000"))
@@ -1166,7 +1293,6 @@ class HomeFragment : Fragment() {
             item.setTextColor(Color.parseColor("#939597"))
             Textflag_item = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             item.setPaintFlags(0);
             item.setTextColor(Color.parseColor("#000000"))
@@ -1180,7 +1306,6 @@ class HomeFragment : Fragment() {
             talent.setTextColor(Color.parseColor("#939597"))
             Textflag_talent = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             talent.setPaintFlags(0);
             talent.setTextColor(Color.parseColor("#000000"))
@@ -1194,7 +1319,6 @@ class HomeFragment : Fragment() {
             ascend.setTextColor(Color.parseColor("#939597"))
             Textflag_ascend = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             ascend.setPaintFlags(0);
             ascend.setTextColor(Color.parseColor("#000000"))
@@ -1208,7 +1332,6 @@ class HomeFragment : Fragment() {
             battle_pass.setTextColor(Color.parseColor("#939597"))
             Textflag_battle_pass = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             battle_pass.setPaintFlags(0);
             battle_pass.setTextColor(Color.parseColor("#000000"))
@@ -1222,7 +1345,6 @@ class HomeFragment : Fragment() {
             monster.setTextColor(Color.parseColor("#939597"))
             Textflag_monster = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             monster.setPaintFlags(0);
             monster.setTextColor(Color.parseColor("#000000"))
@@ -1237,7 +1359,6 @@ class HomeFragment : Fragment() {
             andrius.setTextColor(Color.parseColor("#939597"))
             Textflag_andrius = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             andrius.setPaintFlags(0);
             andrius.setTextColor(Color.parseColor("#000000"))
@@ -1250,7 +1371,6 @@ class HomeFragment : Fragment() {
             dvalin.setTextColor(Color.parseColor("#939597"))
             Textflag_dvalin = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             dvalin.setPaintFlags(0);
             dvalin.setTextColor(Color.parseColor("#000000"))
@@ -1263,7 +1383,6 @@ class HomeFragment : Fragment() {
             tartaglia.setTextColor(Color.parseColor("#939597"))
             Textflag_tartaglia = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             tartaglia.setPaintFlags(0);
             tartaglia.setTextColor(Color.parseColor("#000000"))
@@ -1276,7 +1395,6 @@ class HomeFragment : Fragment() {
             battle_pass_weekly.setTextColor(Color.parseColor("#939597"))
             Textflag_battle_pass_weekly = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             battle_pass_weekly.setPaintFlags(0);
             battle_pass_weekly.setTextColor(Color.parseColor("#000000"))
@@ -1290,7 +1408,6 @@ class HomeFragment : Fragment() {
             reputation_weekly.setTextColor(Color.parseColor("#939597"))
             Textflag_reputation_weekly = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else {
             reputation_weekly.setPaintFlags(0);
             reputation_weekly.setTextColor(Color.parseColor("#000000"))
@@ -1304,7 +1421,6 @@ class HomeFragment : Fragment() {
             yata.setTextColor(Color.parseColor("#939597"))
             Textflag_yata = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else {
             yata.setPaintFlags(0);
             yata.setTextColor(Color.parseColor("#000000"))
@@ -1318,13 +1434,28 @@ class HomeFragment : Fragment() {
             signora.setTextColor(Color.parseColor("#939597"))
             Textflag_signora = 1
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else {
             signora.setPaintFlags(0);
             signora.setTextColor(Color.parseColor("#000000"))
             Textflag_signora = 0
         }
     }
+
+    fun onTextClicked_illgandelete(){
+        if(Textflag_illgandelete == 0) {
+            illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            illgansettingtext.setTextColor(Color.parseColor("#939597"))
+            illganline.visibility = View.GONE
+            Textflag_illgandelete = 1
+        }
+        else{
+            illgansettingtext.setPaintFlags(0);
+            illgansettingtext.setTextColor(Color.parseColor("#000000"))
+            illganline.visibility = View.VISIBLE
+            Textflag_illgandelete = 0
+        }
+    }
+
 
     private fun dayGenerator() :String{
         val gst = TimeZone.getTimeZone(activity?.getString(R.string.GMT).toString())
@@ -1456,5 +1587,5 @@ class HomeFragment : Fragment() {
         }
     }
 
-    }
+}
 
