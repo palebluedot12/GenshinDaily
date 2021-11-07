@@ -8,10 +8,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import com.fsn.cauly.CaulyAdInfo
-import com.fsn.cauly.CaulyAdInfoBuilder
-import com.fsn.cauly.CaulyCloseAd
-import com.fsn.cauly.CaulyCloseAdListener
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import kotlinx.android.synthetic.main.activity_main.*

@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings.Global.getString
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
@@ -43,7 +44,7 @@ class AlarmReceiver() : BroadcastReceiver() {
 
         //알림을 클릭했을때 실행하는 액티비티 지정
         val pendingIntent: PendingIntent =
-                PendingIntent.getActivity(context, 2, notificationIntent, 0)
+                PendingIntent.getActivity(context, 2, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT)
 
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)

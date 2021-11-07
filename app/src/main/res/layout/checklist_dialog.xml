@@ -337,6 +337,10 @@
             android:id="@+id/enemyplus"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <EditText
         android:id="@+id/daily_settings_edit"
         android:layout_width="match_parent"
@@ -344,6 +348,19 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="체크리스트를 추가해보세요!"
+        android:hint="Make Your To-Do List!"
         android:inputType="textPersonName" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="50dp"
+            android:src="@drawable/plus_icon"
+            android:id="@+id/daily_edit_plus"/>
+    </LinearLayout>
+
 </LinearLayout>

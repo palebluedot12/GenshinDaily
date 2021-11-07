@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -19,6 +20,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
@@ -38,7 +40,6 @@ import kotlinx.android.synthetic.main.fragment_home.illgan
 import java.lang.NumberFormatException
 import java.util.*
 
-
 class HomeFragment  : Fragment(){
 
     //일간
@@ -49,9 +50,14 @@ class HomeFragment  : Fragment(){
     var Textflag_ascend = 0
     var Textflag_battle_pass = 0
     var Textflag_monster = 0
-
     //일간 셋
-    var Textflag_illgandelete = 0
+    var illganvflag = 1
+    var resinvflag = 1
+    var artifactvflag = 1
+    var talentvflag = 1
+    var ascendvflag = 1
+    var battlepassvflag = 1
+    var enemyvflag = 1
     //주간
     var Textflag_andrius = 0
     var Textflag_dvalin = 0
@@ -77,11 +83,10 @@ class HomeFragment  : Fragment(){
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        MobileAds.initialize(activity) {}
+        MobileAds.initialize(requireActivity())
         adView.loadAd(AdRequest.Builder().build()) //구글 배너
 
 
@@ -101,7 +106,9 @@ class HomeFragment  : Fragment(){
             })
             loadAd()
         }
+        
         loadData() //체크리스트 저장값 로드. 여기서 saveddate 가져와야됨.
+        Log.d("loadillgan", illganvflag.toString()) //여기서 왜 1?
 
         savedday = App.prefs.myEditText.toString()
         Log.d("savedday : ", savedday)
@@ -127,6 +134,16 @@ class HomeFragment  : Fragment(){
         }
 
         day.text = dayGenerator() // dayGenerator -> dayString 반환
+
+        //일간 체크리스트 visibility
+        if(illganvflag == 0) illganline.visibility = View.GONE else illganline.visibility = View.VISIBLE
+        if(resinvflag == 0) resinline.visibility = View.GONE else resinline.visibility = View.VISIBLE
+        if(artifactvflag == 0) artifactline.visibility = View.GONE else artifactline.visibility = View.VISIBLE
+        if(talentvflag == 0) talentline.visibility = View.GONE else talentline.visibility = View.VISIBLE
+        if(battlepassvflag == 0) battlepassline.visibility = View.GONE else battlepassline.visibility = View.VISIBLE
+        if(ascendvflag == 0) ascendline.visibility = View.GONE else ascendline.visibility = View.VISIBLE
+        if(enemyvflag == 0) enemyline.visibility = View.GONE else enemyline.visibility = View.VISIBLE
+
 
         //일간 체크리스트.
         illgan.setOnClickListener(View.OnClickListener {
@@ -210,6 +227,7 @@ class HomeFragment  : Fragment(){
 
         //일간 세팅
         illganmenu.setOnClickListener {
+
             val builder = AlertDialog.Builder(requireActivity())
             val dialogView = layoutInflater.inflate(R.layout.checklist_dialog, null)
             
@@ -238,90 +256,105 @@ class HomeFragment  : Fragment(){
             
             //함수로 만들면 작동 안하는 이유?
             illgandelete.setOnClickListener {
-                    illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-                    illgansettingtext.setTextColor(Color.parseColor("#939597"))
-                    illganline.visibility = View.GONE
+                illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                illgansettingtext.setTextColor(Color.parseColor("#939597"))
+                illganline.visibility = View.GONE
+                illganvflag = 0
             }
             illganplus.setOnClickListener {
                 illgansettingtext.setPaintFlags(0);
                 illgansettingtext.setTextColor(Color.parseColor("#000000"))
                 illganline.visibility = View.VISIBLE
+                illganvflag = 1
             }
 
             resindelete.setOnClickListener {
                 resinsettingtext.setPaintFlags(resinsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 resinsettingtext.setTextColor(Color.parseColor("#939597"))
                 resinline.visibility = View.GONE
+                resinvflag = 0
             }
             resinplus.setOnClickListener {
                 resinsettingtext.setPaintFlags(0);
                 resinsettingtext.setTextColor(Color.parseColor("#000000"))
                 resinline.visibility = View.VISIBLE
+                resinvflag = 1
             }
 
             artifactdelete.setOnClickListener {
                 artifactsettingtext.setPaintFlags(artifactsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 artifactsettingtext.setTextColor(Color.parseColor("#939597"))
                 artifactline.visibility = View.GONE
+                artifactvflag = 0
             }
             artifactplus.setOnClickListener {
                 artifactsettingtext.setPaintFlags(0);
                 artifactsettingtext.setTextColor(Color.parseColor("#000000"))
                 artifactline.visibility = View.VISIBLE
+                artifactvflag = 1
             }
 
             talentdelete.setOnClickListener {
                 talentsettingtext.setPaintFlags(talentsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 talentsettingtext.setTextColor(Color.parseColor("#939597"))
                 talentline.visibility = View.GONE
+                talentvflag = 0
             }
             talentplus.setOnClickListener {
                 talentsettingtext.setPaintFlags(0);
                 talentsettingtext.setTextColor(Color.parseColor("#000000"))
                 talentline.visibility = View.VISIBLE
+                talentvflag = 1
             }
 
             ascenddelete.setOnClickListener {
                 ascendsettingtext.setPaintFlags(ascendsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 ascendsettingtext.setTextColor(Color.parseColor("#939597"))
                 ascendline.visibility = View.GONE
+                ascendvflag = 0
             }
             ascendplus.setOnClickListener {
                 ascendsettingtext.setPaintFlags(0);
                 ascendsettingtext.setTextColor(Color.parseColor("#000000"))
                 ascendline.visibility = View.VISIBLE
+                ascendvflag = 1
             }
 
             battlepassdelete.setOnClickListener {
                 battlepasssettingtext.setPaintFlags(battlepasssettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 battlepasssettingtext.setTextColor(Color.parseColor("#939597"))
                 battlepassline.visibility = View.GONE
+                battlepassvflag = 0
             }
             battlepassplus.setOnClickListener {
                 battlepasssettingtext.setPaintFlags(0);
                 battlepasssettingtext.setTextColor(Color.parseColor("#000000"))
                 battlepassline.visibility = View.VISIBLE
+                battlepassvflag = 1
             }
 
             enemydelete.setOnClickListener {
                 enemysettingtext.setPaintFlags(enemysettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 enemysettingtext.setTextColor(Color.parseColor("#939597"))
                 enemyline.visibility = View.GONE
+                enemyvflag = 0
             }
             enemyplus.setOnClickListener {
                 enemysettingtext.setPaintFlags(0);
                 enemysettingtext.setTextColor(Color.parseColor("#000000"))
                 enemyline.visibility = View.VISIBLE
+                enemyvflag = 1
             }
 
             builder.setView(dialogView)
-                .setPositiveButton("확인") { dialogInterface, i ->
+                .setPositiveButton("Ok") { dialogInterface, i ->
                     /* 확인일 때 main의 View의 값에 dialog View에 있는 값을 적용 */
                 }
-                .setNegativeButton("취소") { dialogInterface, i ->
+                .setNegativeButton("Cancel") { dialogInterface, i ->
                     /* 취소일 때 아무 액션이 없으므로 빈칸 */
                 }
                 .show()
+
 
         }
 
@@ -361,7 +394,10 @@ class HomeFragment  : Fragment(){
             }
         }
 
-        //특성 캐릭터 요일별로 나타나게 하기.
+
+
+
+        //특성 visibility
         jean_talent.visibility = View.GONE
         amber_talent.visibility = View.GONE
         lisa_talent.visibility = View.GONE
@@ -700,12 +736,8 @@ class HomeFragment  : Fragment(){
             kitain_cross_spear.visibility = View.VISIBLE
             the_catch.visibility = View.VISIBLE
         }
-        /*switch1.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked)
-            {
-                showSettingpopup()
-            }
-        }*/
+
+        //무기누르면 이름팝업
         aquila.setOnClickListener{
             Toast.makeText(activity, activity?.getString(R.string.aquila_favonia).toString(), Toast.LENGTH_SHORT).show()
         }
@@ -1083,36 +1115,43 @@ class HomeFragment  : Fragment(){
 
     private fun loadData() {
         val pref = requireActivity().getSharedPreferences("pref", 0)
+        illganvflag = pref.getInt("illganvflag", 1)
         Textflag_illgan = pref.getInt("illgan_flag", 0)
         illgan.paintFlags = pref.getInt("illgan_status", 0)
         if(Textflag_illgan == 1) {
             illgan.setTextColor(Color.parseColor("#939597"))
         }
+        resinvflag = pref.getInt("resinvflag", 1)
         Textflag_resin = pref.getInt("resin_flag", 0)
         resin.paintFlags = pref.getInt("resin_status", 0)
         if(Textflag_resin == 1){
             resin.setTextColor(Color.parseColor("#939597"))
         }
+        artifactvflag = pref.getInt("artifactvflag", 1)
         Textflag_item = pref.getInt("item_flag", 0)
         item.paintFlags = pref.getInt("item_status", 0)
         if(Textflag_item == 1){
             item.setTextColor(Color.parseColor("#939597"))
         }
+        talentvflag = pref.getInt("talentvflag", 1)
         Textflag_talent = pref.getInt("talent_flag", 0)
         talent.paintFlags = pref.getInt("talent_status", 0)
         if(Textflag_talent == 1){
             talent.setTextColor(Color.parseColor("#939597"))
         }
+        ascendvflag = pref.getInt("ascendvflag", 1)
         Textflag_ascend = pref.getInt("ascend_flag", 0)
         ascend.paintFlags = pref.getInt("ascend_status", 0)
         if(Textflag_ascend == 1){
             ascend.setTextColor(Color.parseColor("#939597"))
         }
+        battlepassvflag = pref.getInt("battlepassvflag", 1)
         Textflag_battle_pass = pref.getInt("battle_pass_flag", 0)
         battle_pass.paintFlags = pref.getInt("battle_pass_status", 0)
         if(Textflag_battle_pass == 1){
             battle_pass.setTextColor(Color.parseColor("#939597"))
         }
+        enemyvflag = pref.getInt("enemyvflag", 1)
         Textflag_monster = pref.getInt("monster_flag", 0)
         monster.paintFlags = pref.getInt("monster_status", 0)
         if(Textflag_monster == 1){
@@ -1153,6 +1192,7 @@ class HomeFragment  : Fragment(){
         if(Textflag_signora == 1){
             signora.setTextColor(Color.parseColor("#939597"))
         }
+
         weeklysavedday = pref.getString("weekly_flag", "").toString()
         weeklysaveddate = pref.getString("weekly_date_flag","").toString()
         resin_switch.isChecked = pref.getBoolean("resin_switch_isChecked", true)
@@ -1166,16 +1206,25 @@ class HomeFragment  : Fragment(){
         val edit = pref.edit() //수정모드
         edit.putInt("illgan_flag", Textflag_illgan)
         edit.putInt("illgan_status", illgan.paintFlags)
+        edit.putInt("illganvflag", illganvflag )
         edit.putInt("resin_flag", Textflag_resin)
         edit.putInt("resin_status", resin.paintFlags)
+        edit.putInt("resinvflag", resinvflag)
         edit.putInt("item_flag", Textflag_item)
         edit.putInt("item_status", item.paintFlags)
+        edit.putInt("artifactvflag", artifactvflag)
         edit.putInt("talent_flag", Textflag_talent)
         edit.putInt("talent_status", talent.paintFlags)
+        edit.putInt("talentvflag", talentvflag)
         edit.putInt("ascend_flag", Textflag_ascend)
         edit.putInt("ascend_status", ascend.paintFlags)
+        edit.putInt("ascendvflag", ascendvflag)
         edit.putInt("battle_pass_flag", Textflag_battle_pass)
         edit.putInt("battle_pass_status", battle_pass.paintFlags)
+        edit.putInt("battlepassvflag", battlepassvflag)
+        edit.putInt("monster_flag", Textflag_monster)
+        edit.putInt("monster_status", monster.paintFlags)
+        edit.putInt("enemyvflag", enemyvflag)
         edit.putInt("andrius_flag", Textflag_andrius)
         edit.putInt("andrius_status", andrius.paintFlags)
         edit.putInt("dvalin_flag", Textflag_dvalin)
@@ -1184,8 +1233,6 @@ class HomeFragment  : Fragment(){
         edit.putInt("tartaglia_status", tartaglia.paintFlags)
         edit.putInt("battle_pass_weekly_flag", Textflag_battle_pass_weekly)
         edit.putInt("battle_pass_weekly_status", battle_pass_weekly.paintFlags)
-        edit.putInt("monster_flag", Textflag_monster)
-        edit.putInt("monster_status", monster.paintFlags)
         edit.putInt("reputation_flag", Textflag_reputation_weekly)
         edit.putInt("reputation_status", reputation_weekly.paintFlags)
         edit.putInt("yata_flag", Textflag_yata)
@@ -1438,21 +1485,6 @@ class HomeFragment  : Fragment(){
             signora.setPaintFlags(0);
             signora.setTextColor(Color.parseColor("#000000"))
             Textflag_signora = 0
-        }
-    }
-
-    fun onTextClicked_illgandelete(){
-        if(Textflag_illgandelete == 0) {
-            illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            illgansettingtext.setTextColor(Color.parseColor("#939597"))
-            illganline.visibility = View.GONE
-            Textflag_illgandelete = 1
-        }
-        else{
-            illgansettingtext.setPaintFlags(0);
-            illgansettingtext.setTextColor(Color.parseColor("#000000"))
-            illganline.visibility = View.VISIBLE
-            Textflag_illgandelete = 0
         }
     }
 
