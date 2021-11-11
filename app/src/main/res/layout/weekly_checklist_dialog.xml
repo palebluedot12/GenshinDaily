@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/daily_illganChecklist"
+        android:text="@string/weekly_checlist"
         android:textSize="11dp"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
@@ -24,18 +24,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/illgansetting">
+        android:id="@+id/andriussetting">
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
-            android:src="@drawable/commission"
+            android:src="@drawable/andrius_icon"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_illganQuest"
+            android:text="@string/weekly_andrius"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
@@ -43,7 +43,7 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"
-            android:id="@+id/illgansettingtext"
+            android:id="@+id/andriussettingtext"
             />
         <View
             android:layout_width="0dp"
@@ -55,33 +55,32 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="50dp"
             android:src="@drawable/trash_can_icon"
-            android:id="@+id/illgandelete"
-            android:clickable="true"/>
+            android:id="@+id/andriusdelete"/>
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="30dp"
             android:src="@drawable/plus_icon"
-            android:id="@+id/illganplus" />
+            android:id="@+id/andriusplus" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/resinsetting">
+        android:id="@+id/dvalinsetting">
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
-            android:src="@drawable/resin"
+            android:src="@drawable/dvalin"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_resin"
+            android:text="@string/weekly_dvalin"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
@@ -89,7 +88,7 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"
-            android:id="@+id/resinsettingtext"
+            android:id="@+id/dvalinsettingtext"
             />
         <View
             android:layout_width="0dp"
@@ -101,32 +100,32 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="50dp"
             android:src="@drawable/trash_can_icon"
-            android:id="@+id/resindelete"/>
+            android:id="@+id/dvalindelete"/>
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="30dp"
             android:src="@drawable/plus_icon"
-            android:id="@+id/resinplus"/>
+            android:id="@+id/dvalinplus"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/artifactsetting">
+        android:id="@+id/tartagliasetting">
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
-            android:src="@drawable/item"
+            android:src="@drawable/tartaglia"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_artifact"
+            android:text="@string/weekly_tartaglia"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
@@ -134,7 +133,7 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"
-            android:id="@+id/artifactsettingtext"
+            android:id="@+id/tartagliasettingtext"
             />
         <View
             android:layout_width="0dp"
@@ -146,32 +145,32 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="50dp"
             android:src="@drawable/trash_can_icon"
-            android:id="@+id/artifactdelete"/>
+            android:id="@+id/tartagliadelete"/>
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="30dp"
             android:src="@drawable/plus_icon"
-            android:id="@+id/artifactplus"/>
+            android:id="@+id/tartagliaplus"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/talentsetting">
+        android:id="@+id/azhdahasetting">
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
-            android:src="@drawable/talent"
+            android:src="@drawable/azhdaha"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_charTalent"
+            android:text="@string/weekly_azhdaha"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
@@ -179,7 +178,7 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"
-            android:id="@+id/talentsettingtext"
+            android:id="@+id/azhdahasettingtext"
             />
         <View
             android:layout_width="0dp"
@@ -191,14 +190,14 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="50dp"
             android:src="@drawable/trash_can_icon"
-            android:id="@+id/talentdelete"/>
+            android:id="@+id/azhdahadelete"/>
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="30dp"
             android:src="@drawable/plus_icon"
-            android:id="@+id/talentplus"/>
+            android:id="@+id/azhdahaplus"/>
     </LinearLayout>
 
     <LinearLayout
@@ -211,12 +210,12 @@
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
-            android:src="@drawable/icon_15_xiao"
+            android:src="@drawable/signora"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_charAscend"
+            android:text="@string/weekly_signora"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
@@ -224,7 +223,7 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"
-            android:id="@+id/ascendsettingtext"
+            android:id="@+id/signorasettingtext"
             />
         <View
             android:layout_width="0dp"
@@ -236,14 +235,14 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="50dp"
             android:src="@drawable/trash_can_icon"
-            android:id="@+id/ascenddelete"/>
+            android:id="@+id/signoradelete"/>
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="30dp"
             android:src="@drawable/plus_icon"
-            android:id="@+id/ascendplus"/>
+            android:id="@+id/signoraplus"/>
     </LinearLayout>
 
     <LinearLayout
@@ -261,7 +260,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_battlepass"
+            android:text="@string/weekly_battlepass"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
@@ -269,7 +268,7 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"
-            android:id="@+id/battlepasssettingtext"
+            android:id="@+id/weeklybattlepasssettingtext"
             />
         <View
             android:layout_width="0dp"
@@ -281,14 +280,14 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="50dp"
             android:src="@drawable/trash_can_icon"
-            android:id="@+id/battlepassdelete"/>
+            android:id="@+id/weeklybattlepassdelete"/>
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="30dp"
             android:src="@drawable/plus_icon"
-            android:id="@+id/battlepassplus"/>
+            android:id="@+id/weeklybattlepassplus"/>
     </LinearLayout>
 
     <LinearLayout
@@ -301,19 +300,19 @@
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
-            android:src="@drawable/chuchu"
+            android:src="@drawable/reputation_icon"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_illganQuest"
+            android:text="@string/weekly_reputation"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkrdemilight"
             android:textSize="17dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/black"
-            android:id="@+id/enemysettingtext"
+            android:id="@+id/reputationsettingtext"
             android:layout_marginLeft="8dp"
 
             />
@@ -327,14 +326,14 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="50dp"
             android:src="@drawable/trash_can_icon"
-            android:id="@+id/enemydelete"/>
+            android:id="@+id/reputationdelete"/>
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="30dp"
             android:src="@drawable/plus_icon"
-            android:id="@+id/enemyplus"/>
+            android:id="@+id/reputationplus"/>
     </LinearLayout>
 
 <!--    <LinearLayout-->

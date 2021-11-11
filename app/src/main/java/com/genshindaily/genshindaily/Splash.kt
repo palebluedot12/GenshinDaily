@@ -57,11 +57,11 @@ class Splash : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()
-            if(mInterstitialAd != null)
-            {
-                mInterstitialAd?.show(this)
-                Log.d("mInter3", mInterstitialAd.toString())
-            }
+//            if(mInterstitialAd != null)
+//            {
+//                mInterstitialAd?.show(this)
+//                Log.d("mInter3", mInterstitialAd.toString())
+//            }
         },DURATION)
 
     }

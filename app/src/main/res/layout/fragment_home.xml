@@ -356,6 +356,10 @@
             android:layout_marginTop="10dp"
             android:layout_margin="15dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -364,6 +368,20 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
             />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginRight="30dp"
+                android:background="@null"
+                android:layout_gravity="right"
+                android:src="@drawable/main_more_icon"
+                android:id="@+id/weeklymenu"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -371,7 +389,8 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="15dp"
+            android:id="@+id/andriusline">
 
             <ImageView
                 android:layout_width="30dp"
@@ -401,7 +420,8 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="15dp"
+            android:id="@+id/dvalinline">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -430,7 +450,8 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tartaglialine">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -459,7 +480,8 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="15dp"
+            android:id="@+id/azhdahaline">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -488,7 +510,8 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="15dp"
+            android:id="@+id/signoraline">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -517,7 +540,8 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="15dp"
+            android:id="@+id/weeklybattlepassline">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -546,7 +570,8 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="15dp"
+            android:id="@+id/reputationline">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"

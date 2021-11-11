@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Paint
+import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -50,7 +52,7 @@ class HomeFragment  : Fragment(){
     var Textflag_ascend = 0
     var Textflag_battle_pass = 0
     var Textflag_monster = 0
-    //일간 셋
+    //일간 셋 visi
     var illganvflag = 1
     var resinvflag = 1
     var artifactvflag = 1
@@ -58,6 +60,14 @@ class HomeFragment  : Fragment(){
     var ascendvflag = 1
     var battlepassvflag = 1
     var enemyvflag = 1
+    //주간 셋 visi
+    var andriusvflag = 1
+    var dvalinvflag = 1
+    var tartagliavflag = 1
+    var azhdahavflag = 1
+    var signoravflag = 1
+    var weeklybattlepassvflag = 1
+    var reputationvflag = 1
     //주간
     var Textflag_andrius = 0
     var Textflag_dvalin = 0
@@ -72,6 +82,8 @@ class HomeFragment  : Fragment(){
     var savedday : String = ""
     var weeklysavedday : String = ""
     var weeklysaveddate : String = ""
+    //일간, 주간 체크리스트 편집 카운트
+    var daily_edit_count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -225,7 +237,7 @@ class HomeFragment  : Fragment(){
         })
 
 
-        //일간 세팅
+        //일간 세팅 다이얼로그
         illganmenu.setOnClickListener {
 
             val builder = AlertDialog.Builder(requireActivity())
@@ -253,7 +265,37 @@ class HomeFragment  : Fragment(){
             val enemydelete = dialogView.findViewById<ImageView>(R.id.enemydelete)
             val enemyplus = dialogView.findViewById<ImageView>(R.id.enemyplus)
             val enemysettingtext = dialogView.findViewById<TextView>(R.id.enemysettingtext)
-            
+
+            //줄그인거 저장
+            if(illganvflag == 0) {
+                illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                illgansettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(resinvflag == 0) {
+                resinsettingtext.setPaintFlags(resinsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                resinsettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(artifactvflag == 0) {
+                artifactsettingtext.setPaintFlags(artifactsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                artifactsettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(talentvflag == 0) {
+                talentsettingtext.setPaintFlags(talentsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                talentsettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(ascendvflag == 0) {
+                ascendsettingtext.setPaintFlags(ascendsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                ascendsettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(battlepassvflag == 0) {
+                battlepasssettingtext.setPaintFlags(battlepasssettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                battlepasssettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(enemyvflag == 0) {
+                enemysettingtext.setPaintFlags(enemysettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                enemysettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+
             //함수로 만들면 작동 안하는 이유?
             illgandelete.setOnClickListener {
                 illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -348,15 +390,173 @@ class HomeFragment  : Fragment(){
 
             builder.setView(dialogView)
                 .setPositiveButton("Ok") { dialogInterface, i ->
-                    /* 확인일 때 main의 View의 값에 dialog View에 있는 값을 적용 */
+
                 }
                 .setNegativeButton("Cancel") { dialogInterface, i ->
-                    /* 취소일 때 아무 액션이 없으므로 빈칸 */
+
                 }
                 .show()
-
-
         }
+
+        //주간 세팅 다이얼로그
+        weeklymenu.setOnClickListener {
+            val builder = AlertDialog.Builder(requireActivity())
+            val dialogView = layoutInflater.inflate(R.layout.weekly_checklist_dialog, null)
+
+            val andriusdelete = dialogView.findViewById<ImageView>(R.id.andriusdelete)
+            val andriusplus = dialogView.findViewById<ImageView>(R.id.andriusplus)
+            val andriussettingtext = dialogView.findViewById<TextView>(R.id.andriussettingtext)
+            val dvalindelete = dialogView.findViewById<ImageView>(R.id.dvalindelete)
+            val dvalinplus = dialogView.findViewById<ImageView>(R.id.dvalinplus)
+            val dvalinsettingtext = dialogView.findViewById<TextView>(R.id.dvalinsettingtext)
+            val tartagliadelete = dialogView.findViewById<ImageView>(R.id.tartagliadelete)
+            val tartagliaplus = dialogView.findViewById<ImageView>(R.id.tartagliaplus)
+            val tartagliasettingtext = dialogView.findViewById<TextView>(R.id.tartagliasettingtext)
+            val azhdahadelete= dialogView.findViewById<ImageView>(R.id.azhdahadelete)
+            val azhdahaplus = dialogView.findViewById<ImageView>(R.id.azhdahaplus)
+            val azhdahasettingtext = dialogView.findViewById<TextView>(R.id.azhdahasettingtext)
+            val signoradelete = dialogView.findViewById<ImageView>(R.id.signoradelete)
+            val signoraplus = dialogView.findViewById<ImageView>(R.id.signoraplus)
+            val signorasettingtext = dialogView.findViewById<TextView>(R.id.signorasettingtext)
+            val weeklybattlepassdelete = dialogView.findViewById<ImageView>(R.id.weeklybattlepassdelete)
+            val weeklybattlepassplus = dialogView.findViewById<ImageView>(R.id.weeklybattlepassplus)
+            val weeklybattlepasssettingtext = dialogView.findViewById<TextView>(R.id.weeklybattlepasssettingtext)
+            val reputationdelete = dialogView.findViewById<ImageView>(R.id.reputationdelete)
+            val reputationplus = dialogView.findViewById<ImageView>(R.id.reputationplus)
+            val reputationsettingtext = dialogView.findViewById<TextView>(R.id.reputationsettingtext)
+
+            //줄그인거 저장
+            if(andriusvflag == 0) {
+                andriussettingtext.setPaintFlags(andriussettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                andriussettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(dvalinvflag == 0) {
+                dvalinsettingtext.setPaintFlags(dvalinsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                dvalinsettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(tartagliavflag == 0) {
+                tartagliasettingtext.setPaintFlags(tartagliasettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                tartagliasettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(azhdahavflag == 0) {
+                azhdahasettingtext.setPaintFlags(azhdahasettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                azhdahasettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(signoravflag == 0) {
+                signorasettingtext.setPaintFlags(signorasettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                signorasettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(weeklybattlepassvflag == 0) {
+                weeklybattlepasssettingtext.setPaintFlags(weeklybattlepasssettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                weeklybattlepasssettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(reputationvflag == 0) {
+                reputationsettingtext.setPaintFlags(reputationsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                reputationsettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+
+            //함수로 만들면 작동 안하는 이유?
+            andriusdelete.setOnClickListener {
+                andriussettingtext.setPaintFlags(andriussettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                andriussettingtext.setTextColor(Color.parseColor("#939597"))
+                andriusline.visibility = View.GONE
+                andriusvflag = 0
+            }
+            andriusplus.setOnClickListener {
+                andriussettingtext.setPaintFlags(0);
+                andriussettingtext.setTextColor(Color.parseColor("#000000"))
+                andriusline.visibility = View.VISIBLE
+                andriusvflag = 1
+            }
+
+            dvalindelete.setOnClickListener {
+                dvalinsettingtext.setPaintFlags(dvalinsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                dvalinsettingtext.setTextColor(Color.parseColor("#939597"))
+                dvalinline.visibility = View.GONE
+                dvalinvflag = 0
+            }
+            dvalinplus.setOnClickListener {
+                dvalinsettingtext.setPaintFlags(0);
+                dvalinsettingtext.setTextColor(Color.parseColor("#000000"))
+                dvalinline.visibility = View.VISIBLE
+                dvalinvflag = 1
+            }
+
+            tartagliadelete.setOnClickListener {
+                tartagliasettingtext.setPaintFlags(tartagliasettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                tartagliasettingtext.setTextColor(Color.parseColor("#939597"))
+                tartaglialine.visibility = View.GONE
+                tartagliavflag = 0
+            }
+            tartagliaplus.setOnClickListener {
+                tartagliasettingtext.setPaintFlags(0);
+                tartagliasettingtext.setTextColor(Color.parseColor("#000000"))
+                tartaglialine.visibility = View.VISIBLE
+                tartagliavflag = 1
+            }
+
+            azhdahadelete.setOnClickListener {
+                azhdahasettingtext.setPaintFlags(azhdahasettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                azhdahasettingtext.setTextColor(Color.parseColor("#939597"))
+                azhdahaline.visibility = View.GONE
+                azhdahavflag = 0
+            }
+            azhdahaplus.setOnClickListener {
+                azhdahasettingtext.setPaintFlags(0);
+                azhdahasettingtext.setTextColor(Color.parseColor("#000000"))
+                azhdahaline.visibility = View.VISIBLE
+                azhdahavflag = 1
+            }
+
+            signoradelete.setOnClickListener {
+                signorasettingtext.setPaintFlags(signorasettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                signorasettingtext.setTextColor(Color.parseColor("#939597"))
+                signoraline.visibility = View.GONE
+                signoravflag = 0
+            }
+            signoraplus.setOnClickListener {
+                signorasettingtext.setPaintFlags(0);
+                signorasettingtext.setTextColor(Color.parseColor("#000000"))
+                signoraline.visibility = View.VISIBLE
+                signoravflag = 1
+            }
+
+            weeklybattlepassdelete.setOnClickListener {
+                weeklybattlepasssettingtext.setPaintFlags(weeklybattlepasssettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                weeklybattlepasssettingtext.setTextColor(Color.parseColor("#939597"))
+                weeklybattlepassline.visibility = View.GONE
+                weeklybattlepassvflag = 0
+            }
+            weeklybattlepassplus.setOnClickListener {
+                weeklybattlepasssettingtext.setPaintFlags(0);
+                weeklybattlepasssettingtext.setTextColor(Color.parseColor("#000000"))
+                weeklybattlepassline.visibility = View.VISIBLE
+                weeklybattlepassvflag = 1
+            }
+
+            reputationdelete.setOnClickListener {
+                reputationsettingtext.setPaintFlags(reputationsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                reputationsettingtext.setTextColor(Color.parseColor("#939597"))
+                reputationline.visibility = View.GONE
+                reputationvflag = 0
+            }
+            reputationplus.setOnClickListener {
+                reputationsettingtext.setPaintFlags(0);
+                reputationsettingtext.setTextColor(Color.parseColor("#000000"))
+                reputationline.visibility = View.VISIBLE
+                reputationvflag = 1
+            }
+
+            builder.setView(dialogView)
+                .setPositiveButton("Ok") { dialogInterface, i ->
+
+                }
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+
+                }
+                .show()
+        }
+
 
         //요일 바뀌면 체크리스트 줄그인거 다 지우기. 여기 수정해야됨.
         //이거는 time이 00일때를 "지나야" 초기화가 되는 방식이고...
@@ -393,9 +593,6 @@ class HomeFragment  : Fragment(){
                 alarm_off(100, "레진")
             }
         }
-
-
-
 
         //특성 visibility
         jean_talent.visibility = View.GONE
