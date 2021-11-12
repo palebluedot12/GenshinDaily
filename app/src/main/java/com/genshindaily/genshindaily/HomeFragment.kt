@@ -156,6 +156,14 @@ class HomeFragment  : Fragment(){
         if(ascendvflag == 0) ascendline.visibility = View.GONE else ascendline.visibility = View.VISIBLE
         if(enemyvflag == 0) enemyline.visibility = View.GONE else enemyline.visibility = View.VISIBLE
 
+        //주간 체크리스트 visibility
+        if(andriusvflag == 0) andriusline.visibility = View.GONE else andriusline.visibility = View.VISIBLE
+        if(dvalinvflag == 0) dvalinline.visibility = View.GONE else dvalinline.visibility = View.VISIBLE
+        if(tartagliavflag == 0) tartaglialine.visibility = View.GONE else tartaglialine.visibility = View.VISIBLE
+        if(azhdahavflag == 0) azhdahaline.visibility = View.GONE else azhdahaline.visibility = View.VISIBLE
+        if(signoravflag == 0) signoraline.visibility = View.GONE else signoraline.visibility = View.VISIBLE
+        if(weeklybattlepassvflag == 0) weeklybattlepassline.visibility = View.GONE else weeklybattlepassline.visibility = View.VISIBLE
+        if(reputationvflag == 0) reputationline.visibility = View.GONE else reputationline.visibility = View.VISIBLE
 
         //일간 체크리스트.
         illgan.setOnClickListener{
@@ -1354,36 +1362,43 @@ class HomeFragment  : Fragment(){
         if(Textflag_monster == 1){
             monster.setTextColor(Color.parseColor("#939597"))
         }
+        andriusvflag = pref.getInt("andriusvflag", 1)
         Textflag_andrius = pref.getInt("andrius_flag", 0)
         andrius.paintFlags = pref.getInt("andrius_status", 0)
         if(Textflag_andrius == 1){
             andrius.setTextColor(Color.parseColor("#939597"))
         }
+        dvalinvflag = pref.getInt("dvalinvflag", 1)
         Textflag_dvalin = pref.getInt("dvalin_flag", 0)
         dvalin.paintFlags = pref.getInt("dvalin_status", 0)
         if(Textflag_dvalin == 1){
             dvalin.setTextColor(Color.parseColor("#939597"))
         }
+        tartagliavflag = pref.getInt("tartagliavflag", 1)
         Textflag_tartaglia = pref.getInt("tartaglia_flag", 0)
         tartaglia.paintFlags = pref.getInt("tartaglia_status", 0)
         if(Textflag_tartaglia == 1){
             tartaglia.setTextColor(Color.parseColor("#939597"))
         }
+        weeklybattlepassvflag = pref.getInt("weeklybattlepassvflag", 1)
         Textflag_battle_pass_weekly = pref.getInt("battle_pass_weekly_flag", 0)
         battle_pass_weekly.paintFlags = pref.getInt("battle_pass_weekly_status", 0)
         if(Textflag_battle_pass_weekly == 1){
             battle_pass_weekly.setTextColor(Color.parseColor("#939597"))
         }
+        reputationvflag = pref.getInt("reputationvflag", 1)
         Textflag_reputation_weekly = pref.getInt("reputation_flag", 0)
         reputation_weekly.paintFlags = pref.getInt("reputation_status", 0)
         if(Textflag_reputation_weekly == 1){
             reputation_weekly.setTextColor(Color.parseColor("#939597"))
         }
+        azhdahavflag = pref.getInt("azhdahavflag", 1)
         Textflag_yata = pref.getInt("yata_flag", 0)
         yata.paintFlags = pref.getInt("yata_status", 0)
         if(Textflag_yata == 1){
             yata.setTextColor(Color.parseColor("#939597"))
         }
+        signoravflag = pref.getInt("signoravflag", 1)
         Textflag_signora = pref.getInt("signora_flag", 0)
         signora.paintFlags = pref.getInt("signora_status", 0)
         if(Textflag_signora == 1){
