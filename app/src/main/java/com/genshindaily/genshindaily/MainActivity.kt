@@ -16,12 +16,12 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 
 
-
 class MainActivity : AppCompatActivity() {
 
     //Fragment
     private val homeFragment = HomeFragment()
     private val farmingFragment = FarmingFragment()
+    private val infoFragment = InfoFragment()
     private val optionFragment = OptionFragment()
     private final var TAG = "MainActivity"
     private var mInterstitialAd: InterstitialAd? = null
@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //야간모드
         replaceFragment(homeFragment)
 
-
-
         // createAd()
 
        // createAd()
@@ -46,7 +44,8 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.tab1 -> replaceFragment(homeFragment)
                 R.id.tab2 -> replaceFragment(farmingFragment)
-                R.id.tab3 -> replaceFragment(optionFragment)
+                R.id.tab3 -> replaceFragment(infoFragment)
+                R.id.tab4 -> replaceFragment(optionFragment)
             }
             true
         }

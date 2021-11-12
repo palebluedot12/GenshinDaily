@@ -19,9 +19,6 @@ import java.util.*
 
 class OptionFragment : Fragment() {
 
-
-    var selected_item = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
