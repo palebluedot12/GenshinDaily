@@ -158,10 +158,10 @@ class HomeFragment  : Fragment(){
 
 
         //일간 체크리스트.
-        illgan.setOnClickListener(View.OnClickListener {
+        illgan.setOnClickListener{
             onTextClicked_illgan()
             App.prefs.myEditText = dayGenerator()
-        })
+        }
 
         resin.setOnClickListener(View.OnClickListener {
             onTextClicked_resin()
@@ -304,7 +304,7 @@ class HomeFragment  : Fragment(){
                 illganvflag = 0
             }
             illganplus.setOnClickListener {
-                illgansettingtext.setPaintFlags(0);
+                illgansettingtext.setPaintFlags(0)
                 illgansettingtext.setTextColor(Color.parseColor("#000000"))
                 illganline.visibility = View.VISIBLE
                 illganvflag = 1
@@ -1424,18 +1424,25 @@ class HomeFragment  : Fragment(){
         edit.putInt("enemyvflag", enemyvflag)
         edit.putInt("andrius_flag", Textflag_andrius)
         edit.putInt("andrius_status", andrius.paintFlags)
+        edit.putInt("andriusvflag", andriusvflag)
         edit.putInt("dvalin_flag", Textflag_dvalin)
         edit.putInt("dvalin_status", dvalin.paintFlags)
+        edit.putInt("dvalinvflag", dvalinvflag)
         edit.putInt("tartaglia_flag", Textflag_tartaglia)
         edit.putInt("tartaglia_status", tartaglia.paintFlags)
+        edit.putInt("tartagliavflag", tartagliavflag)
         edit.putInt("battle_pass_weekly_flag", Textflag_battle_pass_weekly)
         edit.putInt("battle_pass_weekly_status", battle_pass_weekly.paintFlags)
+        edit.putInt("weeklybattlepassvflag", weeklybattlepassvflag)
         edit.putInt("reputation_flag", Textflag_reputation_weekly)
         edit.putInt("reputation_status", reputation_weekly.paintFlags)
+        edit.putInt("reputationvflag", reputationvflag)
         edit.putInt("yata_flag", Textflag_yata)
         edit.putInt("yata_status", yata.paintFlags)
+        edit.putInt("azhdahavflag", azhdahavflag)
         edit.putInt("signora_flag", Textflag_signora)
         edit.putInt("signora_status", signora.paintFlags)
+        edit.putInt("signoravflag", signoravflag)
         edit.putString("weekly_flag", weeklysavedday)
         edit.putString("weekly_date_flag", weeklysaveddate)
         edit.putString("resin_afterhour",afterhourxml.text.toString())
@@ -1449,57 +1456,57 @@ class HomeFragment  : Fragment(){
         illgan.setTextColor(Color.parseColor("#000000"))
         Textflag_illgan = 0
 
-        resin.setPaintFlags(0);
+        resin.setPaintFlags(0)
         resin.setTextColor(Color.parseColor("#000000"))
         Textflag_resin = 0
 
-        item.setPaintFlags(0);
+        item.setPaintFlags(0)
         item.setTextColor(Color.parseColor("#000000"))
         Textflag_item = 0
 
-        talent.setPaintFlags(0);
+        talent.setPaintFlags(0)
         talent.setTextColor(Color.parseColor("#000000"))
         Textflag_talent = 0
 
-        ascend.setPaintFlags(0);
+        ascend.setPaintFlags(0)
         ascend.setTextColor(Color.parseColor("#000000"))
         Textflag_ascend = 0
 
-        battle_pass.setPaintFlags(0);
+        battle_pass.setPaintFlags(0)
         battle_pass.setTextColor(Color.parseColor("#000000"))
         Textflag_battle_pass = 0
 
-        monster.setPaintFlags(0);
+        monster.setPaintFlags(0)
         monster.setTextColor(Color.parseColor("#000000"))
         Textflag_monster = 0
     }
 
     fun weeklyreset(){ //월요일되면 주간퀘 초기화
-        andrius.setPaintFlags(0);
+        andrius.setPaintFlags(0)
         andrius.setTextColor(Color.parseColor("#000000"))
         Textflag_andrius = 0
 
-        dvalin.setPaintFlags(0);
+        dvalin.setPaintFlags(0)
         dvalin.setTextColor(Color.parseColor("#000000"))
         Textflag_dvalin = 0
 
-        tartaglia.setPaintFlags(0);
+        tartaglia.setPaintFlags(0)
         tartaglia.setTextColor(Color.parseColor("#000000"))
         Textflag_tartaglia = 0
 
-        battle_pass_weekly.setPaintFlags(0);
+        battle_pass_weekly.setPaintFlags(0)
         battle_pass_weekly.setTextColor(Color.parseColor("#000000"))
         Textflag_battle_pass_weekly = 0
 
-        reputation_weekly.setPaintFlags(0);
+        reputation_weekly.setPaintFlags(0)
         reputation_weekly.setTextColor(Color.parseColor("#000000"))
         Textflag_reputation_weekly = 0
 
-        yata.setPaintFlags(0);
+        yata.setPaintFlags(0)
         yata.setTextColor(Color.parseColor("#000000"))
         Textflag_yata = 0
 
-        signora.setPaintFlags(0);
+        signora.setPaintFlags(0)
         signora.setTextColor(Color.parseColor("#000000"))
         Textflag_signora = 0
 
@@ -1512,7 +1519,7 @@ class HomeFragment  : Fragment(){
             Textflag_illgan = 1
         }
         else{
-            illgan.setPaintFlags(0);
+            illgan.setPaintFlags(0)
             illgan.setTextColor(Color.parseColor("#000000"))
             Textflag_illgan = 0
         }
@@ -1525,7 +1532,7 @@ class HomeFragment  : Fragment(){
             Textflag_resin = 1
         }
         else{
-            resin.setPaintFlags(0);
+            resin.setPaintFlags(0)
             resin.setTextColor(Color.parseColor("#000000"))
             Textflag_resin = 0
         }
@@ -1538,7 +1545,7 @@ class HomeFragment  : Fragment(){
             Textflag_item = 1
         }
         else{
-            item.setPaintFlags(0);
+            item.setPaintFlags(0)
             item.setTextColor(Color.parseColor("#000000"))
             Textflag_item = 0
         }
@@ -1551,7 +1558,7 @@ class HomeFragment  : Fragment(){
             Textflag_talent = 1
         }
         else{
-            talent.setPaintFlags(0);
+            talent.setPaintFlags(0)
             talent.setTextColor(Color.parseColor("#000000"))
             Textflag_talent = 0
         }
@@ -1564,7 +1571,7 @@ class HomeFragment  : Fragment(){
             Textflag_ascend = 1
         }
         else{
-            ascend.setPaintFlags(0);
+            ascend.setPaintFlags(0)
             ascend.setTextColor(Color.parseColor("#000000"))
             Textflag_ascend = 0
         }
@@ -1577,7 +1584,7 @@ class HomeFragment  : Fragment(){
             Textflag_battle_pass = 1
         }
         else{
-            battle_pass.setPaintFlags(0);
+            battle_pass.setPaintFlags(0)
             battle_pass.setTextColor(Color.parseColor("#000000"))
             Textflag_battle_pass = 0
         }
@@ -1590,7 +1597,7 @@ class HomeFragment  : Fragment(){
             Textflag_monster = 1
         }
         else{
-            monster.setPaintFlags(0);
+            monster.setPaintFlags(0)
             monster.setTextColor(Color.parseColor("#000000"))
             Textflag_monster = 0
         }
@@ -1604,7 +1611,7 @@ class HomeFragment  : Fragment(){
             Textflag_andrius = 1
         }
         else{
-            andrius.setPaintFlags(0);
+            andrius.setPaintFlags(0)
             andrius.setTextColor(Color.parseColor("#000000"))
             Textflag_andrius = 0
         }
@@ -1616,7 +1623,7 @@ class HomeFragment  : Fragment(){
             Textflag_dvalin = 1
         }
         else{
-            dvalin.setPaintFlags(0);
+            dvalin.setPaintFlags(0)
             dvalin.setTextColor(Color.parseColor("#000000"))
             Textflag_dvalin = 0
         }
@@ -1628,7 +1635,7 @@ class HomeFragment  : Fragment(){
             Textflag_tartaglia = 1
         }
         else{
-            tartaglia.setPaintFlags(0);
+            tartaglia.setPaintFlags(0)
             tartaglia.setTextColor(Color.parseColor("#000000"))
             Textflag_tartaglia = 0
         }
@@ -1640,7 +1647,7 @@ class HomeFragment  : Fragment(){
             Textflag_battle_pass_weekly = 1
         }
         else{
-            battle_pass_weekly.setPaintFlags(0);
+            battle_pass_weekly.setPaintFlags(0)
             battle_pass_weekly.setTextColor(Color.parseColor("#000000"))
             Textflag_battle_pass_weekly = 0
         }
@@ -1666,7 +1673,7 @@ class HomeFragment  : Fragment(){
             Textflag_yata = 1
         }
         else {
-            yata.setPaintFlags(0);
+            yata.setPaintFlags(0)
             yata.setTextColor(Color.parseColor("#000000"))
             Textflag_yata = 0
         }
@@ -1679,7 +1686,7 @@ class HomeFragment  : Fragment(){
             Textflag_signora = 1
         }
         else {
-            signora.setPaintFlags(0);
+            signora.setPaintFlags(0)
             signora.setTextColor(Color.parseColor("#000000"))
             Textflag_signora = 0
         }
