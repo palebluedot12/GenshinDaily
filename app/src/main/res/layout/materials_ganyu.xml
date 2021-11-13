@@ -7,6 +7,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:src="@drawable/ascension_yoimiya"
+        android:src="@drawable/ascension_ganyu"
         android:layout_gravity="center"/>
 </LinearLayout>
