@@ -207,4 +207,5 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="click_to_show_materials">클릭시 캐릭터 특성/돌파 재료 정보</string>
 </resources>

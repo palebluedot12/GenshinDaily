@@ -1,42 +1,23 @@
 package com.genshindaily.genshindaily
 
-import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Paint
-import android.media.Image
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
-import com.fsn.cauly.CaulyAdInfo
-import com.fsn.cauly.CaulyAdInfoBuilder
-import com.fsn.cauly.CaulyCloseAd
-import com.fsn.cauly.CaulyCloseAdListener
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.kakao.adfit.ads.AdListener
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.checklist_dialog.*
-import kotlinx.android.synthetic.main.fragment_farming.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.illgan
 import java.lang.NumberFormatException
@@ -249,7 +230,7 @@ class HomeFragment  : Fragment(){
         illganmenu.setOnClickListener {
 
             val builder = AlertDialog.Builder(requireActivity())
-            val dialogView = layoutInflater.inflate(R.layout.checklist_dialog, null)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_daily_checklist, null)
             
             //다이얼로그와 홈프래그먼트 연결
             val illgandelete = dialogView.findViewById<ImageView>(R.id.illgandelete)
@@ -397,19 +378,14 @@ class HomeFragment  : Fragment(){
             }
 
             builder.setView(dialogView)
-                .setPositiveButton("Ok") { dialogInterface, i ->
-
-                }
-                .setNegativeButton("Cancel") { dialogInterface, i ->
-
-                }
+                .setPositiveButton("OK", null)
                 .show()
         }
 
         //주간 세팅 다이얼로그
         weeklymenu.setOnClickListener {
             val builder = AlertDialog.Builder(requireActivity())
-            val dialogView = layoutInflater.inflate(R.layout.weekly_checklist_dialog, null)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_weekly_checklist, null)
 
             val andriusdelete = dialogView.findViewById<ImageView>(R.id.andriusdelete)
             val andriusplus = dialogView.findViewById<ImageView>(R.id.andriusplus)
@@ -556,12 +532,7 @@ class HomeFragment  : Fragment(){
             }
 
             builder.setView(dialogView)
-                .setPositiveButton("Ok") { dialogInterface, i ->
-
-                }
-                .setNegativeButton("Cancel") { dialogInterface, i ->
-
-                }
+                .setPositiveButton("OK", null)
                 .show()
         }
 

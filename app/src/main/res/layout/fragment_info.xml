@@ -10,5 +10,414 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_centerInParent="true"
+        android:background="#939597"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/click_to_show_materials"
+        android:textSize="11dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="15dp"
+        />
+
+    <HorizontalScrollView
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_40_aloy"
+            android:id="@+id/aloy_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_38_raiden"
+            android:id="@+id/raiden_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_36_yoimiya"
+            android:id="@+id/yoimiya_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_35_ayaka"
+            android:id="@+id/ayaka_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_34_kazuha"
+            android:id="@+id/kazuha_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_33_eula"
+            android:id="@+id/eula_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_1_jean"
+            android:id="@+id/jean_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_6_diluc"
+            android:id="@+id/diluc_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_8_venti"
+            android:id="@+id/venti_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_9_klee"
+            android:id="@+id/klee_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_14_mona"
+            android:id="@+id/mona_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_15_xiao"
+            android:id="@+id/xiao_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_21_qiqi"
+            android:id="@+id/qiqi_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_22_keqing"
+            android:id="@+id/keqing_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_25_tartaglia"
+            android:id="@+id/tartaglia_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_26_zhongli"
+            android:id="@+id/zhongli_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_28_albedo"
+            android:id="@+id/albedo_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_29_ganyu"
+            android:id="@+id/ganyu_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_30_hutao"
+            android:id="@+id/hutao_materials"/>
+        <!--5성-->
+    </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/sv_layout"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_39_sara"
+            android:id="@+id/sara_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_37_sayu"
+            android:id="@+id/sayu_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_31_rosaria"
+            android:id="@+id/rosaria_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/yanfei_materials"
+            android:src="@drawable/icon_32_yanfei"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/lisa_materials"
+            android:src="@drawable/icon_3_lisa"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_2_amber"
+            android:id="@+id/amber_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/kaeya_materials"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_4_kaeya"
+            app:civ_border_color="@color/purple_500"
+            app:civ_border_width="1dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_5_barbara"
+            android:id="@+id/barbara_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_7_razor"
+            android:id="@+id/razor_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_10_bennett"
+            android:id="@+id/bennett_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_11_noelle"
+            android:id="@+id/noelle_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_12_fischl"
+            android:id="@+id/fischl_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_13_sucrose"
+            android:id="@+id/sucrose_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_16_beidou"
+            android:id="@+id/beidou_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_17_ningguang"
+            android:id="@+id/ningguang_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_18_xiangling"
+            android:id="@+id/xiangling_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_19_xingqiu"
+            android:id="@+id/xingqiu_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_20_chongyun"
+            android:id="@+id/chongyun_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/five_stars"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_23_hangza"
+            android:id="@+id/hangza_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_24_diona"
+            android:id="@+id/diona_materials"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/purple_500"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_27_xinyan"
+            android:id="@+id/xinyan_materials"/>
+
+
+    </LinearLayout>
+    </HorizontalScrollView>
+
     </LinearLayout>
 </ScrollView>

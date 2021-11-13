@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.GenshinDaily" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryVariant">#939597</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
