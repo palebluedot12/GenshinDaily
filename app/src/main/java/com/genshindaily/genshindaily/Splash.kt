@@ -1,6 +1,7 @@
 package com.genshindaily.genshindaily
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -14,10 +15,12 @@ class Splash : AppCompatActivity() {
 
     private var mInterstitialAd: InterstitialAd? = null
     private final var TAG = "Splashh"
+    var isPurchasedRemoveAds = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        loadData()
         var adRequest = AdRequest.Builder().build()
 
         //구글 전면광고
@@ -47,21 +50,22 @@ class Splash : AppCompatActivity() {
                         mInterstitialAd = null;
                     }
                 }
-
             }
 
         })
 
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
+            val c = OneTimeActivity()
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()
-//            if(mInterstitialAd != null)
-//            {
-//                mInterstitialAd?.show(this)
-//                Log.d("mInter3", mInterstitialAd.toString())
-//            }
+            if(!isPurchasedRemoveAds) {
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(this)
+                    Log.d("mInter3", mInterstitialAd.toString())
+                }
+            }
         },DURATION)
 
     }
@@ -71,5 +75,10 @@ class Splash : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+    }
+
+    private fun loadData() {
+        val pref : SharedPreferences = getSharedPreferences("pref", 0)
+        isPurchasedRemoveAds = pref.getBoolean("isPurchasedRemoveAds", false)
     }
 }

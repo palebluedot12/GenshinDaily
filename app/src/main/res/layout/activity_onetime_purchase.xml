@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_purchase_ad"
+            android:text="@string/remove_ads"
+            android:layout_marginLeft="8dp"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:layout_width="140dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:background="@drawable/buttonshape"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remove_ad_whether"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/notosanscjkkrdemilight"
+            android:textSize="17dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            android:clickable="true"
+            android:id="@+id/purchase_ad_whether"
+            android:layout_marginLeft="8dp"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_purchase_welkin_moon"
+                android:text="@string/donate_welkin_moon"
+                android:layout_marginLeft="8dp"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:layout_width="300dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonshape"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_purchase_battle_pass"
+                android:text="@string/donate_battle_pass"
+                android:layout_marginLeft="8dp"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:layout_width="300dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonshape"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

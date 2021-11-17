@@ -62,7 +62,7 @@ class FarmingFragment : Fragment() {
     var Textflag_fish_liyue = 0
     var Textflag_fish_inazuma = 0
 
-
+    var isPurchasedRemoveAds = false
 
     private var alarmMgr: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
@@ -83,25 +83,29 @@ class FarmingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadData()
-        adView2.loadAd(AdRequest.Builder().build()) //구글광고
 
-        //카카오 광고
-        kakaoAdview2.run {
-            setClientId("DAN-jx2L2xstDOGjpBcZ")
-            setAdListener(object: AdListener {
-                override fun onAdLoaded() {
-                    //JoLog.d("ad loaded")
-                }
 
-                override fun onAdFailed(p0: Int) {
-                    //JoLog.d("failed to upload")
-                }
+        if(!isPurchasedRemoveAds) {
+            adView2.loadAd(AdRequest.Builder().build()) //구글광고
 
-                override fun onAdClicked() { }
-            })
-            loadAd()
+            //카카오 광고
+            kakaoAdview2.run {
+                setClientId("DAN-jx2L2xstDOGjpBcZ")
+                setAdListener(object : AdListener {
+                    override fun onAdLoaded() {
+                        //JoLog.d("ad loaded")
+                    }
+
+                    override fun onAdFailed(p0: Int) {
+                        //JoLog.d("failed to upload")
+                    }
+
+                    override fun onAdClicked() {}
+                })
+                loadAd()
+            }
+
         }
-
         //알람 스위치
         farming_switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked)Toast.makeText(activity, activity?.getString(R.string.farming_switch).toString(), Toast.LENGTH_LONG).show()
@@ -1238,6 +1242,9 @@ class FarmingFragment : Fragment() {
 
     private fun loadData() {
         val pref = requireActivity().getSharedPreferences("pref", 0)
+
+        isPurchasedRemoveAds = pref.getBoolean("isPurchasedRemoveAds", isPurchasedRemoveAds) //광고제거구매여부
+
         Textflag_iron_chunk = pref.getInt("iron_chunk_flag", 0)
         iron_chunk.paintFlags = pref.getInt("iron_chunk_status", 0)
         farming_afterhour_iron_chunk.text = pref.getString("iron_chunk_aftertime", "")

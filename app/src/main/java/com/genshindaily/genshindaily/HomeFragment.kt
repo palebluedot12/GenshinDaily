@@ -63,8 +63,9 @@ class HomeFragment  : Fragment(){
     var savedday : String = ""
     var weeklysavedday : String = ""
     var weeklysaveddate : String = ""
-    //일간, 주간 체크리스트 편집 카운트
-    var daily_edit_count = 0
+
+    //
+    var isPurchasedRemoveAds = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,28 +80,31 @@ class HomeFragment  : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        MobileAds.initialize(requireActivity())
-        adView.loadAd(AdRequest.Builder().build()) //구글 배너
-
-
-        //카카오 광고
-        kakaoAdview.run {
-            setClientId("DAN-ikDQEklRA3qRWh1g")
-            setAdListener(object: AdListener {
-                override fun onAdLoaded() {
-                    //JoLog.d("ad loaded")
-                }
-
-                override fun onAdFailed(p0: Int) {
-                    //JoLog.d("failed to upload")
-                }
-
-                override fun onAdClicked() { }
-            })
-            loadAd()
-        }
-        
         loadData() //체크리스트 저장값 로드. 여기서 saveddate 가져와야됨.
+
+        Log.d("ispurchasedHome", isPurchasedRemoveAds.toString())
+
+        if(!isPurchasedRemoveAds) {
+            MobileAds.initialize(requireActivity())
+            adView.loadAd(AdRequest.Builder().build()) //구글 배너
+
+            //카카오 광고
+            kakaoAdview.run {
+                setClientId("DAN-ikDQEklRA3qRWh1g")
+                setAdListener(object : AdListener {
+                    override fun onAdLoaded() {
+                        //JoLog.d("ad loaded")
+                    }
+
+                    override fun onAdFailed(p0: Int) {
+                        //JoLog.d("failed to upload")
+                    }
+
+                    override fun onAdClicked() {}
+                })
+                loadAd()
+            }
+        }
         Log.d("loadillgan", illganvflag.toString()) //여기서 왜 1?
 
         savedday = App.prefs.myEditText.toString()
@@ -1291,6 +1295,8 @@ class HomeFragment  : Fragment(){
 
     private fun loadData() {
         val pref = requireActivity().getSharedPreferences("pref", 0)
+        isPurchasedRemoveAds = pref.getBoolean("isPurchasedRemoveAds", isPurchasedRemoveAds)
+
         illganvflag = pref.getInt("illganvflag", 1)
         Textflag_illgan = pref.getInt("illgan_flag", 0)
         illgan.paintFlags = pref.getInt("illgan_status", 0)

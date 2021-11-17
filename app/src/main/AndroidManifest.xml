@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:name=".App"
@@ -19,31 +19,31 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GenshinDaily"
-        tools:targetApi="n"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label">
-
-        <!-- play-services-ads 17.0.0 이상부터는 앱 ID를 입력해줘야 합니다 -->
+        tools:replace="android:label"
+        tools:targetApi="n">
+        <activity android:name=".OneTimeActivity"></activity>
+        <activity android:name=".WebwebView" /> <!-- play-services-ads 17.0.0 이상부터는 앱 ID를 입력해줘야 합니다 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id" />
 
-        <activity android:name=".Splash"
+        <activity
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:configChanges="keyboardHidden|orientation|keyboard"/>
+            android:configChanges="keyboardHidden|orientation|keyboard" />
         <activity
             android:name="com.fsn.cauly.blackdragoncore.LandingActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
-        </activity>
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
 
         <receiver android:name=".AlarmReceiver" />
     </application>

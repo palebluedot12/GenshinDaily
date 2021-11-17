@@ -208,4 +208,12 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="click_to_show_materials">클릭시 캐릭터 특성/돌파 재료 정보</string>
+    <string name="daily_check_in">출석체크</string>
+    <string name="purchase_ad_remove">광고제거버전 구매</string>
+    <string name="ad_whether">광고 제거 여부 : X</string>
+    <string name="removeads_or_donate">광고제거 및 후원</string>
+    <string name="remove_ads">광고제거</string>
+    <string name="donate_welkin_moon">개발자에게 공월축복 선물</string>
+    <string name="donate_battle_pass">개발자에게 기행 선물</string>
+    <string name="remove_ad_whether">광고제거 여부 : X</string>
 </resources>

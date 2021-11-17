@@ -2,6 +2,7 @@ package com.genshindaily.genshindaily
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -14,10 +15,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.genshindaily.genshindaily.databinding.FragmentInfoBinding
+import com.genshindaily.genshindaily.databinding.FragmentOptionBinding
 import kotlinx.android.synthetic.main.fragment_option.*
 import java.util.*
 
 class OptionFragment : Fragment() {
+
+    private lateinit var binding: FragmentOptionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,38 +66,31 @@ class OptionFragment : Fragment() {
                         setLocate("ja")
                         Log.d("language", "AS_English")
                     }
-
                     2 -> {
                         setLocate("en")
                         Log.d("language", "US_English")
                     }
-
                     3 -> {
                         setLocate("fr")
                         Log.d("language", "Europe_English")
                     }
-
                     4 -> {
                         setLocate("zh")
                         Log.d("language", "HK_English")
                     }
-
-
                     //...
                     else -> {
-
                     }
                 }
-
                 saveSpinnerPosition(position)
-
             }
-
-
-
             override fun onNothingSelected(parent: AdapterView<*>) {}
         } //spinner
 
+        btn_purchase.setOnClickListener {
+            val intent = Intent(activity, OneTimeActivity::class.java)
+            startActivity(intent)
+        }
 
     }//onViewCreated
 

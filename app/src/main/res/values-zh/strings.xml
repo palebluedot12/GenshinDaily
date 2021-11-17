@@ -194,5 +194,13 @@
     <string name="fish_liyue">Fish - Liyue</string>
     <string name="fish_inazuma">Fish - Inazuma</string>
     <string name="click_to_show_materials">Click to Show Ascend / Talent Materials</string>
+    <string name="daily_check_in">Daily Check-In</string>
+    <string name="purchase_ad_remove">Remove Ad</string>
+    <string name="ad_whether">Ads Removed : X</string>
+    <string name="removeads_or_donate">Remove Ad or Donate</string>
+    <string name="remove_ads">Remove Ads</string>
+    <string name="donate_welkin_moon">Donate WelkinMoon to Developer</string>
+    <string name="donate_battle_pass">Donate Battlepass to Develope</string>
+    <string name="remove_ad_whether">Ads Removed : X</string>
 
 </resources>

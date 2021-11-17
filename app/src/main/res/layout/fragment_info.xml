@@ -10,6 +10,59 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center">
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="LARGE_BANNER"
+            ads:adUnitId="ca-app-pub-2985851452464131/5002560062">
+        </com.google.android.gms.ads.AdView>
+    </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_centerInParent="true"
+            android:background="#939597"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_margin="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_check_in"
+           android:textSize="11dp"
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GO!"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/notosanscjkkrbold"
+            android:textSize="17dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/gnt_blue"
+            android:clickable="true"
+            android:id="@+id/text_daily_check_in"
+            android:layout_marginLeft="15dp"
+            />
+    </LinearLayout>
+
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
@@ -387,15 +440,6 @@
             android:layout_marginLeft="15dp"
             android:src="@drawable/icon_20_chongyun"
             android:id="@+id/chongyun_materials"/>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_height="60dp"
-            android:layout_width="60dp"
-            app:civ_border_width="1dp"
-            app:civ_border_color="@color/five_stars"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/icon_23_hangza"
-            android:id="@+id/hangza_materials"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_height="60dp"

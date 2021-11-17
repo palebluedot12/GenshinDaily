@@ -14,9 +14,10 @@ android {
         applicationId "com.genshindaily.genshindaily"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 16
-        versionName "1.32"
+        versionCode 19
+        versionName "1.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -36,6 +37,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures{
+        viewBinding true
     }
 }
 
@@ -61,6 +66,14 @@ dependencies {
     implementation 'com.kyleduo.switchbutton:library:2.0.0'
     implementation name: 'CaulySDK-3.5.20', ext: 'aar'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0'
+    // Billing
+    def billing_version = "3.0.0"
+    implementation "com.android.billingclient:billing:$billing_version"
+    // (선택사항) Kotlin을 사용하신다면 추가 해 주세요
+    implementation "com.android.billingclient:billing-ktx:$billing_version"
+    // (선택사항) Kotlin Coroutine을 사용하신다면 추가 해 주세요 - Life Cycle
+    def lifecycle_version = '2.2.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
 
 }
