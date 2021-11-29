@@ -1,13 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.ads:ads-identifier:1.0.0-alpha04@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9191477533f4e6fc2b19bcb5a531c288/jetified-ads-identifier-1.0.0-alpha04/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/46381f39fb58f7d72f5468684a192315/jetified-ads-identifier-1.0.0-alpha04/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6b03b3ab39286f7bec83392c90bde9e0/transformed/jetified-ads-identifier-1.0.0-alpha04/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c99a5b893df614517e6ab60f97c3dfda/transformed/jetified-ads-identifier-1.0.0-alpha04/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a5195ba792d5ad74b459a048ba58b1c5/transformed/jetified-ads-identifier-1.0.0-alpha04/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a5195ba792d5ad74b459a048ba58b1c5/transformed/jetified-ads-identifier-1.0.0-alpha04/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a5195ba792d5ad74b459a048ba58b1c5/transformed/jetified-ads-identifier-1.0.0-alpha04/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a5195ba792d5ad74b459a048ba58b1c5/transformed/jetified-ads-identifier-1.0.0-alpha04/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

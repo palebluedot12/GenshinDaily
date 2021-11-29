@@ -3,6 +3,7 @@
 package com.genshindaily.genshindaily
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_farming.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -31,15 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //MobileAds.initialize(this) {}
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //야간모드
         replaceFragment(homeFragment)
-
-        // createAd()
-
-       // createAd()
-
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.tab1 -> replaceFragment(homeFragment)
@@ -58,46 +53,4 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
-
-
-
-    //종료 다이얼로그 네이티브 광고
-//    override fun onBackPressed() {
-//        //super.onBackPressed()
-//
-//        val builder = AlertDialog.Builder(this)
-//                .create()
-//        val inflater = layoutInflater.inflate(R.layout.end_dialog,null)
-//
-//        builder.setView(inflater)
-//        val backbtn = inflater.findViewById<View>(R.id.backbtn)
-//        val exitbtn = inflater.findViewById<View>(R.id.exitbtn)
-//        backbtn.setOnClickListener {
-//            builder.dismiss()
-//        }
-//        exitbtn.setOnClickListener {
-//            finish()
-//        }
-//
-//        builder.show()
-//
-//
-//
-//    }
-//
-//    fun createAd() {
-//        MobileAds.initialize(this)
-//        adLoader = AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
-//            .forNativeAd { ad : NativeAd ->
-//                // Show the ad.
-//            }
-//            .withNativeAdOptions(
-//                NativeAdOptions.Builder()
-//                    // Methods in the NativeAdOptions.Builder class can be
-//                    // used here to specify individual options settings.
-//                    .build())
-//            .build()
-//    }
-
-
 }

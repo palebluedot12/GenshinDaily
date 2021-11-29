@@ -87,6 +87,15 @@ class OptionFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {}
         } //spinner
 
+        btn_light.setOnClickListener {
+            ThemeManager.applyTheme(ThemeManager.ThemeMode.LIGHT)
+        }
+
+        btn_dark.setOnClickListener {
+            ThemeManager.applyTheme(ThemeManager.ThemeMode.DARK)
+        }
+
+        //후원버튼
         btn_purchase.setOnClickListener {
             val intent = Intent(activity, OneTimeActivity::class.java)
             startActivity(intent)

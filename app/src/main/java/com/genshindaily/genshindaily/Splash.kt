@@ -51,12 +51,11 @@ class Splash : AppCompatActivity() {
                     }
                 }
             }
-
         })
 
         Handler(Looper.getMainLooper()).postDelayed({
+
             val intent = Intent(this, MainActivity::class.java)
-            val c = OneTimeActivity()
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()
@@ -65,6 +64,7 @@ class Splash : AppCompatActivity() {
                     mInterstitialAd?.show(this)
                     Log.d("mInter3", mInterstitialAd.toString())
                 }
+                else Log.d("mInternull", mInterstitialAd.toString())
             }
         },DURATION)
 
