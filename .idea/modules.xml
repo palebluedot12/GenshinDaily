@@ -4,7 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/GenshinDaily.iml" filepath="$PROJECT_DIR$/.idea/modules/GenshinDaily.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GenshinDaily.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.main.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/GenshinDaily.nativetemplates.unitTest.iml" />
     </modules>
   </component>
 </project>
