@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -87,12 +88,24 @@ class OptionFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {}
         } //spinner
 
+        //라이트모드
         btn_light.setOnClickListener {
-            ThemeManager.applyTheme(ThemeManager.ThemeMode.LIGHT)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
+            with (sharedPref.edit()) {
+                putBoolean(getString(R.string.saved_theme), false)
+                apply()
+            }
         }
 
+        //다크모드
         btn_dark.setOnClickListener {
-            ThemeManager.applyTheme(ThemeManager.ThemeMode.DARK)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
+            with (sharedPref.edit()) {
+                putBoolean(getString(R.string.saved_theme), true)
+                apply()
+            }
         }
 
         //후원버튼

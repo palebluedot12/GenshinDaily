@@ -2,6 +2,7 @@
 
 package com.genshindaily.genshindaily
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -28,22 +29,71 @@ class MainActivity : AppCompatActivity() {
     private final var TAG = "MainActivity"
     private var mInterstitialAd: InterstitialAd? = null
 
+    private var currentFragmentTag: String = "home"
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the current fragment
+        outState.putString("current_fragment", currentFragmentTag)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //야간모드
+
+        //다크모드 설정 불러오기
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        val isDarkMode = sharedPref.getBoolean(getString(R.string.saved_theme), false)
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
         replaceFragment(homeFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.tab1 -> replaceFragment(homeFragment)
-                R.id.tab2 -> replaceFragment(farmingFragment)
-                R.id.tab3 -> replaceFragment(infoFragment)
-                R.id.tab4 -> replaceFragment(optionFragment)
+            when (it.itemId) {
+                R.id.tab1 -> {
+                    replaceFragment(homeFragment)
+                    currentFragmentTag = "home"
+                }
+                R.id.tab2 -> {
+                    replaceFragment(farmingFragment)
+                    currentFragmentTag = "farming"
+                }
+                R.id.tab3 -> {
+                    replaceFragment(infoFragment)
+                    currentFragmentTag = "info"
+                }
+                R.id.tab4 -> {
+                    replaceFragment(optionFragment)
+                    currentFragmentTag = "option"
+                }
             }
             true
         }
+
+        //다크모드 - onSaveInstanceState
+        if (savedInstanceState != null) {
+            // Restore the current fragment
+            val currentFragmentTag = savedInstanceState.getString("current_fragment")
+            if (currentFragmentTag != null) {
+                val currentFragment = supportFragmentManager.findFragmentByTag(currentFragmentTag)
+                if (currentFragment != null) {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, currentFragment, currentFragmentTag)
+                        .commit()
+                }
+            }
+        } else {
+            // Show the default fragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, HomeFragment(), "home")
+                .commit()
+        }
+
+
       } //onCreate
 
     private fun replaceFragment(fragment: Fragment){
@@ -53,4 +103,6 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
+
 }

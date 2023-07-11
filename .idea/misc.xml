@@ -4,14 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/activity_main.xml" value="0.184375" />
+        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/activity_onetime_purchase.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/activity_splash.xml" value="0.1" />
-        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/dialog_daily_checklist.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/fragment_home.xml" value="0.2292103424178896" />
+        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/dialog_daily_checklist.xml" value="0.33" />
+        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/fragment_info.xml" value="0.33" />
         <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/fragment_option.xml" value="0.22" />
+        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/materials_aloy.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/materials_chongyun.xml" value="0.1" />
         <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/layout/webview_daily_check_in.xml" value="0.1" />
         <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/menu/menu_bottom.xml" value="0.1" />
+        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/mipmap-anydpi-v26/ic_main.xml" value="0.184" />
+        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/mipmap-anydpi-v26/ic_main_round.xml" value="0.184" />
+        <entry key="..\:/Users/sm524/AndroidStudioProjects/GenshinDaily/app/src/main/res/xml/root_preferences.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_option.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.10208333333333333" />

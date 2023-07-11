@@ -1,9 +1,11 @@
 package com.genshindaily.genshindaily
 
+import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
@@ -16,12 +18,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.*
 import com.kakao.adfit.ads.AdListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.illgan
 import java.lang.NumberFormatException
+import java.sql.Ref
 import java.util.*
+import kotlin.reflect.KMutableProperty0
 
 class HomeFragment  : Fragment(){
 
@@ -81,6 +86,7 @@ class HomeFragment  : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         loadData() //체크리스트 저장값 로드. 여기서 saveddate 가져와야됨.
+        loadSetting() //location 불러오기
 
         Log.d("ispurchasedHome", isPurchasedRemoveAds.toString())
 
@@ -105,6 +111,7 @@ class HomeFragment  : Fragment(){
                 loadAd()
             }
         }
+
         Log.d("loadillgan", illganvflag.toString()) //여기서 왜 1?
 
         savedday = App.prefs.myEditText.toString()
@@ -116,13 +123,15 @@ class HomeFragment  : Fragment(){
 
         currentday = dayGenerator()//일단 해결은 됐는데 이거 왜 위에있으면 null뜸?? 이해가 안되네..
 
-        if(currentday != savedday) //체크리스트 클릭할때 저장해둔 요일이랑 현재 요일이 일치하지 않으면, 즉 날이 바뀌었으면 reset
+        // 사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고 && 시간이 새벽 4시 이후이면.
+        if(currentday != savedday)
         {
             dailyreset()
             Log.d("dailyreset","hoxy?")
         }
 
-        if(currentdate != weeklysaveddate) // 이방식은 오류가 있음. 추후 수정
+        // (사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고) && 시간이 정해진 시간(nextmondaydate) 이후라면
+        if(currentdate != weeklysaveddate)
         {
             if(currentday == "월" || currentday == "MONDAY")
             {
@@ -132,7 +141,7 @@ class HomeFragment  : Fragment(){
 
         day.text = dayGenerator() // dayGenerator -> dayString 반환
 
-        //일간 체크리스트 visibility
+        // (세팅에서)일간 체크리스트 visibility
         if(illganvflag == 0) illganline.visibility = View.GONE else illganline.visibility = View.VISIBLE
         if(resinvflag == 0) resinline.visibility = View.GONE else resinline.visibility = View.VISIBLE
         if(artifactvflag == 0) artifactline.visibility = View.GONE else artifactline.visibility = View.VISIBLE
@@ -150,41 +159,52 @@ class HomeFragment  : Fragment(){
         if(weeklybattlepassvflag == 0) weeklybattlepassline.visibility = View.GONE else weeklybattlepassline.visibility = View.VISIBLE
         if(reputationvflag == 0) reputationline.visibility = View.GONE else reputationline.visibility = View.VISIBLE
 
+        setOnClickListenerForView(illgan) { Textflag_illgan = it }
+        setOnClickListenerForView(resin) { Textflag_resin = it }
+        setOnClickListenerForView(item) { Textflag_item = it }
+        setOnClickListenerForView(talent) { Textflag_talent = it }
+        setOnClickListenerForView(ascend) { Textflag_ascend = it }
+        setOnClickListenerForView(battle_pass) { Textflag_battle_pass = it }
+        setOnClickListenerForView(monster) { Textflag_monster = it }
+
+
         //일간 체크리스트.
-        illgan.setOnClickListener{
-            onTextClicked_illgan()
-            App.prefs.myEditText = dayGenerator()
-        }
+//        illgan.setOnClickListener{
+//            onTextClicked_illgan()
+//            App.prefs.myEditText = dayGenerator()
+//        }
+//
+//        resin.setOnClickListener(View.OnClickListener {
+//            onTextClicked_resin()
+//            App.prefs.myEditText = dayGenerator()
+//        })
+//
+//        item.setOnClickListener(View.OnClickListener {
+//            onTextClicked_item()
+//            App.prefs.myEditText = dayGenerator()
+//        })
+//
+//        talent.setOnClickListener(View.OnClickListener {
+//            onTextClicked_talent()
+//            App.prefs.myEditText = dayGenerator()
+//        })
+//
+//        ascend.setOnClickListener(View.OnClickListener {
+//            onTextClicked_ascend()
+//            App.prefs.myEditText = dayGenerator()
+//        })
+//
+//        battle_pass.setOnClickListener(View.OnClickListener {
+//            onTextClicked_battle_pass()
+//            App.prefs.myEditText = dayGenerator()
+//        })
+//
+//        monster.setOnClickListener(View.OnClickListener {
+//            onTextClicked_monster()
+//            App.prefs.myEditText = dayGenerator()
+//        })
 
-        resin.setOnClickListener(View.OnClickListener {
-            onTextClicked_resin()
-            App.prefs.myEditText = dayGenerator()
-        })
 
-        item.setOnClickListener(View.OnClickListener {
-            onTextClicked_item()
-            App.prefs.myEditText = dayGenerator()
-        })
-
-        talent.setOnClickListener(View.OnClickListener {
-            onTextClicked_talent()
-            App.prefs.myEditText = dayGenerator()
-        })
-
-        ascend.setOnClickListener(View.OnClickListener {
-            onTextClicked_ascend()
-            App.prefs.myEditText = dayGenerator()
-        })
-
-        battle_pass.setOnClickListener(View.OnClickListener {
-            onTextClicked_battle_pass()
-            App.prefs.myEditText = dayGenerator()
-        })
-
-        monster.setOnClickListener(View.OnClickListener {
-            onTextClicked_monster()
-            App.prefs.myEditText = dayGenerator()
-        })
 
         //주간퀘
         andrius.setOnClickListener(View.OnClickListener {
@@ -1282,6 +1302,7 @@ class HomeFragment  : Fragment(){
         super.onPause()
         kakaoAdview?.pause()
     }
+
     override fun onResume() {
         super.onResume()
         kakaoAdview?.resume()
@@ -1388,6 +1409,8 @@ class HomeFragment  : Fragment(){
 
         afterhourxml.text = pref.getString("resin_afterhour", "").toString()
         afterminutexml.text = pref.getString("resin_afterminute", "").toString()
+
+
     }
 
     private fun saveData(){ //값하고 지우는 행동까지 저장해보자.
@@ -1815,5 +1838,35 @@ class HomeFragment  : Fragment(){
         }
     }
 
+    fun setOnClickListenerForView(view: TextView, setFlag: (Int) -> Unit) {
+        view.setOnClickListener {
+            val flag = if (view.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG == Paint.STRIKE_THRU_TEXT_FLAG) 1 else 0
+            if (flag == 0) {
+                view.setPaintFlags(view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                view.setTextColor(Color.parseColor("#939597"))
+                setFlag(1)
+            } else {
+                view.setPaintFlags(0)
+                view.setTextColor(ContextCompat.getColor(requireContext(), R.color.text))
+                setFlag(0)
+            }
+        }
+    }
+
+    private fun loadSetting(){
+        val sharedPreferences = requireActivity().getSharedPreferences(
+            "Settings",
+            Activity.MODE_PRIVATE
+        )
+        val language = sharedPreferences.getString("My_Lang", "")
+        if (language != null) {
+            val locale = Locale(language)
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.locale = locale
+            resources.updateConfiguration(config, resources.displayMetrics)
+        }
+    }
+    
 }
 

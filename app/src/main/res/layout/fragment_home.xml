@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/background">
 
         <!--
             <androidx.appcompat.widget.Toolbar
@@ -88,7 +89,7 @@
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:includeFontPadding="false"
                 android:text="@string/day"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:textSize="35dp"
                 android:layout_marginTop="15dp"/>
         </LinearLayout>
@@ -100,6 +101,7 @@
             android:gravity="center"
             android:text="@string/day_change_time"
             android:textSize="15dp"
+            android:textColor="@color/smalltitle"
             />
         <View
             android:layout_width="match_parent"
@@ -119,21 +121,22 @@
             android:layout_height="wrap_content"
             android:text="@string/daily_illganChecklist"
             android:textSize="11dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp"
-            />
+            android:textColor="@color/smalltitle"
+            android:layout_marginStart="17dp"
+            android:layout_gravity="center" />
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="30dp"
             android:background="@null"
             android:layout_gravity="right"
-            android:src="@drawable/main_more_icon"
-            android:id="@+id/illganmenu"/>
+            android:src="@drawable/ic_baseline_more_horiz_24"
+            android:id="@+id/illganmenu"
+            app:tint="@color/text" />
     </LinearLayout>
 
         <LinearLayout
@@ -159,7 +162,7 @@
                 android:textSize="17dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:clickable="true"
                 android:id="@+id/illgan"
                 android:layout_marginLeft="8dp"
@@ -189,7 +192,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:fontFamily="@font/notosanscjkkrdemilight"
                 android:clickable="true"
                 android:id="@+id/resin"
@@ -221,7 +224,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:clickable="true"
                 android:id="@+id/item"
                 />
@@ -250,7 +253,7 @@
                 android:textSize="17dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:clickable="true"
                 android:id="@+id/talent"
                 android:layout_marginLeft="8dp"
@@ -280,7 +283,7 @@
                 android:textSize="17dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:clickable="true"
                 android:id="@+id/ascend"
                 android:layout_marginLeft="8dp"
@@ -310,7 +313,7 @@
                 android:textSize="17dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:clickable="true"
                 android:id="@+id/battle_pass"
                 android:layout_marginLeft="8dp"
@@ -340,7 +343,7 @@
                 android:textSize="17dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:clickable="true"
                 android:id="@+id/monster"
                 android:layout_marginLeft="8dp"
@@ -365,20 +368,20 @@
             android:layout_height="wrap_content"
             android:text="@string/weekly_checlist"
             android:textSize="11dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="17dp"
+            android:textColor="@color/smalltitle"
             />
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@null"
                 android:layout_gravity="right"
-                android:src="@drawable/main_more_icon"
+                android:src="@drawable/ic_baseline_more_horiz_24"
                 android:id="@+id/weeklymenu"/>
         </LinearLayout>
 

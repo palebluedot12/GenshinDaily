@@ -37,8 +37,8 @@
     <string name="resin_boon">" "</string>
     <string name="resin_regenerate_complete">regenerate complete</string>
     <string name="resin_calculate_time_button">Calculate</string>
-    <string name="alarm_switch">Alarm on</string>
-    <string name="materials_alarm">Alarm on</string>
+    <string name="alarm_switch">Alarm</string>
+    <string name="materials_alarm">Alarm</string>
     <string name="Forge_materials">Forge Materials</string>
     <string name="iron_chunk">Iron Chunk</string>
     <string name="white_iron_chunk">White Iron Chunk</string>
@@ -200,4 +200,5 @@
     <string name="donate_welkin_moon">Donate WelkinMoon to Developer</string>
     <string name="donate_battle_pass">Donate Battlepass to Developer</string>
     <string name="remove_ad_whether">Ads Removed : X</string>
+    <string name="saved_theme">saved_theme</string>
 </resources>

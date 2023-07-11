@@ -1,11 +1,15 @@
 package com.genshindaily.genshindaily
 
+import android.app.Activity
 import android.os.Build
+import android.view.ContextThemeWrapper
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 
 object ThemeManager {
     enum class ThemeMode { LIGHT, DARK, DEFAULT }
-
     fun applyTheme(themeMode: ThemeMode) {
         when (themeMode) {
             ThemeMode.LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
