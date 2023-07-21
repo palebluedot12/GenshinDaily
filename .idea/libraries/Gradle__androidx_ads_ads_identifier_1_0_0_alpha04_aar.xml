@@ -3,8 +3,9 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a5195ba792d5ad74b459a048ba58b1c5/transformed/jetified-ads-identifier-1.0.0-alpha04/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3c6fd834505a87497defd997cf389b7c/transformed/jetified-ads-identifier-1.0.0-alpha04/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3c6fd834505a87497defd997cf389b7c/transformed/jetified-ads-identifier-1.0.0-alpha04/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3c6fd834505a87497defd997cf389b7c/transformed/jetified-ads-identifier-1.0.0-alpha04/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/04ed8dd2ec95d29f0d221b2c0c4ec129/transformed/jetified-ads-identifier-1.0.0-alpha04/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/04ed8dd2ec95d29f0d221b2c0c4ec129/transformed/jetified-ads-identifier-1.0.0-alpha04/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/04ed8dd2ec95d29f0d221b2c0c4ec129/transformed/jetified-ads-identifier-1.0.0-alpha04/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -25,12 +25,14 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.illgan
 import java.lang.NumberFormatException
 import java.sql.Ref
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 import kotlin.reflect.KMutableProperty0
 
 class HomeFragment  : Fragment(){
 
-    //일간
+    //일간 (체크안하면 0)
     var Textflag_illgan = 0
     var Textflag_resin = 0
     var Textflag_item = 0
@@ -38,7 +40,7 @@ class HomeFragment  : Fragment(){
     var Textflag_ascend = 0
     var Textflag_battle_pass = 0
     var Textflag_monster = 0
-    //일간 셋 visi
+    //일간 셋 visibility flag. 1=보임
     var illganvflag = 1
     var resinvflag = 1
     var artifactvflag = 1
@@ -66,8 +68,10 @@ class HomeFragment  : Fragment(){
     var currentday = "" //이게 왜 null??????
     var currentdate = dateGenerator()
     var savedday : String = ""
+    var saveddate : String? = null
     var weeklysavedday : String = ""
     var weeklysaveddate : String = ""
+    var language : String? = null
 
     //
     var isPurchasedRemoveAds = false
@@ -86,7 +90,7 @@ class HomeFragment  : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         loadData() //체크리스트 저장값 로드. 여기서 saveddate 가져와야됨.
-        loadSetting() //location 불러오기
+        language = loadSetting() //location 불러오기
 
         Log.d("ispurchasedHome", isPurchasedRemoveAds.toString())
 
@@ -113,9 +117,9 @@ class HomeFragment  : Fragment(){
         }
 
         Log.d("loadillgan", illganvflag.toString()) //여기서 왜 1?
-
         savedday = App.prefs.myEditText.toString()
         Log.d("savedday : ", savedday)
+        saveddate?.let { Log.d("saveddate : ", it) }
         Log.d("currentday: ", currentday)
         Log.d("weekly: ", weeklysavedday)
         Log.d("weeklysaveddate", weeklysaveddate)
@@ -123,14 +127,51 @@ class HomeFragment  : Fragment(){
 
         currentday = dayGenerator()//일단 해결은 됐는데 이거 왜 위에있으면 null뜸?? 이해가 안되네..
 
+        val timeZone = when (language) {
+            "ko" -> TimeZone.getTimeZone("GMT+8") //아시아
+            "ja" -> TimeZone.getTimeZone("GMT+8") //아시아 (eng)
+            "en" -> TimeZone.getTimeZone("GMT-5") //US
+            "fr" -> TimeZone.getTimeZone("GMT+1") //유럽
+            "zh" -> TimeZone.getTimeZone("GMT+8") //TW, HK, MO
+            else -> TimeZone.getTimeZone("GMT+8")
+        }
+
+        val date = Calendar.getInstance(timeZone).time
+        var calendar = Calendar.getInstance(timeZone)
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").apply {
+            this.timeZone = timeZone
+        }
+        currentdate = dateFormat.format(date)
+        Log.d("date1", currentdate)
+        saveddate?.let { Log.d("date2", it) }
+
+        calendar = Calendar.getInstance(timeZone).apply {
+            set(Calendar.HOUR_OF_DAY, 4)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+
+            val dayOfWeek = get(Calendar.DAY_OF_WEEK)
+            if (dayOfWeek != Calendar.MONDAY) {
+                add(Calendar.DATE, (Calendar.MONDAY - dayOfWeek + 7) % 7)
+            }
+        }
+        val nextMondayDate = calendar.time
+
+        val savedDate = dateFormat.parse(saveddate)
+        val currentDate = dateFormat.parse(currentdate)
         // 사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고 && 시간이 새벽 4시 이후이면.
-        if(currentday != savedday)
-        {
-            dailyreset()
-            Log.d("dailyreset","hoxy?")
+        if (currentDate.after(savedDate)) {
+            Log.d("date3", currentHour.toString())
+            if (currentHour >= 4) {
+                dailyreset()
+            }
         }
 
         // (사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고) && 시간이 정해진 시간(nextmondaydate) 이후라면
+        // 주간퀘 초기화 = 월요일 오전 4시
         if(currentdate != weeklysaveddate)
         {
             if(currentday == "월" || currentday == "MONDAY")
@@ -251,6 +292,7 @@ class HomeFragment  : Fragment(){
 
 
         //일간 세팅 다이얼로그
+        //TODO : 체크리스트 추가 제거 부분 함수화
         illganmenu.setOnClickListener {
 
             val builder = AlertDialog.Builder(requireActivity())
@@ -282,7 +324,7 @@ class HomeFragment  : Fragment(){
             //줄그인거 저장
             if(illganvflag == 0) {
                 illgansettingtext.setPaintFlags(illgansettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-                illgansettingtext.setTextColor(Color.parseColor("#939597"))
+                illgansettingtext.setTextColor(Color.parseColor("#939597")) //회색
             }
             if(resinvflag == 0) {
                 resinsettingtext.setPaintFlags(resinsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -639,6 +681,8 @@ class HomeFragment  : Fragment(){
         sara_talent.visibility = View.GONE
         aloy_talent.visibility = View.GONE
 
+
+        // TODO : 요일별로 visibility 바뀌는 부분도 코드 단축 가능할까?
         if(day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") //자유, 번영, 부세
         {
             amber_talent.visibility = View.VISIBLE
@@ -938,6 +982,7 @@ class HomeFragment  : Fragment(){
         }
 
         //무기누르면 이름팝업
+        // TODO : 무기누르면 이름팝업 부분 더 직관적으로
         aquila.setOnClickListener{
             Toast.makeText(activity, activity?.getString(R.string.aquila_favonia).toString(), Toast.LENGTH_SHORT).show()
         }
@@ -1410,6 +1455,8 @@ class HomeFragment  : Fragment(){
         afterhourxml.text = pref.getString("resin_afterhour", "").toString()
         afterminutexml.text = pref.getString("resin_afterminute", "").toString()
 
+        saveddate = pref.getString("saveddate", "").toString()
+
 
     }
 
@@ -1463,6 +1510,9 @@ class HomeFragment  : Fragment(){
         edit.putString("resin_afterhour",afterhourxml.text.toString())
         edit.putString("resin_afterminute",afterminutexml.text.toString())
         edit.putBoolean("resin_switch_isChecked", resin_switch.isChecked)
+
+        edit.putString("saveddate", saveddate)
+
         edit.apply()
     }
 
@@ -1844,7 +1894,26 @@ class HomeFragment  : Fragment(){
             if (flag == 0) {
                 view.setPaintFlags(view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 view.setTextColor(Color.parseColor("#939597"))
+
+                val timeZone = when (language) {
+                    "ko" -> TimeZone.getTimeZone("GMT+8") //아시아
+                    "ja" -> TimeZone.getTimeZone("GMT+8") //아시아 (eng)
+                    "en" -> TimeZone.getTimeZone("GMT-5") //US
+                    "fr" -> TimeZone.getTimeZone("GMT+1") //유럽
+                    "zh" -> TimeZone.getTimeZone("GMT+8") //TW, HK, MO
+                    else -> TimeZone.getTimeZone("GMT+8")
+                }
+
+                val date = Calendar.getInstance(timeZone).time
+
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").apply {
+                    this.timeZone = timeZone
+                }
+                saveddate = dateFormat.format(date)
+
+                Log.d("saveddate is : ", saveddate.toString())
                 setFlag(1)
+
             } else {
                 view.setPaintFlags(0)
                 view.setTextColor(ContextCompat.getColor(requireContext(), R.color.text))
@@ -1853,12 +1922,15 @@ class HomeFragment  : Fragment(){
         }
     }
 
-    private fun loadSetting(){
+    private fun loadSetting(): String? {
         val sharedPreferences = requireActivity().getSharedPreferences(
             "Settings",
             Activity.MODE_PRIVATE
         )
         val language = sharedPreferences.getString("My_Lang", "")
+        if (language != null) {
+            Log.d("language", language)
+        }
         if (language != null) {
             val locale = Locale(language)
             Locale.setDefault(locale)
@@ -1866,6 +1938,8 @@ class HomeFragment  : Fragment(){
             config.locale = locale
             resources.updateConfiguration(config, resources.displayMetrics)
         }
+
+        return language
     }
     
 }
