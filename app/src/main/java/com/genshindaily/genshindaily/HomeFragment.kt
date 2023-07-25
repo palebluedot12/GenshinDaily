@@ -69,6 +69,7 @@ class HomeFragment  : Fragment(){
     var currentdate = dateGenerator()
     var savedday : String = ""
     var saveddate : String? = null
+    var savedtime : String? = null
     var weeklysavedday : String = ""
     var weeklysaveddate : String = ""
     var language : String? = null
@@ -119,7 +120,6 @@ class HomeFragment  : Fragment(){
         Log.d("loadillgan", illganvflag.toString()) //여기서 왜 1?
         savedday = App.prefs.myEditText.toString()
         Log.d("savedday : ", savedday)
-        saveddate?.let { Log.d("saveddate : ", it) }
         Log.d("currentday: ", currentday)
         Log.d("weekly: ", weeklysavedday)
         Log.d("weeklysaveddate", weeklysaveddate)
@@ -140,44 +140,57 @@ class HomeFragment  : Fragment(){
         var calendar = Calendar.getInstance(timeZone)
         val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
 
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").apply {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd").apply {
             this.timeZone = timeZone
         }
         currentdate = dateFormat.format(date)
-        Log.d("date1", currentdate)
-        saveddate?.let { Log.d("date2", it) }
+        Log.d("date1 : currentdate", currentdate)
+        saveddate?.let { Log.d("date2 : saveddate", it) }
 
         calendar = Calendar.getInstance(timeZone).apply {
+            this.timeZone = timeZone
             set(Calendar.HOUR_OF_DAY, 4)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
             set(Calendar.MILLISECOND, 0)
 
             val dayOfWeek = get(Calendar.DAY_OF_WEEK)
-            if (dayOfWeek != Calendar.MONDAY) {
+            Log.d("date : dayofweek", dayOfWeek.toString())
+            if (dayOfWeek == Calendar.MONDAY) {
+                add(Calendar.DATE, 7)
+            } else {
                 add(Calendar.DATE, (Calendar.MONDAY - dayOfWeek + 7) % 7)
             }
+
         }
         val nextMondayDate = calendar.time
+        val nextMondayDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").apply {
+            this.timeZone = timeZone
+        }
+        Log.d("date3 : nextMonday", nextMondayDateFormat.format(nextMondayDate)) //이게 23일 8시로 나오고 있음. 왜?
+        Log.d("date4 : currentHour", currentHour.toString())
 
-        val savedDate = dateFormat.parse(saveddate)
-        val currentDate = dateFormat.parse(currentdate)
-        // 사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고 && 시간이 새벽 4시 이후이면.
-        if (currentDate.after(savedDate)) {
-            Log.d("date3", currentHour.toString())
-            if (currentHour >= 4) {
-                dailyreset()
+
+        //일간퀘 초기화
+        //사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고 && 시간이 새벽 4시 이후이면.
+        // 이러면 saveddate 4시에 currentdate 4시 5분이어도 초기화됨.
+        if(saveddate != null){
+            val savedDate = dateFormat.parse(saveddate)
+            val currentDate = dateFormat.parse(currentdate)
+            if (currentDate.after(savedDate)) {
+                Log.d("date3", currentHour.toString())
+                if (currentHour >= 4) {
+                    dailyreset()
+                }
             }
         }
 
-        // (사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고) && 시간이 정해진 시간(nextmondaydate) 이후라면
-        // 주간퀘 초기화 = 월요일 오전 4시
-        if(currentdate != weeklysaveddate)
+        // 주간퀘 초기화
+        // currentDate가 다음주 월요일 새벽 4시(nextmondaydate) 이후라면
+        val currentDate = dateFormat.parse(currentdate)
+        if(currentDate.after(dateFormat.parse(nextMondayDateFormat.format(nextMondayDate))))
         {
-            if(currentday == "월" || currentday == "MONDAY")
-            {
-                weeklyreset()
-            }
+            weeklyreset()
         }
 
         day.text = dayGenerator() // dayGenerator -> dayString 반환
@@ -1894,7 +1907,6 @@ class HomeFragment  : Fragment(){
             if (flag == 0) {
                 view.setPaintFlags(view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 view.setTextColor(Color.parseColor("#939597"))
-
                 val timeZone = when (language) {
                     "ko" -> TimeZone.getTimeZone("GMT+8") //아시아
                     "ja" -> TimeZone.getTimeZone("GMT+8") //아시아 (eng)
@@ -1906,10 +1918,16 @@ class HomeFragment  : Fragment(){
 
                 val date = Calendar.getInstance(timeZone).time
 
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").apply {
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd").apply {
                     this.timeZone = timeZone
                 }
                 saveddate = dateFormat.format(date)
+
+                val timeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").apply {
+                    this.timeZone = timeZone
+                }
+
+                savedtime =
 
                 Log.d("saveddate is : ", saveddate.toString())
                 setFlag(1)
