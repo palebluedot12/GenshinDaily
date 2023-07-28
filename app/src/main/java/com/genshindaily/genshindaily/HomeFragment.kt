@@ -173,7 +173,6 @@ class HomeFragment  : Fragment(){
 
         //일간퀘 초기화
         //사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고 && 시간이 새벽 4시 이후이면.
-        // 이러면 saveddate 4시에 currentdate 4시 5분이어도 초기화됨.
         if(saveddate != null){
             val savedDate = dateFormat.parse(saveddate)
             val currentDate = dateFormat.parse(currentdate)
@@ -221,46 +220,8 @@ class HomeFragment  : Fragment(){
         setOnClickListenerForView(battle_pass) { Textflag_battle_pass = it }
         setOnClickListenerForView(monster) { Textflag_monster = it }
 
-
-        //일간 체크리스트.
-//        illgan.setOnClickListener{
-//            onTextClicked_illgan()
-//            App.prefs.myEditText = dayGenerator()
-//        }
-//
-//        resin.setOnClickListener(View.OnClickListener {
-//            onTextClicked_resin()
-//            App.prefs.myEditText = dayGenerator()
-//        })
-//
-//        item.setOnClickListener(View.OnClickListener {
-//            onTextClicked_item()
-//            App.prefs.myEditText = dayGenerator()
-//        })
-//
-//        talent.setOnClickListener(View.OnClickListener {
-//            onTextClicked_talent()
-//            App.prefs.myEditText = dayGenerator()
-//        })
-//
-//        ascend.setOnClickListener(View.OnClickListener {
-//            onTextClicked_ascend()
-//            App.prefs.myEditText = dayGenerator()
-//        })
-//
-//        battle_pass.setOnClickListener(View.OnClickListener {
-//            onTextClicked_battle_pass()
-//            App.prefs.myEditText = dayGenerator()
-//        })
-//
-//        monster.setOnClickListener(View.OnClickListener {
-//            onTextClicked_monster()
-//            App.prefs.myEditText = dayGenerator()
-//        })
-
-
-
         //주간퀘
+        // TODO : 주간퀘 - 여기도 함수화 필요
         andrius.setOnClickListener(View.OnClickListener {
             onTextClicked_andrius()
             weeklysavedday = dayGenerator()
@@ -310,7 +271,7 @@ class HomeFragment  : Fragment(){
 
             val builder = AlertDialog.Builder(requireActivity())
             val dialogView = layoutInflater.inflate(R.layout.dialog_daily_checklist, null)
-            
+
             //다이얼로그와 홈프래그먼트 연결
             val illgandelete = dialogView.findViewById<ImageView>(R.id.illgandelete)
             val illganplus = dialogView.findViewById<ImageView>(R.id.illganplus)
@@ -615,10 +576,6 @@ class HomeFragment  : Fragment(){
                 .show()
         }
 
-
-        //요일 바뀌면 체크리스트 줄그인거 다 지우기. 여기 수정해야됨.
-        //이거는 time이 00일때를 "지나야" 초기화가 되는 방식이고...
-        //if currentDate != savedDate 이런 식으로?
         resintimer_button.setOnClickListener { view ->
             var resinvalue : Int
             try {
@@ -652,350 +609,112 @@ class HomeFragment  : Fragment(){
             }
         }
 
-        //특성 visibility
-        jean_talent.visibility = View.GONE
-        amber_talent.visibility = View.GONE
-        lisa_talent.visibility = View.GONE
-        kaeya_talent.visibility = View.GONE
-        barbara_talent.visibility = View.GONE
-        diluc_talent.visibility = View.GONE
-        razor_talent.visibility = View.GONE
-        venti_talent.visibility = View.GONE
-        klee_talent.visibility = View.GONE
-        bennett_talent.visibility = View.GONE
-        noelle_talent.visibility = View.GONE
-        fischl_talent.visibility = View.GONE
-        sucrose_talent.visibility = View.GONE
-        mona_talent.visibility = View.GONE
-        xiao_talent.visibility = View.GONE
-        beidou_talent.visibility = View.GONE
-        ningguang_talent.visibility = View.GONE
-        xiangling_talent.visibility = View.GONE
-        xingqiu_talent.visibility = View.GONE
-        chongyun_talent.visibility = View.GONE
-        qiqi_talent.visibility = View.GONE
-        keqing_talent.visibility = View.GONE
-        hangza_talent.visibility = View.GONE
-        diona_talent.visibility = View.GONE
-        tartaglia_talent.visibility = View.GONE
-        zhongli_talent.visibility = View.GONE
-        xinyan_talent.visibility = View.GONE
-        albedo_talent.visibility = View.GONE
-        ganyu_talent.visibility = View.GONE
-        hutao_talent.visibility = View.GONE
-        rosaria_talent.visibility = View.GONE
-        eula_talent.visibility = View.GONE
-        yanfei_talent.visibility = View.GONE
-        kazuha_talent.visibility = View.GONE
-        ayaka_talent.visibility = View.GONE
-        yoimiya_talent.visibility = View.GONE
-        sayu_talent.visibility = View.GONE
-        raiden_talent.visibility = View.GONE
-        sara_talent.visibility = View.GONE
-        aloy_talent.visibility = View.GONE
+        // 특성 visi
+        val talents = arrayOf(jean_talent, amber_talent, lisa_talent, kaeya_talent, barbara_talent,
+            diluc_talent, razor_talent, venti_talent, klee_talent, bennett_talent, noelle_talent,
+            fischl_talent, sucrose_talent, mona_talent, xiao_talent, beidou_talent, ningguang_talent,
+            xiangling_talent, xingqiu_talent, chongyun_talent, qiqi_talent, keqing_talent,
+            hangza_talent, diona_talent, tartaglia_talent, zhongli_talent, xinyan_talent,
+            albedo_talent, ganyu_talent, hutao_talent, rosaria_talent, eula_talent,
+            yanfei_talent, kazuha_talent, ayaka_talent, yoimiya_talent, sayu_talent,
+            raiden_talent,sara_talent,aloy_talent)
 
-
-        // TODO : 요일별로 visibility 바뀌는 부분도 코드 단축 가능할까?
-        if(day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") //자유, 번영, 부세
-        {
-            amber_talent.visibility = View.VISIBLE
-            barbara_talent.visibility = View.VISIBLE
-            klee_talent.visibility = View.VISIBLE
-            sucrose_talent.visibility = View.VISIBLE
-            xiao_talent.visibility = View.VISIBLE
-            ningguang_talent.visibility = View.VISIBLE
-            qiqi_talent.visibility = View.VISIBLE
-            tartaglia_talent.visibility = View.VISIBLE
-            keqing_talent.visibility = View.VISIBLE
-            diona_talent.visibility = View.VISIBLE
-            yoimiya_talent.visibility = View.VISIBLE
-            aloy_talent.visibility = View.VISIBLE
-
+        for (talent in talents) {
+            talent.visibility = View.GONE
         }
 
-        if(day.text =="화" || day.text =="TUESDAY" || day.text == "금" || day.text =="FRIDAY" || day.text == "일" || day.text =="SUNDAY") //투쟁, 근면, 풍아
-        {
-            jean_talent.visibility = View.VISIBLE
-            diluc_talent.visibility = View.VISIBLE
-            razor_talent.visibility = View.VISIBLE
-            bennett_talent.visibility = View.VISIBLE
-            noelle_talent.visibility = View.VISIBLE
-            mona_talent.visibility = View.VISIBLE
-            xiangling_talent.visibility = View.VISIBLE
-            chongyun_talent.visibility = View.VISIBLE
-            ganyu_talent.visibility = View.VISIBLE
-            hutao_talent.visibility = View.VISIBLE
-            eula_talent.visibility = View.VISIBLE
-            kazuha_talent.visibility = View.VISIBLE
-            ayaka_talent.visibility = View.VISIBLE
-            sara_talent.visibility = View.VISIBLE
+        if (day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") {
+            val visibleTalents = arrayOf(amber_talent, barbara_talent, klee_talent, sucrose_talent,
+                xiao_talent, ningguang_talent, qiqi_talent, tartaglia_talent, keqing_talent, diona_talent, yoimiya_talent, aloy_talent)
+            for (talent in visibleTalents) {
+                talent.visibility = View.VISIBLE
+            }
         }
 
-        if(day.text =="수" || day.text =="WEDNESDAY" || day.text == "토" || day.text =="SATURDAY" || day.text == "일" || day.text =="SUNDAY") //시문, 황금, 천광
-        {
-            lisa_talent.visibility = View.VISIBLE
-            kaeya_talent.visibility = View.VISIBLE
-            venti_talent.visibility = View.VISIBLE
-            fischl_talent.visibility = View.VISIBLE
-            beidou_talent.visibility = View.VISIBLE
-            xingqiu_talent.visibility = View.VISIBLE
-            zhongli_talent.visibility = View.VISIBLE
-            xinyan_talent.visibility = View.VISIBLE
-            albedo_talent.visibility = View.VISIBLE
-            rosaria_talent.visibility = View.VISIBLE
-            yanfei_talent.visibility = View.VISIBLE
-            sayu_talent.visibility = View.VISIBLE
-            raiden_talent.visibility = View.VISIBLE
+        if (day.text == "화" || day.text == "TUESDAY" || day.text == "금" || day.text == "FRIDAY" || day.text == "일" || day.text == "SUNDAY") {
+            val visibleTalents = arrayOf(jean_talent, diluc_talent, razor_talent, bennett_talent,
+                noelle_talent, mona_talent, xiangling_talent, chongyun_talent, ganyu_talent, hutao_talent, eula_talent, kazuha_talent, ayaka_talent,sara_talent)
+            for (talent in visibleTalents) {
+                talent.visibility = View.VISIBLE
+            }
         }
 
-        //요일별 무기
-        aquila.visibility = View.GONE
-        skyward_blade.visibility = View.GONE
-        summit_shaper.visibility = View.GONE
-        primordial_jade_cutter.visibility = View.GONE
-        the_flute.visibility = View.GONE
-        iron_sting.visibility = View.GONE
-        prototype_rancour.visibility = View.GONE
-        the_black_sword.visibility = View.GONE
-        royal_longsword.visibility = View.GONE
-        lions_roar.visibility = View.GONE
-        sacrificial_sword.visibility = View.GONE
-        blackcliff_longsword.visibility = View.GONE
-        sword_of_descension.visibility = View.GONE
-        festering_desire.visibility = View.GONE
-        fillet_blade.visibility = View.GONE
-        harbinger_of_dawn.visibility = View.GONE
-        cool_steel.visibility = View.GONE
-        skyrider_sword.visibility = View.GONE
-        travelers_handy_sword.visibility = View.GONE
-        dark_iron_sword.visibility = View.GONE
-        favonius_sword.visibility = View.GONE
-        the_alley_flash.visibility = View.GONE
-        freedom_sworn.visibility = View.GONE
-        mistsplitter_reforged.visibility = View.GONE
-        amenoma_kageuta_blade.visibility = View.GONE
-        //여기까지 한손검
-
-        wolf_gravestone.visibility = View.GONE
-        skyward_pride1.visibility = View.GONE
-        the_unforged.visibility = View.GONE
-        favonius_greatsword .visibility = View.GONE
-        serpent_spine.visibility = View.GONE
-        prototype_archaic.visibility = View.GONE
-        whiteblind.visibility = View.GONE
-        royal_greatsword.visibility = View.GONE
-        the_bell.visibility = View.GONE
-        blackcliff_slasher.visibility = View.GONE
-        rainslasher.visibility = View.GONE
-        sacrificial_greatsword.visibility = View.GONE
-        snow_tombed_starsilver.visibility = View.GONE
-        skyrider_greatsword.visibility = View.GONE
-        debate_club.visibility = View.GONE
-        white_iron_greatsword.visibility = View.GONE
-        bloodtainted_greatsword.visibility = View.GONE
-        ferrous_shadow.visibility = View.GONE
-        lithic_blade.visibility = View.GONE
-        song_of_broken_pines.visibility = View.GONE
-        katsuragi_slasher.visibility = View.GONE
-        luxurious_sea_lord.visibility = View.GONE
-        //양손검
-
-        skyward_atlas.visibility = View.GONE
-        lost_prayer.visibility = View.GONE
-        memory_of_dust.visibility = View.GONE
-        prototype_amber.visibility = View.GONE
-        mappa_mare.visibility = View.GONE
-        solar_pearl.visibility = View.GONE
-        royal_grimoire.visibility = View.GONE
-        eye_of_perception.visibility = View.GONE
-        the_widsith.visibility = View.GONE
-        sacrificial_fragments.visibility = View.GONE
-        favonius_codex.visibility = View.GONE
-        blackcliff_agate.visibility = View.GONE
-        frostbearer.visibility = View.GONE
-        twin_nephrite.visibility = View.GONE
-        emerald_orb.visibility = View.GONE
-        otherworldly_story.visibility = View.GONE
-        thrilling_tales_of_dragon_slayers.visibility = View.GONE
-        magic_guide.visibility = View.GONE
-        wine_and_song1.visibility = View.GONE
-        everlasting_moonglow.visibility = View.GONE
-        dodoco_tales.visibility = View.GONE
-        white_dragon_ring.visibility = View.GONE
-        //법구
-
-        primordial_jade_spear.visibility = View.GONE
-        skyward_spine.visibility = View.GONE
-        vortex_vanquisher.visibility = View.GONE
-        prototype_starglitter.visibility = View.GONE
-        crescent_pike.visibility = View.GONE
-        deathmatch.visibility = View.GONE
-        blackcliff_pole.visibility = View.GONE
-        favonius_lance.visibility = View.GONE
-        dragons_bane.visibility = View.GONE
-        royal_spear.visibility = View.GONE
-        dragonspine_spear.visibility = View.GONE
-        blacktassel.visibility = View.GONE
-        halberd.visibility = View.GONE
-        white_tassel.visibility = View.GONE
-        lithic_spear.visibility = View.GONE
-        engulfing_lightning.visibility = View.GONE
-        kitain_cross_spear.visibility = View.GONE
-        the_catch.visibility = View.GONE
-        //장병기
-
-        skyward_harp.visibility = View.GONE
-        amos_bow.visibility = View.GONE
-        favonius_warbow.visibility = View.GONE
-        prototype_crescent.visibility = View.GONE
-        compound_bow.visibility = View.GONE
-        the_viridescent_hunt.visibility = View.GONE
-        royal_bow.visibility = View.GONE
-        rust.visibility = View.GONE
-        sacrificial_bow.visibility = View.GONE
-        the_stringless.visibility = View.GONE
-        blackcliff_warbow.visibility = View.GONE
-        slingshot.visibility = View.GONE
-        messenger.visibility = View.GONE
-        recurve_bow.visibility = View.GONE
-        sharpshooter_oath.visibility = View.GONE
-        raven_bow.visibility = View.GONE
-        staff_of_homa.visibility = View.GONE
-        elegy_for_the_end.visibility = View.GONE
-        alley_hunter.visibility = View.GONE
-        windblume_ode.visibility = View.GONE
-        thundering_pulse.visibility = View.GONE
-        demon_slayer_bow.visibility = View.GONE
-        predator.visibility = View.GONE
-        yuya_waltz.visibility = View.GONE
-        //활
-
-        if(day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") //고탑 왕, 고운 한림, 먼바다
-        {
-            aquila.visibility = View.VISIBLE
-            summit_shaper.visibility = View.VISIBLE
-            favonius_sword.visibility = View.VISIBLE
-            royal_longsword.visibility = View.VISIBLE
-            lions_roar.visibility = View.VISIBLE
-            blackcliff_longsword.visibility = View.VISIBLE
-            cool_steel.visibility = View.VISIBLE
-            dark_iron_sword.visibility = View.VISIBLE
-            whiteblind.visibility = View.VISIBLE
-            the_bell.visibility = View.VISIBLE
-            snow_tombed_starsilver.visibility = View.VISIBLE
-            ferrous_shadow.visibility = View.VISIBLE
-            solar_pearl.visibility = View.VISIBLE
-            royal_grimoire.visibility = View.VISIBLE
-            favonius_codex.visibility = View.VISIBLE
-            blackcliff_agate.visibility = View.VISIBLE
-            emerald_orb.visibility = View.VISIBLE
-            magic_guide.visibility = View.VISIBLE
-            primordial_jade_spear.visibility = View.VISIBLE
-            crescent_pike.visibility = View.VISIBLE
-            white_tassel.visibility = View.VISIBLE
-            the_viridescent_hunt.visibility = View.VISIBLE
-            rust.visibility = View.VISIBLE
-            the_stringless.visibility = View.VISIBLE
-            blackcliff_warbow.visibility = View.VISIBLE
-            slingshot.visibility = View.VISIBLE
-            raven_bow.visibility = View.VISIBLE
-            lithic_blade.visibility = View.VISIBLE
-            the_alley_flash.visibility = View.VISIBLE
-            song_of_broken_pines.visibility = View.VISIBLE
-            mistsplitter_reforged.visibility = View.VISIBLE
-            amenoma_kageuta_blade.visibility = View.VISIBLE
-            everlasting_moonglow.visibility = View.VISIBLE
-            white_dragon_ring.visibility = View.VISIBLE
-            yuya_waltz.visibility = View.VISIBLE
+        if (day.text == "수" || day.text == "WEDNESDAY" || day.text == "토" || day.text == "SATURDAY" || day.text == "일" || day.text == "SUNDAY") {
+            val visibleTalents = arrayOf(lisa_talent, kaeya_talent, venti_talent, fischl_talent,
+                beidou_talent, xingqiu_talent, zhongli_talent, xinyan_talent, albedo_talent,
+            rosaria_talent, yanfei_talent, sayu_talent, raiden_talent)
+            for (talent in visibleTalents) {
+                talent.visibility = View.VISIBLE
+            }
         }
 
-        if(day.text =="화" || day.text =="TUESDAY" || day.text == "금" || day.text =="FRIDAY" || day.text == "일" || day.text =="SUNDAY") //칼바람 울프, 안개구름, 나루카미
-        {
-            skyward_blade.visibility = View.VISIBLE
-            primordial_jade_cutter.visibility = View.VISIBLE
-            the_flute.visibility = View.VISIBLE
-            prototype_rancour.visibility = View.VISIBLE
-            the_black_sword.visibility = View.VISIBLE
-            sword_of_descension.visibility = View.VISIBLE
-            fillet_blade.visibility = View.VISIBLE
-            harbinger_of_dawn.visibility = View.VISIBLE
-            skyward_pride1.visibility = View.VISIBLE
-            the_unforged.visibility = View.VISIBLE
-            blackcliff_slasher.visibility = View.VISIBLE
-            rainslasher.visibility = View.VISIBLE
-            sacrificial_greatsword.visibility = View.VISIBLE
-            debate_club.visibility = View.VISIBLE
-            bloodtainted_greatsword.visibility = View.VISIBLE
-            skyward_atlas.visibility = View.VISIBLE
-            prototype_amber.visibility = View.VISIBLE
-            eye_of_perception.visibility = View.VISIBLE
-            the_widsith.visibility = View.VISIBLE
-            twin_nephrite.visibility = View.VISIBLE
-            thrilling_tales_of_dragon_slayers.visibility = View.VISIBLE
-            deathmatch.visibility = View.VISIBLE
-            blackcliff_pole.visibility = View.VISIBLE
-            dragons_bane.visibility = View.VISIBLE
-            royal_spear.visibility = View.VISIBLE
-            dragonspine_spear.visibility = View.VISIBLE
-            halberd.visibility = View.VISIBLE
-            skyward_harp.visibility = View.VISIBLE
-            prototype_crescent.visibility = View.VISIBLE
-            sacrificial_bow.visibility = View.VISIBLE
-            sharpshooter_oath.visibility = View.VISIBLE
-            elegy_for_the_end.visibility = View.VISIBLE
-            wine_and_song1.visibility = View.VISIBLE
-            katsuragi_slasher.visibility = View.VISIBLE
-            dodoco_tales.visibility = View.VISIBLE
-            thundering_pulse.visibility = View.VISIBLE
-            demon_slayer_bow.visibility = View.VISIBLE
-            predator.visibility = View.VISIBLE
+        //무기 visi
+        val weapons = arrayOf(aquila, skyward_blade, summit_shaper, primordial_jade_cutter, the_flute, iron_sting, prototype_rancour,
+            the_black_sword, royal_longsword, lions_roar, sacrificial_sword, blackcliff_longsword, sword_of_descension, festering_desire,
+            fillet_blade, harbinger_of_dawn, cool_steel, skyrider_sword, travelers_handy_sword, dark_iron_sword, favonius_sword, the_alley_flash,
+            freedom_sworn, mistsplitter_reforged, amenoma_kageuta_blade, wolf_gravestone, skyward_pride1,
+            the_unforged,favonius_greatsword, serpent_spine, prototype_archaic, whiteblind,royal_greatsword,
+            the_bell, blackcliff_slasher, rainslasher, sacrificial_greatsword, snow_tombed_starsilver,
+            skyrider_greatsword, debate_club, white_iron_greatsword, bloodtainted_greatsword, ferrous_shadow,
+            lithic_blade, song_of_broken_pines, katsuragi_slasher, luxurious_sea_lord, skyward_atlas, lost_prayer,memory_of_dust,
+            prototype_amber,mappa_mare,solar_pearl, royal_grimoire, eye_of_perception, the_widsith, sacrificial_fragments,
+            favonius_codex, blackcliff_agate, frostbearer, twin_nephrite, emerald_orb, otherworldly_story,
+            thrilling_tales_of_dragon_slayers, magic_guide,wine_and_song1, everlasting_moonglow, dodoco_tales, white_dragon_ring,
+            primordial_jade_spear, skyward_spine,vortex_vanquisher, prototype_starglitter, crescent_pike, deathmatch,blackcliff_pole,
+            favonius_lance,dragons_bane,royal_spear,dragonspine_spear, blacktassel, halberd, white_tassel, lithic_spear,
+            engulfing_lightning, kitain_cross_spear, the_catch, skyward_harp, amos_bow, favonius_warbow, prototype_crescent,
+            compound_bow, the_viridescent_hunt, royal_bow, rust, sacrificial_bow, the_stringless, blackcliff_warbow,
+            slingshot, messenger, recurve_bow, sharpshooter_oath, raven_bow, staff_of_homa, elegy_for_the_end, alley_hunter,
+            windblume_ode, thundering_pulse, demon_slayer_bow, predator, yuya_waltz)
+
+
+            for (w in weapons) {
+                w.visibility = View.GONE
+            }
+
+        //고탑 왕, 고운 한림, 먼바다
+        if(day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") {
+            val weapons1 = arrayOf(aquila, summit_shaper, favonius_sword, royal_longsword, lions_roar,
+                blackcliff_longsword, cool_steel, dark_iron_sword, whiteblind, the_bell, snow_tombed_starsilver,
+                ferrous_shadow, solar_pearl, royal_grimoire, favonius_codex, blackcliff_agate, emerald_orb, magic_guide,
+                primordial_jade_spear, crescent_pike, white_tassel, the_viridescent_hunt, rust, the_stringless,
+                blackcliff_warbow, slingshot, raven_bow, lithic_blade, the_alley_flash, song_of_broken_pines,
+                mistsplitter_reforged, amenoma_kageuta_blade, everlasting_moonglow, white_dragon_ring,yuya_waltz)
+            for (weapon in weapons1) {
+                weapon.visibility = View.VISIBLE
+            }
         }
 
-        if(day.text =="수" || day.text =="WEDNESDAY" || day.text == "토" || day.text =="SATURDAY" || day.text == "일" || day.text =="SUNDAY") //라이언 투사의 족쇄, 흑운철, 금석극화
-        {
-            iron_sting.visibility = View.VISIBLE
-            sacrificial_sword.visibility = View.VISIBLE
-            festering_desire.visibility = View.VISIBLE
-            skyrider_sword.visibility = View.VISIBLE
-            travelers_handy_sword.visibility = View.VISIBLE
-            wolf_gravestone.visibility = View.VISIBLE
-            favonius_greatsword.visibility = View.VISIBLE
-            serpent_spine.visibility = View.VISIBLE
-            prototype_archaic.visibility = View.VISIBLE
-            royal_greatsword.visibility = View.VISIBLE
-            skyrider_greatsword.visibility = View.VISIBLE
-            white_iron_greatsword.visibility = View.VISIBLE
-            lost_prayer.visibility = View.VISIBLE
-            memory_of_dust.visibility = View.VISIBLE
-            mappa_mare.visibility = View.VISIBLE
-            sacrificial_fragments.visibility = View.VISIBLE
-            frostbearer.visibility = View.VISIBLE
-            otherworldly_story.visibility = View.VISIBLE
-            skyward_spine.visibility = View.VISIBLE
-            vortex_vanquisher.visibility = View.VISIBLE
-            prototype_starglitter.visibility = View.VISIBLE
-            favonius_lance.visibility = View.VISIBLE
-            blacktassel.visibility = View.VISIBLE
-            amos_bow.visibility = View.VISIBLE
-            favonius_warbow.visibility = View.VISIBLE
-            compound_bow.visibility = View.VISIBLE
-            royal_bow.visibility = View.VISIBLE
-            messenger.visibility = View.VISIBLE
-            recurve_bow.visibility = View.VISIBLE
-            staff_of_homa.visibility = View.VISIBLE
-            lithic_spear.visibility = View.VISIBLE
-            alley_hunter.visibility = View.VISIBLE
-            windblume_ode.visibility = View.VISIBLE
-            freedom_sworn.visibility = View.VISIBLE
-            engulfing_lightning.visibility = View.VISIBLE
-            luxurious_sea_lord.visibility = View.VISIBLE
-            engulfing_lightning.visibility = View.VISIBLE
-            kitain_cross_spear.visibility = View.VISIBLE
-            the_catch.visibility = View.VISIBLE
+        //칼바람 울프, 안개구름, 나루카미
+        if(day.text =="화" || day.text =="TUESDAY" || day.text == "금" || day.text =="FRIDAY" || day.text == "일" || day.text =="SUNDAY") {
+            val weapons2 = arrayOf(skyward_blade, primordial_jade_cutter, the_flute, prototype_rancour,
+                the_black_sword, sword_of_descension, fillet_blade, harbinger_of_dawn, skyward_pride1, the_unforged,
+                blackcliff_slasher, rainslasher, sacrificial_greatsword, debate_club, bloodtainted_greatsword,
+                skyward_atlas, prototype_amber, eye_of_perception, the_widsith, twin_nephrite, thrilling_tales_of_dragon_slayers,
+                deathmatch, blackcliff_pole, dragons_bane, royal_spear, dragonspine_spear, halberd, skyward_harp, prototype_crescent,
+                sacrificial_bow, sharpshooter_oath,elegy_for_the_end,wine_and_song1,katsuragi_slasher,dodoco_tales,
+                thundering_pulse,demon_slayer_bow,predator)
+            for (weapon in weapons2) {
+                weapon.visibility = View.VISIBLE
+            }
         }
+
+        //라이언 투사의 족쇄, 흑운철, 금석극화
+        if(day.text =="수" || day.text =="WEDNESDAY" || day.text == "토" || day.text =="SATURDAY" || day.text == "일" || day.text =="SUNDAY") {
+            val weapons3 = arrayOf(iron_sting, sacrificial_sword, festering_desire, skyrider_sword, travelers_handy_sword,
+                wolf_gravestone, favonius_greatsword, serpent_spine, prototype_archaic, royal_greatsword, skyrider_greatsword,
+                white_iron_greatsword, lost_prayer, memory_of_dust, mappa_mare, sacrificial_fragments, frostbearer, otherworldly_story,
+                skyward_spine, vortex_vanquisher, prototype_starglitter, favonius_lance, blacktassel, amos_bow, favonius_warbow, compound_bow,
+                royal_bow,messenger,recurve_bow, staff_of_homa,lithic_spear, alley_hunter, windblume_ode, freedom_sworn, engulfing_lightning, luxurious_sea_lord,
+                engulfing_lightning, kitain_cross_spear, the_catch)
+            for (weapon in weapons3) {
+                weapon.visibility = View.VISIBLE
+            }
+        }
+
 
         //무기누르면 이름팝업
-        // TODO : 무기누르면 이름팝업 부분 더 직관적으로
+        // TODO : 무기누르면 이름팝업 부분 더 직관적으로 = > Toast 시간 더 짧게하고, 전체적으로 볼 수 있는 Dialog 하나 만들면 될듯.
         aquila.setOnClickListener{
             Toast.makeText(activity, activity?.getString(R.string.aquila_favonia).toString(), Toast.LENGTH_SHORT).show()
         }
@@ -1927,9 +1646,11 @@ class HomeFragment  : Fragment(){
                     this.timeZone = timeZone
                 }
 
-                savedtime =
+                savedtime = timeFormat.format(date)
 
-                Log.d("saveddate is : ", saveddate.toString())
+                Log.d("date : savedtime  : ", savedtime.toString())
+                Log.d("date : saveddate  : ", saveddate.toString())
+
                 setFlag(1)
 
             } else {
@@ -1959,6 +1680,6 @@ class HomeFragment  : Fragment(){
 
         return language
     }
-    
+
 }
 
