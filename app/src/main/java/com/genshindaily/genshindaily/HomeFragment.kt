@@ -9,6 +9,8 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -147,6 +149,7 @@ class HomeFragment  : Fragment(){
         Log.d("date1 : currentdate", currentdate)
         saveddate?.let { Log.d("date2 : saveddate", it) }
 
+        //nextMondayDate 구하기
         calendar = Calendar.getInstance(timeZone).apply {
             this.timeZone = timeZone
             set(Calendar.HOUR_OF_DAY, 4)
@@ -173,7 +176,7 @@ class HomeFragment  : Fragment(){
 
         //일간퀘 초기화
         //사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고 && 시간이 새벽 4시 이후이면.
-        if(saveddate != null){
+        if(saveddate != null && saveddate != ""){
             val savedDate = dateFormat.parse(saveddate)
             val currentDate = dateFormat.parse(currentdate)
             if (currentDate.after(savedDate)) {
@@ -652,20 +655,20 @@ class HomeFragment  : Fragment(){
         val weapons = arrayOf(aquila, skyward_blade, summit_shaper, primordial_jade_cutter, the_flute, iron_sting, prototype_rancour,
             the_black_sword, royal_longsword, lions_roar, sacrificial_sword, blackcliff_longsword, sword_of_descension, festering_desire,
             fillet_blade, harbinger_of_dawn, cool_steel, skyrider_sword, travelers_handy_sword, dark_iron_sword, favonius_sword, the_alley_flash,
-            freedom_sworn, mistsplitter_reforged, amenoma_kageuta_blade, wolf_gravestone, skyward_pride1,
-            the_unforged,favonius_greatsword, serpent_spine, prototype_archaic, whiteblind,royal_greatsword,
+            freedom_sworn, mistsplitter_reforged, amenoma_kageuta_blade, //여기까지 한손검
+            wolf_gravestone, skyward_pride1, the_unforged,favonius_greatsword, serpent_spine, prototype_archaic, whiteblind,royal_greatsword,
             the_bell, blackcliff_slasher, rainslasher, sacrificial_greatsword, snow_tombed_starsilver,
             skyrider_greatsword, debate_club, white_iron_greatsword, bloodtainted_greatsword, ferrous_shadow,
-            lithic_blade, song_of_broken_pines, katsuragi_slasher, luxurious_sea_lord, skyward_atlas, lost_prayer,memory_of_dust,
-            prototype_amber,mappa_mare,solar_pearl, royal_grimoire, eye_of_perception, the_widsith, sacrificial_fragments,
-            favonius_codex, blackcliff_agate, frostbearer, twin_nephrite, emerald_orb, otherworldly_story,
-            thrilling_tales_of_dragon_slayers, magic_guide,wine_and_song1, everlasting_moonglow, dodoco_tales, white_dragon_ring,
+            lithic_blade, song_of_broken_pines, katsuragi_slasher, luxurious_sea_lord, //양손검
+            skyward_atlas, lost_prayer,memory_of_dust, prototype_amber,mappa_mare,solar_pearl, royal_grimoire, eye_of_perception, the_widsith, sacrificial_fragments,
+            favonius_codex, blackcliff_agate, frostbearer, twin_nephrite, emerald_orb, otherworldly_story, thrilling_tales_of_dragon_slayers, magic_guide,wine_and_song1,
+            everlasting_moonglow, dodoco_tales, white_dragon_ring, //법구
             primordial_jade_spear, skyward_spine,vortex_vanquisher, prototype_starglitter, crescent_pike, deathmatch,blackcliff_pole,
             favonius_lance,dragons_bane,royal_spear,dragonspine_spear, blacktassel, halberd, white_tassel, lithic_spear,
             engulfing_lightning, kitain_cross_spear, the_catch, skyward_harp, amos_bow, favonius_warbow, prototype_crescent,
             compound_bow, the_viridescent_hunt, royal_bow, rust, sacrificial_bow, the_stringless, blackcliff_warbow,
-            slingshot, messenger, recurve_bow, sharpshooter_oath, raven_bow, staff_of_homa, elegy_for_the_end, alley_hunter,
-            windblume_ode, thundering_pulse, demon_slayer_bow, predator, yuya_waltz)
+            slingshot, messenger, recurve_bow, sharpshooter_oath, raven_bow, staff_of_homa, //창
+            elegy_for_the_end, alley_hunter, windblume_ode, thundering_pulse, demon_slayer_bow, predator, yuya_waltz) //활
 
 
             for (w in weapons) {
@@ -712,351 +715,36 @@ class HomeFragment  : Fragment(){
             }
         }
 
+        val weaponNames = arrayOf(R.string.aquila_favonia, R.string.skyward_blade, R.string.summit_shaper, R.string.primordial_jade_cutter, R.string.the_flute,
+            R.string.iron_sting, R.string.prototype_rancour, R.string.the_black_sword, R.string.royal_longsword, R.string.lions_roar,R.string.sacrificial_sword,
+            R.string.blackcliff_longsword,R.string.sword_of_descension,R.string.festering_desire,R.string.fillet_blade,R.string.harbinger_of_dawn,R.string.cool_steel,
+            R.string.skyrider_sword,R.string.travelers_handy_sword,R.string.dark_iron_sword,R.string.favonius_sword,R.string.the_alley_flash, R.string.freedom_sworn,
+            R.string.mistsplitter_reforged, R.string.amenoma_kageuta_blade,R.string.wolfs_gravestone,R.string.skyward_pride,R.string.the_unforged,R.string.favonius_greatsword,
+            R.string.serpent_spine,R.string.prototype_archaic,R.string.whiteblind,R.string.royal_greatsword,R.string.the_bell,R.string.blackcliff_slasher,R.string.rainslasher,
+            R.string.sacrificial_greatsword,R.string.snow_tombed_starsilver,R.string.skyrider_greatsword,R.string.debate_club,R.string.white_iron_greatsword,
+            R.string.bloodtainted_greatsword,R.string.ferrous_shadow,R.string.lithic_blade,R.string.song_of_broken_pines, R.string.katsuragis_slasher,
+            R.string.luxurious_sea_lord, R.string.skyward_atlas, R.string.lost_prayer_to_the_sacred_winds, R.string.memory_of_dust, R.string.prototype_amber,
+            R.string.mappa_mare, R.string.solar_pearl, R.string.royal_grimoire, R.string.eye_of_perception, R.string.the_widsith, R.string.sacrificial_fragments,
+            R.string.favonius_codex, R.string.blackcliff_agate, R.string.frostbearer, R.string.twin_nephrite, R.string.emerald_orb, R.string.otherworldly_story,
+            R.string.thrilling_tales_of_dragon_slayer, R.string.magic_guide, R.string.wine_and_song, R.string.everlasting_moonglow, R.string.dodoco_tales,
+            R.string.white_dragon_ring, R.string.primordial_jade_winged_spear, R.string.skyward_spine, R.string.vortex_vanquisher,R.string.prototype_starglitter,
+            R.string.crescent_pike,R.string.deathmatch,R.string.blackcliff_pole,R.string.favonius_lance, R.string.dragons_bane, R.string.royal_spear,
+            R.string.dragonspine_spear, R.string.black_tassel, R.string.halberd, R.string.white_tassel, R.string.lithic_spear, R.string.engulfing_lightning,
+            R.string.kitain_cross_spear, R.string.the_catch, R.string.skyward_harp, R.string.amoss_bow, R.string.favonius_warbow, R.string.prototype_crescent,
+            R.string.compound_bow, R.string.the_virdescent_hunt, R.string.royal_bow, R.string.rust, R.string.sacrificial_bow, R.string.the_stringless,
+            R.string.blackcliff_warbow, R.string.slingshot, R.string.messenger, R.string.recurve_bow, R.string.sharpshooters_oath, R.string.raven_bow,
+            R.string.staff_of_homa, R.string.elegy_for_the_end,R.string.alley_hunter, R.string.alley_hunter, R.string.windblume_ode, R.string.thundering_pulse,
+            R.string.demon_slayer_bow, R.string.predator) //yuya_waltz 없음
 
-        //무기누르면 이름팝업
-        // TODO : 무기누르면 이름팝업 부분 더 직관적으로 = > Toast 시간 더 짧게하고, 전체적으로 볼 수 있는 Dialog 하나 만들면 될듯.
-        aquila.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.aquila_favonia).toString(), Toast.LENGTH_SHORT).show()
+        for (i in weapons.indices) {
+            weapons[i].setOnClickListener {
+                val toast = Toast.makeText(activity, activity?.getString(weaponNames[i]).toString(), Toast.LENGTH_SHORT)
+                toast.show()
+                Handler(Looper.getMainLooper()).postDelayed({ toast.cancel() }, 500)
+            }
         }
-        skyward_blade.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.skyward_blade).toString(), Toast.LENGTH_SHORT).show()
-        }
-        summit_shaper.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.summit_shaper).toString(), Toast.LENGTH_SHORT).show()
-        }
-        primordial_jade_cutter.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.primordial_jade_cutter).toString(), Toast.LENGTH_SHORT).show()
-        }
-        the_flute.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.the_flute).toString(), Toast.LENGTH_SHORT).show()
-        }
-        iron_sting.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.iron_sting).toString(), Toast.LENGTH_SHORT).show()
-        }
-        prototype_rancour.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.prototype_rancour).toString(), Toast.LENGTH_SHORT).show()
-        }
-        the_black_sword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.the_black_sword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        royal_longsword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.royal_longsword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        lions_roar.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.lions_roar).toString(), Toast.LENGTH_SHORT).show()
-        }
-        sacrificial_sword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.sacrificial_sword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        blackcliff_longsword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.blackcliff_longsword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        sword_of_descension.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.sword_of_descension).toString(), Toast.LENGTH_SHORT).show()
-        }
-        festering_desire.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.festering_desire).toString(), Toast.LENGTH_SHORT).show()
-        }
-        fillet_blade.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.fillet_blade).toString(), Toast.LENGTH_SHORT).show()
-        }
-        harbinger_of_dawn.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.harbinger_of_dawn).toString(), Toast.LENGTH_SHORT).show()
-        }
-        cool_steel.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.cool_steel).toString(), Toast.LENGTH_SHORT).show()
-        }
-        skyrider_sword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.skyrider_sword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        travelers_handy_sword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.travelers_handy_sword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        dark_iron_sword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.dark_iron_sword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        favonius_sword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.favonius_sword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        the_alley_flash.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.the_alley_flash).toString(), Toast.LENGTH_SHORT).show()
-        }
-        freedom_sworn.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.freedom_sworn).toString(), Toast.LENGTH_SHORT).show()
-        }
-        mistsplitter_reforged.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.mistsplitter_reforged).toString(), Toast.LENGTH_SHORT).show()
-        }
-        amenoma_kageuta_blade.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.amenoma_kageuta_blade).toString(), Toast.LENGTH_SHORT).show()
-        }
-        //여기까지 한손검
+        // TODO : 전체적으로 볼 수 있는 Dialog 하나 만들면 될듯.
 
-        wolf_gravestone.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.wolfs_gravestone).toString(), Toast.LENGTH_SHORT).show()
-        }
-        skyward_pride1.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.skyward_pride).toString(), Toast.LENGTH_SHORT).show()
-        }
-        the_unforged.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.the_unforged).toString(), Toast.LENGTH_SHORT).show()
-        }
-        favonius_greatsword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.favonius_greatsword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        serpent_spine.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.serpent_spine).toString(), Toast.LENGTH_SHORT).show()
-        }
-        prototype_archaic.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.prototype_archaic).toString(), Toast.LENGTH_SHORT).show()
-        }
-        whiteblind.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.whiteblind).toString(), Toast.LENGTH_SHORT).show()
-        }
-        royal_greatsword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.royal_greatsword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        the_bell.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.the_bell).toString(), Toast.LENGTH_SHORT).show()
-        }
-        blackcliff_slasher.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.blackcliff_slasher).toString(), Toast.LENGTH_SHORT).show()
-        }
-        rainslasher.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.rainslasher).toString(), Toast.LENGTH_SHORT).show()
-        }
-        sacrificial_greatsword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.sacrificial_greatsword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        snow_tombed_starsilver.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.snow_tombed_starsilver).toString(), Toast.LENGTH_SHORT).show()
-        }
-        skyrider_greatsword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.skyrider_greatsword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        debate_club.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.debate_club).toString(), Toast.LENGTH_SHORT).show()
-        }
-        white_iron_greatsword.setOnClickListener{
-            Toast.makeText(activity, activity?.getString(R.string.white_iron_greatsword).toString(), Toast.LENGTH_SHORT).show()
-        }
-        bloodtainted_greatsword.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.bloodtainted_greatsword), Toast.LENGTH_SHORT).show()
-        }
-        ferrous_shadow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.ferrous_shadow), Toast.LENGTH_SHORT).show()
-        }
-        lithic_blade.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.lithic_blade), Toast.LENGTH_SHORT).show()
-        }
-        song_of_broken_pines.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.song_of_broken_pines), Toast.LENGTH_SHORT).show()
-        }
-        katsuragi_slasher.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.katsuragis_slasher), Toast.LENGTH_SHORT).show()
-        }
-        luxurious_sea_lord.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.luxurious_sea_lord), Toast.LENGTH_SHORT).show()
-        }
-        //양손검
-
-        skyward_atlas.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.skyward_atlas), Toast.LENGTH_SHORT).show()
-        }
-        lost_prayer.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.lost_prayer_to_the_sacred_winds), Toast.LENGTH_SHORT).show()
-        }
-        memory_of_dust.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.memory_of_dust), Toast.LENGTH_SHORT).show()
-        }
-        prototype_amber.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.prototype_amber), Toast.LENGTH_SHORT).show()
-        }
-        mappa_mare.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.mappa_mare), Toast.LENGTH_SHORT).show()
-        }
-        solar_pearl.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.solar_pearl), Toast.LENGTH_SHORT).show()
-        }
-        royal_grimoire.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.royal_grimoire), Toast.LENGTH_SHORT).show()
-        }
-        eye_of_perception.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.eye_of_perception), Toast.LENGTH_SHORT).show()
-        }
-        the_widsith.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.the_widsith), Toast.LENGTH_SHORT).show()
-        }
-        sacrificial_fragments.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.sacrificial_fragments), Toast.LENGTH_SHORT).show()
-        }
-        favonius_codex.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.favonius_codex), Toast.LENGTH_SHORT).show()
-        }
-        blackcliff_agate.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.blackcliff_agate), Toast.LENGTH_SHORT).show()
-        }
-        frostbearer.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.frostbearer), Toast.LENGTH_SHORT).show()
-        }
-        twin_nephrite.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.twin_nephrite), Toast.LENGTH_SHORT).show()
-        }
-        emerald_orb.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.emerald_orb), Toast.LENGTH_SHORT).show()
-        }
-        otherworldly_story.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.otherworldly_story), Toast.LENGTH_SHORT).show()
-        }
-        thrilling_tales_of_dragon_slayers.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.thrilling_tales_of_dragon_slayer), Toast.LENGTH_SHORT).show()
-        }
-        magic_guide.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.magic_guide), Toast.LENGTH_SHORT).show()
-        }
-        wine_and_song1.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.wine_and_song), Toast.LENGTH_SHORT).show()
-        }
-        everlasting_moonglow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.everlasting_moonglow), Toast.LENGTH_SHORT).show()
-        }
-        dodoco_tales.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.dodoco_tales), Toast.LENGTH_SHORT).show()
-        }
-        white_dragon_ring.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.white_dragon_ring), Toast.LENGTH_SHORT).show()
-        }
-        //여기까지 법구
-
-        primordial_jade_spear.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.primordial_jade_winged_spear), Toast.LENGTH_SHORT).show()
-        }
-        skyward_spine.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.skyward_spine), Toast.LENGTH_SHORT).show()
-        }
-        vortex_vanquisher.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.vortex_vanquisher), Toast.LENGTH_SHORT).show()
-        }
-        prototype_starglitter.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.prototype_starglitter), Toast.LENGTH_SHORT).show()
-        }
-        crescent_pike.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.crescent_pike), Toast.LENGTH_SHORT).show()
-        }
-        deathmatch.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.deathmatch), Toast.LENGTH_SHORT).show()
-        }
-        blackcliff_pole.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.blackcliff_pole), Toast.LENGTH_SHORT).show()
-        }
-        favonius_lance.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.favonius_lance), Toast.LENGTH_SHORT).show()
-        }
-        dragons_bane.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.dragons_bane), Toast.LENGTH_SHORT).show()
-        }
-        royal_spear.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.royal_spear), Toast.LENGTH_SHORT).show()
-        }
-        dragonspine_spear.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.dragonspine_spear), Toast.LENGTH_SHORT).show()
-        }
-        blacktassel.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.black_tassel), Toast.LENGTH_SHORT).show()
-        }
-        halberd.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.halberd), Toast.LENGTH_SHORT).show()
-        }
-        white_tassel.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.white_tassel), Toast.LENGTH_SHORT).show()
-        }
-        lithic_spear.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.lithic_spear), Toast.LENGTH_SHORT).show()
-        }
-        engulfing_lightning.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.engulfing_lightning), Toast.LENGTH_SHORT).show()
-        }
-        kitain_cross_spear.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.kitain_cross_spear), Toast.LENGTH_SHORT).show()
-        }
-        the_catch.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.the_catch), Toast.LENGTH_SHORT).show()
-        }
-        staff_of_homa.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.staff_of_homa), Toast.LENGTH_SHORT).show()
-        }
-        //창
-
-        skyward_harp.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.skyward_harp), Toast.LENGTH_SHORT).show()
-        }
-        amos_bow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.amoss_bow), Toast.LENGTH_SHORT).show()
-        }
-        favonius_warbow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.favonius_warbow), Toast.LENGTH_SHORT).show()
-        }
-        prototype_crescent.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.prototype_crescent), Toast.LENGTH_SHORT).show()
-        }
-        compound_bow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.compound_bow), Toast.LENGTH_SHORT).show()
-        }
-        the_viridescent_hunt.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.the_virdescent_hunt), Toast.LENGTH_SHORT).show()
-        }
-        royal_bow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.royal_bow), Toast.LENGTH_SHORT).show()
-        }
-        rust.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.rust), Toast.LENGTH_SHORT).show()
-        }
-        sacrificial_bow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.sacrificial_bow), Toast.LENGTH_SHORT).show()
-        }
-        the_stringless.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.the_stringless), Toast.LENGTH_SHORT).show()
-        }
-        blackcliff_warbow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.blackcliff_warbow), Toast.LENGTH_SHORT).show()
-        }
-        slingshot.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.slingshot), Toast.LENGTH_SHORT).show()
-        }
-        messenger.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.messenger), Toast.LENGTH_SHORT).show()
-        }
-        recurve_bow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.recurve_bow), Toast.LENGTH_SHORT).show()
-        }
-        sharpshooter_oath.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.sharpshooters_oath), Toast.LENGTH_SHORT).show()
-        }
-        raven_bow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.raven_bow), Toast.LENGTH_SHORT).show()
-        }
-        elegy_for_the_end.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.elegy_for_the_end), Toast.LENGTH_SHORT).show()
-        }
-        alley_hunter.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.alley_hunter), Toast.LENGTH_SHORT).show()
-        }
-        windblume_ode.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.windblume_ode), Toast.LENGTH_SHORT).show()
-        }
-        thundering_pulse.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.thundering_pulse), Toast.LENGTH_SHORT).show()
-        }
-        yuya_waltz.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.mitternachts_waltz), Toast.LENGTH_SHORT).show()
-        }
-        demon_slayer_bow.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.demon_slayer_bow), Toast.LENGTH_SHORT).show()
-        }
-        predator.setOnClickListener{
-            Toast.makeText(activity, getString(R.string.predator), Toast.LENGTH_SHORT).show()
-        }
-        //활
     }
     /*private fun showSettingpopup() {
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -1309,97 +997,6 @@ class HomeFragment  : Fragment(){
 
     }
 
-    fun onTextClicked_illgan(){
-        if(Textflag_illgan == 0) {
-            illgan.setPaintFlags(illgan.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            illgan.setTextColor(Color.parseColor("#939597"))
-            Textflag_illgan = 1
-        }
-        else{
-            illgan.setPaintFlags(0)
-            illgan.setTextColor(Color.parseColor("#000000"))
-            Textflag_illgan = 0
-        }
-    }
-
-    fun onTextClicked_resin(){
-        if(Textflag_resin == 0) {
-            resin.setPaintFlags(resin.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            resin.setTextColor(Color.parseColor("#939597"))
-            Textflag_resin = 1
-        }
-        else{
-            resin.setPaintFlags(0)
-            resin.setTextColor(Color.parseColor("#000000"))
-            Textflag_resin = 0
-        }
-    }
-
-    fun onTextClicked_item(){
-        if(Textflag_item == 0) {
-            item.setPaintFlags(item.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            item.setTextColor(Color.parseColor("#939597"))
-            Textflag_item = 1
-        }
-        else{
-            item.setPaintFlags(0)
-            item.setTextColor(Color.parseColor("#000000"))
-            Textflag_item = 0
-        }
-    }
-
-    fun onTextClicked_talent(){
-        if(Textflag_talent == 0) {
-            talent.setPaintFlags(talent.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            talent.setTextColor(Color.parseColor("#939597"))
-            Textflag_talent = 1
-        }
-        else{
-            talent.setPaintFlags(0)
-            talent.setTextColor(Color.parseColor("#000000"))
-            Textflag_talent = 0
-        }
-    }
-
-    fun onTextClicked_ascend(){
-        if(Textflag_ascend == 0) {
-            ascend.setPaintFlags(ascend.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            ascend.setTextColor(Color.parseColor("#939597"))
-            Textflag_ascend = 1
-        }
-        else{
-            ascend.setPaintFlags(0)
-            ascend.setTextColor(Color.parseColor("#000000"))
-            Textflag_ascend = 0
-        }
-    }
-
-    fun onTextClicked_battle_pass(){
-        if(Textflag_battle_pass == 0) {
-            battle_pass.setPaintFlags(battle_pass.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            battle_pass.setTextColor(Color.parseColor("#939597"))
-            Textflag_battle_pass = 1
-        }
-        else{
-            battle_pass.setPaintFlags(0)
-            battle_pass.setTextColor(Color.parseColor("#000000"))
-            Textflag_battle_pass = 0
-        }
-    }
-
-    fun onTextClicked_monster(){
-        if(Textflag_monster == 0) {
-            monster.setPaintFlags(battle_pass.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            monster.setTextColor(Color.parseColor("#939597"))
-            Textflag_monster = 1
-        }
-        else{
-            monster.setPaintFlags(0)
-            monster.setTextColor(Color.parseColor("#000000"))
-            Textflag_monster = 0
-        }
-    }
-
     //주간퀘
     fun onTextClicked_andrius(){
         if(Textflag_andrius == 0) {
@@ -1645,7 +1242,6 @@ class HomeFragment  : Fragment(){
                 val timeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").apply {
                     this.timeZone = timeZone
                 }
-
                 savedtime = timeFormat.format(date)
 
                 Log.d("date : savedtime  : ", savedtime.toString())

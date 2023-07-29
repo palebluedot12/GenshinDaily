@@ -19,6 +19,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7b620daa95cae67afde69083841bdb19/transformed/jetified-library-2.0.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7b620daa95cae67afde69083841bdb19/transformed/jetified-library-2.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7b620daa95cae67afde69083841bdb19/transformed/jetified-library-2.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/646aa40eeae71221437a501b00f2f21c/transformed/jetified-library-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/646aa40eeae71221437a501b00f2f21c/transformed/jetified-library-2.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/646aa40eeae71221437a501b00f2f21c/transformed/jetified-library-2.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kyleduo.switchbutton/library/2.0.0/9c3a83534785679eb9f58ac9b1150e3b31f6916d/library-2.0.0-javadoc.jar!/" />
