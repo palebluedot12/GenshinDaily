@@ -544,6 +544,96 @@
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="15dp"
+            android:id="@+id/magatsuline">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/magatsu"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/weekly_magatsu"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/text"
+                android:clickable="true"
+                android:id="@+id/magatsu"
+                android:layout_marginLeft="8dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/everlastingline">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/everlasting_lord"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/weekly_everlasting_lord"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/text"
+                android:clickable="true"
+                android:id="@+id/everlasting"
+                android:layout_marginLeft="8dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/apepline">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/apep"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/weekly_apep"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/text"
+                android:clickable="true"
+                android:id="@+id/apep"
+                android:layout_marginLeft="8dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp"
             android:id="@+id/weeklybattlepassline">
             <ImageView
                 android:layout_width="30dp"

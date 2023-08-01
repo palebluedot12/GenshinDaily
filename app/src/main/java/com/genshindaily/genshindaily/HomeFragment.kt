@@ -32,6 +32,15 @@ import java.time.LocalDate
 import java.util.*
 import kotlin.reflect.KMutableProperty0
 
+/**
+ * TODO : 버전 업데이트마다 체크해야 할 것들.
+ * 1. 주간 체크리스트 : 주간보스 추가됐는지. O
+ * 2. 캐릭 추가됐는지. (1, 3번 탭)
+ * 3. 무기 추가됐는지.
+ * 4. 지역 추가됐는지 -> 특산물, 단조 재료
+ * ++ 낚시.. 물고기마다 리젠 다를껄? 지역별로 묶여서 할 수가 없을거임..
+ * ++ 3번탭 수정 필요함. 이미지 저렇게 해두면 저게 사문인지 뭔지 알수가 없음..
+ */
 class HomeFragment  : Fragment(){
 
     //일간 (체크안하면 0)
@@ -42,7 +51,7 @@ class HomeFragment  : Fragment(){
     var Textflag_ascend = 0
     var Textflag_battle_pass = 0
     var Textflag_monster = 0
-    //일간 셋 visibility flag. 1=보임
+    //일간 visibility flag. 1=보임
     var illganvflag = 1
     var resinvflag = 1
     var artifactvflag = 1
@@ -50,14 +59,18 @@ class HomeFragment  : Fragment(){
     var ascendvflag = 1
     var battlepassvflag = 1
     var enemyvflag = 1
-    //주간 셋 visi
+    //주간 visibility flag
     var andriusvflag = 1
     var dvalinvflag = 1
     var tartagliavflag = 1
     var azhdahavflag = 1
     var signoravflag = 1
+    var magatsuvflag = 1
+    var everlastingvflag = 1
+    var apepvflag = 1
     var weeklybattlepassvflag = 1
     var reputationvflag = 1
+
     //주간
     var Textflag_andrius = 0
     var Textflag_dvalin = 0
@@ -66,12 +79,17 @@ class HomeFragment  : Fragment(){
     var Textflag_reputation_weekly = 0
     var Textflag_yata = 0
     var Textflag_signora = 0
+    var Textflag_magatsu = 0
+    var Textflag_everlasting_lord = 0
+    var Textflag_apep = 0
+
     //요일,날짜 저장
     var currentday = "" //이게 왜 null??????
     var currentdate = dateGenerator()
     var savedday : String = ""
     var saveddate : String? = null
     var savedtime : String? = null
+    var currenttime : String? = null
     var weeklysavedday : String = ""
     var weeklysaveddate : String = ""
     var language : String? = null
@@ -149,6 +167,12 @@ class HomeFragment  : Fragment(){
         Log.d("date1 : currentdate", currentdate)
         saveddate?.let { Log.d("date2 : saveddate", it) }
 
+        val timeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").apply {
+            this.timeZone = timeZone
+        }
+        currenttime = timeFormat.format(date)
+        Log.d("date : currenttime  : ", currenttime.toString())
+
         //nextMondayDate 구하기
         calendar = Calendar.getInstance(timeZone).apply {
             this.timeZone = timeZone
@@ -173,7 +197,6 @@ class HomeFragment  : Fragment(){
         Log.d("date3 : nextMonday", nextMondayDateFormat.format(nextMondayDate)) //이게 23일 8시로 나오고 있음. 왜?
         Log.d("date4 : currentHour", currentHour.toString())
 
-
         //일간퀘 초기화
         //사용자가 체크한 날짜보다 < 앱에 들어온 현재 시간이 더큰 날짜고 && 시간이 새벽 4시 이후이면.
         if(saveddate != null && saveddate != ""){
@@ -189,8 +212,8 @@ class HomeFragment  : Fragment(){
 
         // 주간퀘 초기화
         // currentDate가 다음주 월요일 새벽 4시(nextmondaydate) 이후라면
-        val currentDate = dateFormat.parse(currentdate)
-        if(currentDate.after(dateFormat.parse(nextMondayDateFormat.format(nextMondayDate))))
+        val currentTime = dateFormat.parse(currenttime)
+        if(currentTime.after(dateFormat.parse(nextMondayDateFormat.format(nextMondayDate))))
         {
             weeklyreset()
         }
@@ -215,6 +238,7 @@ class HomeFragment  : Fragment(){
         if(weeklybattlepassvflag == 0) weeklybattlepassline.visibility = View.GONE else weeklybattlepassline.visibility = View.VISIBLE
         if(reputationvflag == 0) reputationline.visibility = View.GONE else reputationline.visibility = View.VISIBLE
 
+        // 일간퀘
         setOnClickListenerForView(illgan) { Textflag_illgan = it }
         setOnClickListenerForView(resin) { Textflag_resin = it }
         setOnClickListenerForView(item) { Textflag_item = it }
@@ -223,50 +247,17 @@ class HomeFragment  : Fragment(){
         setOnClickListenerForView(battle_pass) { Textflag_battle_pass = it }
         setOnClickListenerForView(monster) { Textflag_monster = it }
 
-        //주간퀘
-        // TODO : 주간퀘 - 여기도 함수화 필요
-        andrius.setOnClickListener(View.OnClickListener {
-            onTextClicked_andrius()
-            weeklysavedday = dayGenerator()
-            weeklysaveddate = dateGenerator()
-        })
-
-        dvalin.setOnClickListener(View.OnClickListener {
-            onTextClicked_dvalin()
-            weeklysavedday = dayGenerator()
-            weeklysaveddate = dateGenerator()
-        })
-
-        tartaglia.setOnClickListener(View.OnClickListener {
-            onTextClicked_tartaglia()
-            weeklysavedday = dayGenerator()
-            weeklysaveddate = dateGenerator()
-        })
-
-        battle_pass_weekly.setOnClickListener(View.OnClickListener {
-            onTextClicked_battle_pass_weekly()
-            weeklysavedday = dayGenerator()
-            weeklysaveddate = dateGenerator()
-        })
-
-        reputation_weekly.setOnClickListener(View.OnClickListener {
-            onTextClicked_reputation_weekly()
-            weeklysavedday = dayGenerator()
-            weeklysaveddate = dateGenerator()
-        })
-
-        yata.setOnClickListener(View.OnClickListener {
-            onTextClicked_yata()
-            weeklysavedday = dayGenerator()
-            weeklysaveddate = dateGenerator()
-        })
-
-        signora.setOnClickListener(View.OnClickListener {
-            onTextClicked_signora()
-            weeklysavedday = dayGenerator()
-            weeklysaveddate = dateGenerator()
-        })
-
+        // 주간퀘
+        andrius.setOnClickListener { Textflag_andrius = onTextClicked(andrius, Textflag_andrius) }
+        dvalin.setOnClickListener { Textflag_dvalin = onTextClicked(dvalin, Textflag_dvalin) }
+        tartaglia.setOnClickListener { Textflag_tartaglia = onTextClicked(tartaglia, Textflag_tartaglia) }
+        battle_pass_weekly.setOnClickListener { Textflag_battle_pass_weekly = onTextClicked(battle_pass_weekly, Textflag_battle_pass_weekly) }
+        reputation_weekly.setOnClickListener { Textflag_reputation_weekly = onTextClicked(reputation_weekly, Textflag_reputation_weekly) }
+        yata.setOnClickListener { Textflag_yata = onTextClicked(yata, Textflag_yata) }
+        signora.setOnClickListener { Textflag_signora = onTextClicked(signora, Textflag_signora) }
+        magatsu.setOnClickListener { Textflag_magatsu = onTextClicked(magatsu, Textflag_magatsu) }
+        everlasting.setOnClickListener { Textflag_everlasting_lord = onTextClicked(everlasting, Textflag_everlasting_lord) }
+        apep.setOnClickListener { Textflag_apep = onTextClicked(apep, Textflag_apep) }
 
         //일간 세팅 다이얼로그
         //TODO : 체크리스트 추가 제거 부분 함수화
@@ -445,6 +436,15 @@ class HomeFragment  : Fragment(){
             val signoradelete = dialogView.findViewById<ImageView>(R.id.signoradelete)
             val signoraplus = dialogView.findViewById<ImageView>(R.id.signoraplus)
             val signorasettingtext = dialogView.findViewById<TextView>(R.id.signorasettingtext)
+            val magatsudelete = dialogView.findViewById<ImageView>(R.id.magatsudelete)
+            val magatsuplus = dialogView.findViewById<ImageView>(R.id.magatsuplus)
+            val magatsusettingtext = dialogView.findViewById<TextView>(R.id.magatsusettingtext)
+            val everlastingdelete = dialogView.findViewById<ImageView>(R.id.everlastingdelete)
+            val everlastingplus = dialogView.findViewById<ImageView>(R.id.everlastingplus)
+            val everlastingsettingtext = dialogView.findViewById<TextView>(R.id.everlastingsettingtext)
+            val apepdelete = dialogView.findViewById<ImageView>(R.id.apepdelete)
+            val apepplus = dialogView.findViewById<ImageView>(R.id.apepplus)
+            val apepsettingtext = dialogView.findViewById<TextView>(R.id.apepsettingtext)
             val weeklybattlepassdelete = dialogView.findViewById<ImageView>(R.id.weeklybattlepassdelete)
             val weeklybattlepassplus = dialogView.findViewById<ImageView>(R.id.weeklybattlepassplus)
             val weeklybattlepasssettingtext = dialogView.findViewById<TextView>(R.id.weeklybattlepasssettingtext)
@@ -472,6 +472,18 @@ class HomeFragment  : Fragment(){
             if(signoravflag == 0) {
                 signorasettingtext.setPaintFlags(signorasettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
                 signorasettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(magatsuvflag == 0) {
+                magatsusettingtext.setPaintFlags(magatsusettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                magatsusettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(everlastingvflag == 0) {
+                everlastingsettingtext.setPaintFlags(everlastingsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                everlastingsettingtext.setTextColor(Color.parseColor("#939597"))
+            }
+            if(apepvflag == 0) {
+                apepsettingtext.setPaintFlags(apepsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                apepsettingtext.setTextColor(Color.parseColor("#939597"))
             }
             if(weeklybattlepassvflag == 0) {
                 weeklybattlepasssettingtext.setPaintFlags(weeklybattlepasssettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -546,6 +558,42 @@ class HomeFragment  : Fragment(){
                 signorasettingtext.setTextColor(Color.parseColor("#000000"))
                 signoraline.visibility = View.VISIBLE
                 signoravflag = 1
+            }
+            magatsudelete.setOnClickListener {
+                magatsusettingtext.setPaintFlags(magatsusettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                magatsusettingtext.setTextColor(Color.parseColor("#939597"))
+                magatsuline.visibility = View.GONE
+                magatsuvflag = 0
+            }
+            magatsuplus.setOnClickListener {
+                magatsusettingtext.setPaintFlags(0);
+                magatsusettingtext.setTextColor(Color.parseColor("#000000"))
+                magatsuline.visibility = View.VISIBLE
+                magatsuvflag = 1
+            }
+            everlastingdelete.setOnClickListener {
+                everlastingsettingtext.setPaintFlags(everlastingsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                everlastingsettingtext.setTextColor(Color.parseColor("#939597"))
+                everlastingline.visibility = View.GONE
+                everlastingvflag = 0
+            }
+            everlastingplus.setOnClickListener {
+                everlastingsettingtext.setPaintFlags(0);
+                everlastingsettingtext.setTextColor(Color.parseColor("#000000"))
+                everlastingline.visibility = View.VISIBLE
+                everlastingvflag = 1
+            }
+            apepdelete.setOnClickListener {
+                apepsettingtext.setPaintFlags(apepsettingtext.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+                apepsettingtext.setTextColor(Color.parseColor("#939597"))
+                apepline.visibility = View.GONE
+                apepvflag = 0
+            }
+            apepplus.setOnClickListener {
+                apepsettingtext.setPaintFlags(0);
+                apepsettingtext.setTextColor(Color.parseColor("#000000"))
+                apepline.visibility = View.VISIBLE
+                apepvflag = 1
             }
 
             weeklybattlepassdelete.setOnClickListener {
@@ -867,6 +915,24 @@ class HomeFragment  : Fragment(){
         if(Textflag_signora == 1){
             signora.setTextColor(Color.parseColor("#939597"))
         }
+        magatsuvflag = pref.getInt("magatsuvflag", 1)
+        Textflag_magatsu = pref.getInt("magatsu_flag", 0)
+        magatsu.paintFlags = pref.getInt("magatsu_status", 0)
+        if(Textflag_magatsu == 1){
+            magatsu.setTextColor(Color.parseColor("#939597"))
+        }
+        everlastingvflag = pref.getInt("everlastingvflag", 1)
+        Textflag_everlasting_lord = pref.getInt("everlasting_flag", 0)
+        everlasting.paintFlags = pref.getInt("everlasting_status", 0)
+        if(Textflag_everlasting_lord == 1){
+            everlasting.setTextColor(Color.parseColor("#939597"))
+        }
+        apepvflag = pref.getInt("apepvflag", 1)
+        Textflag_apep = pref.getInt("apep_flag", 0)
+        apep.paintFlags = pref.getInt("apep_status", 0)
+        if(Textflag_apep == 1){
+            apep.setTextColor(Color.parseColor("#939597"))
+        }
 
         weeklysavedday = pref.getString("weekly_flag", "").toString()
         weeklysaveddate = pref.getString("weekly_date_flag","").toString()
@@ -925,6 +991,15 @@ class HomeFragment  : Fragment(){
         edit.putInt("signora_flag", Textflag_signora)
         edit.putInt("signora_status", signora.paintFlags)
         edit.putInt("signoravflag", signoravflag)
+        edit.putInt("magatsu_flag", Textflag_magatsu)
+        edit.putInt("magatsu_status", magatsu.paintFlags)
+        edit.putInt("magatsuvflag", magatsuvflag)
+        edit.putInt("everlasting_flag", Textflag_everlasting_lord)
+        edit.putInt("everlasting_status", everlasting.paintFlags)
+        edit.putInt("everlastingvflag", everlastingvflag)
+        edit.putInt("apep_flag", Textflag_apep)
+        edit.putInt("apep_status", apep.paintFlags)
+        edit.putInt("apepvflag", apepvflag)
         edit.putString("weekly_flag", weeklysavedday)
         edit.putString("weekly_date_flag", weeklysaveddate)
         edit.putString("resin_afterhour",afterhourxml.text.toString())
@@ -995,96 +1070,32 @@ class HomeFragment  : Fragment(){
         signora.setTextColor(Color.parseColor("#000000"))
         Textflag_signora = 0
 
+        magatsu.setPaintFlags(0)
+        magatsu.setTextColor(Color.parseColor("#000000"))
+        Textflag_magatsu = 0
+
+        everlasting.setPaintFlags(0)
+        everlasting.setTextColor(Color.parseColor("#000000"))
+        Textflag_everlasting_lord = 0
+
+        apep.setPaintFlags(0)
+        apep.setTextColor(Color.parseColor("#000000"))
+        Textflag_apep = 0
+
     }
 
-    //주간퀘
-    fun onTextClicked_andrius(){
-        if(Textflag_andrius == 0) {
-            andrius.setPaintFlags(andrius.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            andrius.setTextColor(Color.parseColor("#939597"))
-            Textflag_andrius = 1
-        }
-        else{
-            andrius.setPaintFlags(0)
-            andrius.setTextColor(Color.parseColor("#000000"))
-            Textflag_andrius = 0
-        }
-    }
-    fun onTextClicked_dvalin(){
-        if(Textflag_dvalin == 0) {
-            dvalin.setPaintFlags(dvalin.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            dvalin.setTextColor(Color.parseColor("#939597"))
-            Textflag_dvalin = 1
-        }
-        else{
-            dvalin.setPaintFlags(0)
-            dvalin.setTextColor(Color.parseColor("#000000"))
-            Textflag_dvalin = 0
-        }
-    }
-    fun onTextClicked_tartaglia(){
-        if(Textflag_tartaglia == 0) {
-            tartaglia.setPaintFlags(battle_pass.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            tartaglia.setTextColor(Color.parseColor("#939597"))
-            Textflag_tartaglia = 1
-        }
-        else{
-            tartaglia.setPaintFlags(0)
-            tartaglia.setTextColor(Color.parseColor("#000000"))
-            Textflag_tartaglia = 0
-        }
-    }
-    fun onTextClicked_battle_pass_weekly(){
-        if(Textflag_battle_pass_weekly == 0) {
-            battle_pass_weekly.setPaintFlags(battle_pass.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            battle_pass_weekly.setTextColor(Color.parseColor("#939597"))
-            Textflag_battle_pass_weekly = 1
-        }
-        else{
-            battle_pass_weekly.setPaintFlags(0)
-            battle_pass_weekly.setTextColor(Color.parseColor("#000000"))
-            Textflag_battle_pass_weekly = 0
+    fun onTextClicked(textView: TextView, flag: Int): Int {
+        if (flag == 0) {
+            textView.setPaintFlags(textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            textView.setTextColor(Color.parseColor("#939597"))
+            return 1
+        } else {
+            textView.setPaintFlags(0)
+            textView.setTextColor(Color.parseColor("#000000"))
+            return 0
         }
     }
 
-    fun onTextClicked_reputation_weekly() {
-        if (Textflag_reputation_weekly == 0) {
-            reputation_weekly.setPaintFlags(reputation_weekly.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            reputation_weekly.setTextColor(Color.parseColor("#939597"))
-            Textflag_reputation_weekly = 1
-        }
-        else {
-            reputation_weekly.setPaintFlags(0);
-            reputation_weekly.setTextColor(Color.parseColor("#000000"))
-            Textflag_reputation_weekly = 0
-        }
-    }
-
-    fun onTextClicked_yata() {
-        if (Textflag_yata == 0) {
-            yata.setPaintFlags(yata.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            yata.setTextColor(Color.parseColor("#939597"))
-            Textflag_yata = 1
-        }
-        else {
-            yata.setPaintFlags(0)
-            yata.setTextColor(Color.parseColor("#000000"))
-            Textflag_yata = 0
-        }
-    }
-
-    fun onTextClicked_signora() {
-        if (Textflag_signora == 0) {
-            signora.setPaintFlags(signora.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
-            signora.setTextColor(Color.parseColor("#939597"))
-            Textflag_signora = 1
-        }
-        else {
-            signora.setPaintFlags(0)
-            signora.setTextColor(Color.parseColor("#000000"))
-            Textflag_signora = 0
-        }
-    }
 
 
     private fun dayGenerator() :String{
