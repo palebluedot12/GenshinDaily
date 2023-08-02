@@ -38,8 +38,12 @@ import kotlin.reflect.KMutableProperty0
  * 2. 캐릭 추가됐는지. (1, 3번 탭)
  * 3. 무기 추가됐는지.
  * 4. 지역 추가됐는지 -> 특산물, 단조 재료
- * ++ 낚시.. 물고기마다 리젠 다를껄? 지역별로 묶여서 할 수가 없을거임..
- * ++ 3번탭 수정 필요함. 이미지 저렇게 해두면 저게 사문인지 뭔지 알수가 없음..
+ *
+ * <수정 필요한거>
+ * 광고제거 결제여부 확인 더 안전한 방법으로
+ * 낚시.. 물고기마다 리젠 다를껄? 지역별로 묶여서 할 수가 없을거임..
+ * 3번탭 수정 필요함. 이미지 저렇게 해두면 저게 사문인지 뭔지 알수가 없음..
+ * 다크모드 변경시 탭 안바뀌는거 / 지역변경 하면 또 깜장색 되는거
  */
 class HomeFragment  : Fragment(){
 
@@ -94,7 +98,6 @@ class HomeFragment  : Fragment(){
     var weeklysaveddate : String = ""
     var language : String? = null
 
-    //
     var isPurchasedRemoveAds = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -719,6 +719,70 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_67_kirara"
+                    android:id="@+id/kirara_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_66_kabe"
+                    android:id="@+id/kabe_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_65_baekchool"
+                    android:id="@+id/baekchool_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_64_dehya"
+                    android:id="@+id/dehya_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_62_alhatham"
+                    android:id="@+id/alhatham_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_60_wanderer"
+                    android:id="@+id/wanderer_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_58_nahida"
+                    android:id="@+id/nahida_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_57_nilu"
+                    android:id="@+id/nilu_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_55_saino"
+                    android:id="@+id/saino_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_52_tainari"
+                    android:id="@+id/tainari_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_49_yaran"
+                    android:id="@+id/yaran_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_48_ayato"
+                    android:id="@+id/ayoto_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_47_yae"
+                    android:id="@+id/yae_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_45_shenhe"
+                    android:id="@+id/shenhe_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_43_ito"
+                    android:id="@+id/ito_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/icon_41_kokomi"
+                    android:id="@+id/kokomi_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
                     app:civ_border_width="1dp"
@@ -726,7 +790,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_40_aloy"
                     android:id="@+id/aloy_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -735,7 +798,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_38_raiden"
                     android:id="@+id/raiden_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -744,7 +806,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_36_yoimiya"
                     android:id="@+id/yoimiya_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -753,7 +814,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_35_ayaka"
                     android:id="@+id/ayaka_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -762,7 +822,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_34_kazuha"
                     android:id="@+id/kazuha_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -771,7 +830,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_33_eula"
                     android:id="@+id/eula_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -780,7 +838,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_1_jean"
                     android:id="@+id/jean_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -789,7 +846,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_6_diluc"
                     android:id="@+id/diluc_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -798,7 +854,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_8_venti"
                     android:id="@+id/venti_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -807,7 +862,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_9_klee"
                     android:id="@+id/klee_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -816,7 +870,6 @@
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/icon_14_mona"
                     android:id="@+id/mona_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -827,133 +880,108 @@
                     android:id="@+id/xiao_talent"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_21_qiqi"
                     android:id="@+id/qiqi_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_22_keqing"
                     android:id="@+id/keqing_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_25_tartaglia"
                     android:id="@+id/tartaglia_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_26_zhongli"
                     android:id="@+id/zhongli_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_28_albedo"
                     android:id="@+id/albedo_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_29_ganyu"
                     android:id="@+id/ganyu_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_30_hutao"
                     android:id="@+id/hutao_talent"/>
 
                 <!--5성-->
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/purple_500"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_63_mika"
+                    android:id="@+id/mika_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_61_faruzan"
+                    android:id="@+id/faruzan_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_59_layla"
+                    android:id="@+id/layla_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_56_candis"
+                    android:id="@+id/candis_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_54_dori"
+                    android:id="@+id/dori_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_53_kolei"
+                    android:id="@+id/kolei_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_51_heyzo"
+                    android:id="@+id/heyzo_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_50_sinobu"
+                    android:id="@+id/sinobu_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_46_yunjin"
+                    android:id="@+id/yunjin_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_44_goro"
+                    android:id="@+id/goro_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_42_toma"
+                    android:id="@+id/toma_talent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
                     android:src="@drawable/icon_39_sara"
                     android:id="@+id/sara_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/purple_500"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFour"
                     android:src="@drawable/icon_37_sayu"
                     android:id="@+id/sayu_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/purple_500"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFour"
                     android:src="@drawable/icon_31_rosaria"
                     android:id="@+id/rosaria_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/purple_500"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFour"
                     android:id="@+id/yanfei_talent"
                     android:src="@drawable/icon_32_yanfei"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/purple_500"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFour"
                     android:id="@+id/lisa_talent"
                     android:src="@drawable/icon_3_lisa"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/purple_500"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFour"
                     android:src="@drawable/icon_2_amber"
                     android:id="@+id/amber_talent"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
                     android:id="@+id/kaeya_talent"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/icon_4_kaeya"
-                    app:civ_border_color="@color/purple_500"
-                    app:civ_border_width="1dp" />
-
+                    android:src="@drawable/icon_4_kaeya" />
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_height="60dp"
                     android:layout_width="60dp"
