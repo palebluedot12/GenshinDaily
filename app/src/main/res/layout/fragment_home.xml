@@ -1267,11 +1267,27 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="18dp">
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/purple_500"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/toukabou_shigure"
+                    android:id="@+id/toukabou_shigure"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/sapwood_blade"
+                    android:id="@+id/sapwood_blade"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/kagotsurube_isshin"
+                    android:id="@+id/kagotsurube_isshin"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/cinnabar_spindle"
+                    android:id="@+id/cinnabar_spindle"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/xiphos_moonlight"
+                    android:id="@+id/xiphos_moonlight"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
                     android:src="@drawable/yuya_waltz"
                     android:id="@+id/yuya_waltz"/>
                 <de.hdodenhof.circleimageview.CircleImageView

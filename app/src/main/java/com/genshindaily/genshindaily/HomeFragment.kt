@@ -25,6 +25,7 @@ import com.google.android.gms.ads.*
 import com.kakao.adfit.ads.AdListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.illgan
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.lang.NumberFormatException
 import java.sql.Ref
 import java.text.SimpleDateFormat
@@ -716,7 +717,9 @@ class HomeFragment  : Fragment(){
         val weapons = arrayOf(aquila, skyward_blade, summit_shaper, primordial_jade_cutter, the_flute, iron_sting, prototype_rancour,
             the_black_sword, royal_longsword, lions_roar, sacrificial_sword, blackcliff_longsword, sword_of_descension, festering_desire,
             fillet_blade, harbinger_of_dawn, cool_steel, skyrider_sword, travelers_handy_sword, dark_iron_sword, favonius_sword, the_alley_flash,
-            freedom_sworn, mistsplitter_reforged, amenoma_kageuta_blade, //여기까지 한손검
+            freedom_sworn, mistsplitter_reforged, amenoma_kageuta_blade,
+            haran_geppaku_futsu, key_of_khaj_nisut, light_of_foliar_incision, xiphos_moonlight, cinnabar_spindle, kagotsurube_isshin, sapwood_blade,
+            toukabou_shigure, //여기까지 한손검
             wolf_gravestone, skyward_pride1, the_unforged,favonius_greatsword, serpent_spine, prototype_archaic, whiteblind,royal_greatsword,
             the_bell, blackcliff_slasher, rainslasher, sacrificial_greatsword, snow_tombed_starsilver,
             skyrider_greatsword, debate_club, white_iron_greatsword, bloodtainted_greatsword, ferrous_shadow,
