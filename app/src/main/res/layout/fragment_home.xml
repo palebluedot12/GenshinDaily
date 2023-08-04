@@ -765,7 +765,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_48_ayato"
-                    android:id="@+id/ayoto_talent"/>
+                    android:id="@+id/ayato_talent"/>
                 <de.hdodenhof.circleimageview.CircleImageView
                     style="@style/CircleImageViewFive"
                     android:src="@drawable/icon_47_yae"
@@ -910,6 +910,10 @@
 
                 <!--5성-->
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/icon_68_yaoyao"
+                    android:id="@+id/yaoyao_talent"/>
                 <de.hdodenhof.circleimageview.CircleImageView
                     style="@style/CircleImageViewFour"
                     android:src="@drawable/icon_63_mika"
@@ -1143,196 +1147,107 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/light_of_foliar_incision"
+                    android:id="@+id/light_of_foliar_incision"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/key_of_khaj_nisut"
+                    android:id="@+id/key_of_khaj_nisut"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/haran_geppaku_futsu"
+                    android:id="@+id/haran_geppaku_futsu"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/thundering_pulse"
                     android:id="@+id/thundering_pulse"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/everlasting_moonglow"
                     android:id="@+id/everlasting_moonglow"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/engulfing_lightning"
                     android:id="@+id/engulfing_lightning"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/mistsplitter_reforged"
                     android:id="@+id/mistsplitter_reforged"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/freedom_sworn"
                     android:id="@+id/freedom_sworn"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/elegy_for_the_end"
                     android:id="@+id/elegy_for_the_end"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/song_of_broken_pines"
                     android:id="@+id/song_of_broken_pines"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/aquila"
                     android:id="@+id/aquila"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/skyward_blade"
                     android:id="@+id/skyward_blade"/>
-
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/summit_shaper"
                     android:id="@+id/summit_shaper"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/primordial_jade_cutter"
                     android:id="@+id/primordial_jade_cutter"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/wolf_gravestone"
                     android:id="@+id/wolf_gravestone"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/skyward_pride"
                     android:id="@+id/skyward_pride1"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/the_unforged"
                     android:id="@+id/the_unforged"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/skyward_atlas"
                     android:id="@+id/skyward_atlas"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/lost_prayer"
                     android:id="@+id/lost_prayer"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/memory_of_dust"
                     android:id="@+id/memory_of_dust"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/primordial_jade_spear"
                     android:id="@+id/primordial_jade_spear"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/skyward_spine"
                     android:id="@+id/skyward_spine"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/vortex_vanquisher"
                     android:id="@+id/vortex_vanquisher"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/skyward_harp"
                     android:id="@+id/skyward_harp"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/amos_bow"
                     android:id="@+id/amos_bow"/>
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/five_stars"
-                    android:layout_marginLeft="15dp"
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/staff_of_homa"
                     android:id="@+id/staff_of_homa"/>
 
@@ -2242,18 +2157,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <com.kakao.adfit.ads.ba.BannerAdView
-                android:id="@+id/kakaoAdview"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"/>
-        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
 

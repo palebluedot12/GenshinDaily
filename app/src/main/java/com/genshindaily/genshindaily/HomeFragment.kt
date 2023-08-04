@@ -122,22 +122,22 @@ class HomeFragment  : Fragment(){
             MobileAds.initialize(requireActivity())
             adView.loadAd(AdRequest.Builder().build()) //구글 배너
 
-            //카카오 광고
-            kakaoAdview.run {
-                setClientId("DAN-ikDQEklRA3qRWh1g")
-                setAdListener(object : AdListener {
-                    override fun onAdLoaded() {
-                        //JoLog.d("ad loaded")
-                    }
-
-                    override fun onAdFailed(p0: Int) {
-                        //JoLog.d("failed to upload")
-                    }
-
-                    override fun onAdClicked() {}
-                })
-                loadAd()
-            }
+//            //카카오 광고
+//            kakaoAdview.run {
+//                setClientId("DAN-ikDQEklRA3qRWh1g")
+//                setAdListener(object : AdListener {
+//                    override fun onAdLoaded() {
+//                        //JoLog.d("ad loaded")
+//                    }
+//
+//                    override fun onAdFailed(p0: Int) {
+//                        //JoLog.d("failed to upload")
+//                    }
+//
+//                    override fun onAdClicked() {}
+//                })
+//                loadAd()
+//            }
         }
 
         Log.d("loadillgan", illganvflag.toString()) //여기서 왜 1?
@@ -671,32 +671,42 @@ class HomeFragment  : Fragment(){
             hangza_talent, diona_talent, tartaglia_talent, zhongli_talent, xinyan_talent,
             albedo_talent, ganyu_talent, hutao_talent, rosaria_talent, eula_talent,
             yanfei_talent, kazuha_talent, ayaka_talent, yoimiya_talent, sayu_talent,
-            raiden_talent,sara_talent,aloy_talent)
+            raiden_talent,sara_talent,aloy_talent, kokomi_talent, toma_talent, ito_talent,
+            goro_talent, shenhe_talent, yunjin_talent, yae_talent, ayato_talent, yaran_talent,
+            sinobu_talent, heyzo_talent, tainari_talent, kolei_talent, dori_talent, saino_talent,
+            candis_talent, nilu_talent, nahida_talent, layla_talent, wanderer_talent, faruzan_talent,
+            alhatham_talent, mika_talent, dehya_talent, baekchool_talent, kabe_talent, kirara_talent, yaoyao_talent)
 
         for (talent in talents) {
             talent.visibility = View.GONE
         }
 
+        // 자유, 번영, 부세, 간언
         if (day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") {
             val visibleTalents = arrayOf(amber_talent, barbara_talent, klee_talent, sucrose_talent,
-                xiao_talent, ningguang_talent, qiqi_talent, tartaglia_talent, keqing_talent, diona_talent, yoimiya_talent, aloy_talent)
+                xiao_talent, ningguang_talent, qiqi_talent, tartaglia_talent, keqing_talent, diona_talent, yoimiya_talent, aloy_talent, kokomi_talent,
+                toma_talent, shenhe_talent, yaran_talent, heyzo_talent, tainari_talent, saino_talent, candis_talent, faruzan_talent, kirara_talent )
             for (talent in visibleTalents) {
                 talent.visibility = View.VISIBLE
             }
         }
 
+        // 투쟁, 근면, 풍아, 창의
         if (day.text == "화" || day.text == "TUESDAY" || day.text == "금" || day.text == "FRIDAY" || day.text == "일" || day.text == "SUNDAY") {
             val visibleTalents = arrayOf(jean_talent, diluc_talent, razor_talent, bennett_talent,
-                noelle_talent, mona_talent, xiangling_talent, chongyun_talent, ganyu_talent, hutao_talent, eula_talent, kazuha_talent, ayaka_talent,sara_talent)
+                noelle_talent, mona_talent, xiangling_talent, chongyun_talent, ganyu_talent, hutao_talent, eula_talent, kazuha_talent, ayaka_talent,sara_talent,
+                ito_talent, yunjin_talent, ayato_talent, sinobu_talent, dori_talent, nahida_talent, layla_talent, alhatham_talent, kabe_talent, yaoyao_talent)
             for (talent in visibleTalents) {
                 talent.visibility = View.VISIBLE
             }
         }
 
+        // 시문, 황금, 천광, 실천
         if (day.text == "수" || day.text == "WEDNESDAY" || day.text == "토" || day.text == "SATURDAY" || day.text == "일" || day.text == "SUNDAY") {
             val visibleTalents = arrayOf(lisa_talent, kaeya_talent, venti_talent, fischl_talent,
                 beidou_talent, xingqiu_talent, zhongli_talent, xinyan_talent, albedo_talent,
-            rosaria_talent, yanfei_talent, sayu_talent, raiden_talent)
+                rosaria_talent, yanfei_talent, sayu_talent, raiden_talent, goro_talent, yae_talent, kolei_talent, nilu_talent, wanderer_talent, mika_talent,
+                dehya_talent, baekchool_talent)
             for (talent in visibleTalents) {
                 talent.visibility = View.VISIBLE
             }
@@ -816,17 +826,17 @@ class HomeFragment  : Fragment(){
     }*/
     override fun onPause() {
         super.onPause()
-        kakaoAdview?.pause()
+//        kakaoAdview?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        kakaoAdview?.resume()
+//        kakaoAdview?.resume()
     }
     override fun onStop() {
         super.onStop()
         Log.d("destroy","on")
-        kakaoAdview?.destroy()
+//        kakaoAdview?.destroy()
         saveData()
     }
 
