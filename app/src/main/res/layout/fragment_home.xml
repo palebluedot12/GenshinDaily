@@ -1148,6 +1148,26 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     style="@style/CircleImageViewFive"
+                    android:src="@drawable/hunters_path"
+                    android:id="@+id/hunters_path"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/aqua_simulacra"
+                    android:id="@+id/aqua_simulacra"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/polar_star"
+                    android:id="@+id/polar_star"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/staff_of_the_scarlet_sands"
+                    android:id="@+id/staff_of_the_scarlet_sands"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
+                    android:src="@drawable/calamity_queller"
+                    android:id="@+id/calamity_queller"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFive"
                     android:src="@drawable/light_of_foliar_incision"
                     android:id="@+id/light_of_foliar_incision"/>
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -1266,6 +1286,42 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="18dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/mouuns_moon"
+                    android:id="@+id/mouuns_moon"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/kings_squire"
+                    android:id="@+id/kings_squire"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/ibis_piercer"
+                    android:id="@+id/ibis_piercer"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/hamayumi"
+                    android:id="@+id/hamayumi"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/fading_twilight"
+                    android:id="@+id/fading_twilight"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/end_of_the_line"
+                    android:id="@+id/end_of_the_line"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/moonpiercer"
+                    android:id="@+id/moonpiercer"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/missive_windspear"
+                    android:id="@+id/missive_windspear"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    style="@style/CircleImageViewFour"
+                    android:src="@drawable/wavebreakers_fin"
+                    android:id="@+id/wavebreakers_fin"/>
                 <de.hdodenhof.circleimageview.CircleImageView
                     style="@style/CircleImageViewFour"
                     android:src="@drawable/toukabou_shigure"

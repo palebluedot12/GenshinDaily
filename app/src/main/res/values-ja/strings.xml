@@ -212,4 +212,13 @@
     <string name="toukabou_shigure">Toukabou Shigure</string>
     <string name="kagotsurube_isshin">Kagotsurube Isshin</string>
     <string name="sapwood_blade">Sapwood Blade</string>
+    <string name="mouuns_moon">Mouun\'s Moon</string>
+    <string name="polar_star">Polar Star</string>
+    <string name="aqua_simulacra">Aqua Simulacra</string>
+    <string name="hunters_path">Hunter\'s Path</string>
+    <string name="fading_twilight">Fading Twilight</string>
+    <string name="ibis_piercer">Ibis Piercer</string>
+    <string name="end_of_the_line">End of the Line</string>
+    <string name="hamayumi">Hamayumi</string>
+    <string name="kings_squire">King\'s Squire</string>
 </resources>
