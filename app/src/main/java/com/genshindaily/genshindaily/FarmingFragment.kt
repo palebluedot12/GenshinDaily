@@ -3,10 +3,8 @@ package com.genshindaily.genshindaily
 
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Build
@@ -16,14 +14,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.os.bundleOf
 import com.google.android.gms.ads.AdRequest
-import com.kakao.adfit.ads.AdListener
 import kotlinx.android.synthetic.main.fragment_farming.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 
 
@@ -36,6 +30,7 @@ class FarmingFragment : Fragment() {
     var Textflag_starsilver = 0
     var Textflag_electro_crystal = 0
     var Textflag_crystal_chunk = 0
+    var Textflag_amethyst_lump = 0
     var Textflag_gori_gori = 0
     var Textflag_nakrak = 0
     var Textflag_small_lamp_grass = 0
@@ -61,6 +56,18 @@ class FarmingFragment : Fragment() {
     var Textflag_fish_mond = 0
     var Textflag_fish_liyue = 0
     var Textflag_fish_inazuma = 0
+    var Textflag_fluorescent_fungus = 0
+
+    //수메르
+    var Textflag_hena_berry = 0
+    var Textflag_kalpalata_lotus = 0
+    var Textflag_mourning_flower = 0
+    var Textflag_nilotpala_lotus = 0
+    var Textflag_padisarah = 0
+    var Textflag_rukkhashava_mushrooms = 0
+    var Textflag_sand_grease_pupa = 0
+    var Textflag_scarab = 0
+    var Textflag_trishiraite = 0
 
     var isPurchasedRemoveAds = false
 
@@ -88,22 +95,22 @@ class FarmingFragment : Fragment() {
         if(!isPurchasedRemoveAds) {
             adView2.loadAd(AdRequest.Builder().build()) //구글광고
 
-            //카카오 광고
-            kakaoAdview2.run {
-                setClientId("DAN-jx2L2xstDOGjpBcZ")
-                setAdListener(object : AdListener {
-                    override fun onAdLoaded() {
-                        //JoLog.d("ad loaded")
-                    }
-
-                    override fun onAdFailed(p0: Int) {
-                        //JoLog.d("failed to upload")
-                    }
-
-                    override fun onAdClicked() {}
-                })
-                loadAd()
-            }
+//            //카카오 광고
+//            kakaoAdview2.run {
+//                setClientId("DAN-jx2L2xstDOGjpBcZ")
+//                setAdListener(object : AdListener {
+//                    override fun onAdLoaded() {
+//                        //JoLog.d("ad loaded")
+//                    }
+//
+//                    override fun onAdFailed(p0: Int) {
+//                        //JoLog.d("failed to upload")
+//                    }
+//
+//                    override fun onAdClicked() {}
+//                })
+//                loadAd()
+//            }
 
         }
         //알람 스위치
@@ -143,7 +150,17 @@ class FarmingFragment : Fragment() {
                 alarm_off(30, activity?.getString(R.string.fish_mond).toString())
                 alarm_off(31, activity?.getString(R.string.fish_liyue).toString())
                 alarm_off(32, activity?.getString(R.string.fish_inazuma).toString())
-
+                alarm_off(33, activity?.getString(R.string.fluorescent_fungus).toString())
+                alarm_off(34, activity?.getString(R.string.hena_berry).toString())
+                alarm_off(35, activity?.getString(R.string.kalpalata_lotus).toString())
+                alarm_off(36, activity?.getString(R.string.mourning_flower).toString())
+                alarm_off(37, activity?.getString(R.string.nilotpala_lotus).toString())
+                alarm_off(38, activity?.getString(R.string.padisarah).toString())
+                alarm_off(39, activity?.getString(R.string.rukkhashava_mushrooms).toString())
+                alarm_off(40, activity?.getString(R.string.sand_grease_pupa).toString())
+                alarm_off(41, activity?.getString(R.string.scarab).toString())
+                alarm_off(42, activity?.getString(R.string.trishiraite).toString())
+                alarm_off(43, activity?.getString(R.string.amethyst_lump).toString())
             }
         }
 
@@ -166,7 +183,7 @@ class FarmingFragment : Fragment() {
         })
         starsilver.setOnClickListener(View.OnClickListener {
             onTextClicked_starsilver()
-            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.starsilver).toString(),5) else alarm_off(5,activity?.getString(R.string.starsilver).toString())
+            if(Textflag_starsilver == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.starsilver).toString(),5) else alarm_off(5,activity?.getString(R.string.starsilver).toString())
         })
         electro_crystal.setOnClickListener(View.OnClickListener {
             onTextClicked_electro_crystal()
@@ -202,7 +219,7 @@ class FarmingFragment : Fragment() {
         })
         yesang_flower.setOnClickListener(View.OnClickListener {
             onTextClicked_yesang_flower()
-            if(Textflag_iron_chunk == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.silk_flower).toString(),14) else alarm_off(14,activity?.getString(R.string.silk_flower).toString())
+            if(Textflag_yesang_flower == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.silk_flower).toString(),14) else alarm_off(14,activity?.getString(R.string.silk_flower).toString())
         })
         yuri_lily.setOnClickListener(View.OnClickListener {
             onTextClicked_yuri_iliy()
@@ -223,54 +240,39 @@ class FarmingFragment : Fragment() {
         tongtong.setOnClickListener(View.OnClickListener {
             onTextClicked_tongtong()
             if(Textflag_tongtong == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.calla_lily).toString(),19) else alarm_off(19,activity?.getString(R.string.calla_lily).toString())
-
         })
         windwheel_aster.setOnClickListener(View.OnClickListener {
             onTextClicked_windwheel()
             if(Textflag_windwheel == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.windwheel_aster).toString(),20) else alarm_off(20,activity?.getString(R.string.windwheel_aster).toString())
         })
-
         crystal_golsu.setOnClickListener(View.OnClickListener {
             onTextClicked_crystal_golsu()
             if(Textflag_crystal_golsu == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.crystal_golsu).toString(),21) else alarm_off(21,activity?.getString(R.string.crystal_golsu).toString())
-
         })
-
         ghost_pungdeng.setOnClickListener(View.OnClickListener {
             onTextClicked_ghost_pungdeng()
             if(Textflag_ghost_pungdeng == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.ghost_pungdeng).toString(),22) else alarm_off(22,activity?.getString(R.string.ghost_pungdeng).toString())
-
         })
-
         cherry_blossom_sugu.setOnClickListener(View.OnClickListener {
             onTextClicked_cherry_blossom_sugu()
             if(Textflag_cherry_blossom_sugu == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.cherry_blossom).toString(),23) else alarm_off(23,activity?.getString(R.string.cherry_blossom).toString())
-
         })
-
         hyul_gok.setOnClickListener(View.OnClickListener {
             onTextClicked_hyul_gok()
             if(Textflag_hyul_gok == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.hyulgok).toString(),24) else alarm_off(24,activity?.getString(R.string.hyulgok).toString())
-
         })
-
         yulimple.setOnClickListener(View.OnClickListener {
             onTextClicked_yulimple()
             if(Textflag_yulimple == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.yulimple).toString(),25) else alarm_off(25,activity?.getString(R.string.yulimple).toString())
-
         })
-
         sea_bulocho.setOnClickListener(View.OnClickListener {
             onTextClicked_sea_bulocho()
             if(Textflag_sea_bulocho == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.sea_bulocho).toString(),26) else alarm_off(26,activity?.getString(R.string.sea_bulocho).toString())
-
         })
-
         sanho_pearl.setOnClickListener(View.OnClickListener {
             onTextClicked_sanho_pearl()
             if(Textflag_sanho_pearl == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.sanho_pearl).toString(),27) else alarm_off(27,activity?.getString(R.string.sanho_pearl).toString())
         })
-
         amakumocho.setOnClickListener(View.OnClickListener {
             onTextClicked_amakumocho()
             if(Textflag_amakumocho == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.amakumocho).toString(),28) else alarm_off(28,activity?.getString(R.string.amakumocho).toString())
@@ -294,12 +296,66 @@ class FarmingFragment : Fragment() {
             if(Textflag_fish_inazuma == 1 && farming_switch.isChecked) alarm_on(259200,activity?.getString(R.string.fish_inazuma).toString(),32)
             else alarm_off(32,activity?.getString(R.string.fish_inazuma).toString())
         })
+        fluorescent_fungus.setOnClickListener(View.OnClickListener {
+            onTextClicked_fluorescent_fungus()
+            if(Textflag_fluorescent_fungus == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.fluorescent_fungus).toString(),33)
+            else alarm_off(33,activity?.getString(R.string.fluorescent_fungus).toString())
+        })
+        hena_berry.setOnClickListener(View.OnClickListener {
+            onTextClicked_hena_berry()
+            if(Textflag_hena_berry == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.hena_berry).toString(),34)
+            else alarm_off(34,activity?.getString(R.string.hena_berry).toString())
+        })
+        kalpalata_lotus.setOnClickListener(View.OnClickListener {
+            onTextClicked_kalpalata_lotus()
+            if(Textflag_kalpalata_lotus == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.kalpalata_lotus).toString(),35)
+            else alarm_off(35,activity?.getString(R.string.kalpalata_lotus).toString())
+        })
+        mourning_flower.setOnClickListener(View.OnClickListener {
+            onTextClicked_mourning_flower()
+            if(Textflag_mourning_flower == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.mourning_flower).toString(),36)
+            else alarm_off(36,activity?.getString(R.string.mourning_flower).toString())
+        })
+        nilotpala_lotus.setOnClickListener(View.OnClickListener {
+            onTextClicked_nilotpala_lotus()
+            if(Textflag_nilotpala_lotus == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.nilotpala_lotus).toString(),37)
+            else alarm_off(37,activity?.getString(R.string.nilotpala_lotus).toString())
+        })
+        padisarah.setOnClickListener(View.OnClickListener {
+            onTextClicked_padisarah()
+            if(Textflag_padisarah == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.padisarah).toString(),38)
+            else alarm_off(38,activity?.getString(R.string.padisarah).toString())
+        })
+        rukkhashava_mushrooms.setOnClickListener(View.OnClickListener {
+            onTextClicked_rukkhashava_mushrooms()
+            if(Textflag_rukkhashava_mushrooms == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.rukkhashava_mushrooms).toString(),39)
+            else alarm_off(39,activity?.getString(R.string.rukkhashava_mushrooms).toString())
+        })
+        sand_grease_pupa.setOnClickListener(View.OnClickListener {
+            onTextClicked_sand_grease_pupa()
+            if(Textflag_sand_grease_pupa == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.sand_grease_pupa).toString(),40)
+            else alarm_off(40,activity?.getString(R.string.sand_grease_pupa).toString())
+        })
+        scarab.setOnClickListener(View.OnClickListener {
+            onTextClicked_scarab()
+            if(Textflag_scarab == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.scarab).toString(),41)
+            else alarm_off(34,activity?.getString(R.string.scarab).toString())
+        })
+        trishiraite.setOnClickListener(View.OnClickListener {
+            onTextClicked_trishiraite()
+            if(Textflag_trishiraite == 1 && farming_switch.isChecked) alarm_on(172800,activity?.getString(R.string.trishiraite).toString(),42)
+            else alarm_off(34,activity?.getString(R.string.trishiraite).toString())
+        })
+        amethyst_lump.setOnClickListener(View.OnClickListener {
+            onTextClicked_amethyst_lump()
+            if(Textflag_amethyst_lump == 1 && farming_switch.isChecked) alarm_on(259200,activity?.getString(R.string.amethyst_lump).toString(),43) else alarm_off(43,activity?.getString(R.string.amethyst_lump).toString())
+        })
 
     }//onViewCreated
 
     override fun onStop() {
         super.onStop()
-        kakaoAdview?.destroy()
+//        kakaoAdview?.destroy()
         saveData()
     }
 
@@ -307,8 +363,9 @@ class FarmingFragment : Fragment() {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("이름", name)
         intent.putExtra("id", id)
-        return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
     }
+
 
     private fun alarm_on(time : Int, param : String,id:Int) {
 
@@ -345,7 +402,6 @@ class FarmingFragment : Fragment() {
             alarmManager.cancel(this)
         }
     }
-
     private fun onTextClicked_windwheel() {
         if(Textflag_windwheel == 0) {
             windwheel_aster.setPaintFlags(windwheel_aster.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -362,7 +418,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_windwheel_aster.text = ""
         }
     }
-
     private fun onTextClicked_tongtong() {
         if(Textflag_tongtong == 0) {
             tongtong.setPaintFlags(tongtong.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -379,7 +434,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_tongtong.text = ""
         }
     }
-
     private fun onTextClicked_qingxin() {
         if(Textflag_qingxin == 0) {
             qingxin.setPaintFlags(qingxin.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -388,7 +442,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_qingxin.text = current_time(48)
 
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             qingxin.setPaintFlags(0);
             qingxin.setTextColor(Color.parseColor("#000000"))
@@ -396,7 +449,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_qingxin.text = ""
         }
     }
-
     private fun onTextClicked_jueyun_chili() {
         if(Textflag_jueyun_chili == 0) {
             jueyun_chili.setPaintFlags(jueyun_chili.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -405,7 +457,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_jueyun_chili.text = current_time(48)
 
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             jueyun_chili.setPaintFlags(0);
             jueyun_chili.setTextColor(Color.parseColor("#000000"))
@@ -413,7 +464,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_jueyun_chili.text = ""
         }
     }
-
     private fun onTextClicked_yuri_zumeoni() {
         if(Textflag_yuri_zumeoni == 0) {
             yuri_zumeoni.setPaintFlags(yuri_zumeoni.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -422,7 +472,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_yuri_zumeoni.text = current_time(48)
 
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             yuri_zumeoni.setPaintFlags(0);
             yuri_zumeoni.setTextColor(Color.parseColor("#000000"))
@@ -430,16 +479,13 @@ class FarmingFragment : Fragment() {
             farming_afterhour_yuri_zumeoni.text = ""
         }
     }
-
     private fun onTextClicked_yuri_iliy() {
         if(Textflag_yuri_lily == 0) {
             yuri_lily.setPaintFlags(yuri_lily.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
             yuri_lily.setTextColor(Color.parseColor("#939597"))
             Textflag_yuri_lily = 1
             farming_afterhour_yuri_iliy.text = current_time(48)
-
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             yuri_lily.setPaintFlags(0);
             yuri_lily.setTextColor(Color.parseColor("#000000"))
@@ -447,7 +493,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_yuri_iliy.text = ""
         }
     }
-
     private fun onTextClicked_yesang_flower() {
         if(Textflag_yesang_flower == 0) {
             yesang_flower.setPaintFlags(yesang_flower.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -456,7 +501,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_yesang_flower.text = current_time(48)
 
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             yesang_flower.setPaintFlags(0);
             yesang_flower.setTextColor(Color.parseColor("#000000"))
@@ -464,7 +508,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_yesang_flower.text = ""
         }
     }
-
     private fun onTextClicked_cecilia() {
         if(Textflag_cecilia == 0) {
             cecilia.setPaintFlags(cecilia.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -473,7 +516,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_cecilia.text = current_time(48)
 
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             cecilia.setPaintFlags(0);
             cecilia.setTextColor(Color.parseColor("#000000"))
@@ -481,7 +523,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_cecilia.text = ""
         }
     }
-
     private fun onTextClicked_mushroom() {
         if(Textflag_mushroom == 0) {
             mushroom.setPaintFlags(mushroom.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -490,7 +531,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_mushroom.text = current_time(48)
 
         }
-        //다시 클릭하면 취소선 지움. 이거 요일 바뀔 때 취소선 돼있으면 자동으로 지우는 기능 추가.
         else{
             mushroom.setPaintFlags(0);
             mushroom.setTextColor(Color.parseColor("#000000"))
@@ -498,7 +538,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_mushroom.text = ""
         }
     }
-
     private fun onTextClicked_dandelion_seed() {
         if(Textflag_dandelion_seed == 0) {
             dandelion_seed.setPaintFlags(dandelion_seed.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -515,7 +554,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_dandelion_seed.text = ""
         }
     }
-
     private fun onTextClicked_small_lamp_grass() {
         if(Textflag_small_lamp_grass == 0) {
             small_lamp_grass.setPaintFlags(small_lamp_grass.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -532,7 +570,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_small_lamp_grass.text = ""
         }
     }
-
     private fun onTextClicked_nakrak() {
         if(Textflag_nakrak == 0) {
             nakrak.setPaintFlags(nakrak.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -549,7 +586,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_nakrak.text = ""
         }
     }
-
     private fun onTextClicked_gori_gori() {
         if(Textflag_gori_gori == 0) {
             gori_gori.setPaintFlags(gori_gori.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -566,7 +602,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_gori_gori.text = ""
         }
     }
-
     private fun onTextClicked_crystal_chunk() {
         if(Textflag_crystal_chunk == 0) {
             crystal_chunk.setPaintFlags(crystal_chunk.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -583,7 +618,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_crystal_chunk.text = ""
         }
     }
-
     private fun onTextClicked_electro_crystal() {
         if(Textflag_electro_crystal == 0) {
             electro_crystal.setPaintFlags(electro_crystal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -599,7 +633,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_electro_crystal.text = ""
         }
     }
-
     private fun onTextClicked_starsilver() {
         if(Textflag_starsilver == 0) {
             starsilver.setPaintFlags(starsilver.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -614,7 +647,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_starsilver.text = ""
         }
     }
-
     private fun onTextClicked_yabak() {
         if(Textflag_yabak == 0) {
             yabak.setPaintFlags(yabak.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -631,7 +663,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_yabak.text = ""
         }
     }
-
     private fun onTextClicked_cor_lapis() {
         if(Textflag_cor_lapis == 0) {
             cor_lapis.setPaintFlags(cor_lapis.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -648,7 +679,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_cor_lapis.text = ""
         }
     }
-
     private fun onTextClicked_white_iron_chunk() {
         if(Textflag_white_iron_chunk == 0) {
             white_iron_chunk.setPaintFlags(white_iron_chunk.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -664,7 +694,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_white_iron_chunk.text = ""
         }
     }
-
     private fun onTextClicked_ghost_pungdeng() {
         if(Textflag_ghost_pungdeng == 0) {
             ghost_pungdeng.setPaintFlags(ghost_pungdeng.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -680,8 +709,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_ghost_pungdeng.text = ""
         }
     }
-
-
     fun onTextClicked_iron_chunk(){
         if(Textflag_iron_chunk == 0) {
             iron_chunk.setPaintFlags(iron_chunk.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -699,7 +726,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_iron_chunk.text = ""
         }
     }
-
     private fun onTextClicked_crystal_golsu() {
         if(Textflag_crystal_golsu == 0) {
             crystal_golsu.setPaintFlags(crystal_golsu.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -715,7 +741,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_crystal_golsu.text = ""
         }
     }
-
     private fun onTextClicked_sanho_pearl() {
         if(Textflag_sanho_pearl == 0) {
             sanho_pearl.setPaintFlags(sanho_pearl.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -731,7 +756,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_sanho_pearl.text = ""
         }
     }
-
     private fun onTextClicked_cherry_blossom_sugu() {
         if(Textflag_cherry_blossom_sugu == 0) {
             cherry_blossom_sugu.setPaintFlags(cherry_blossom_sugu.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -747,7 +771,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_cherry_blossom_sugu.text = ""
         }
     }
-
     private fun onTextClicked_yulimple() {
         if(Textflag_yulimple == 0) {
             yulimple.setPaintFlags(yulimple.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -763,7 +786,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_yulimple.text = ""
         }
     }
-
     private fun onTextClicked_hyul_gok() {
         if(Textflag_hyul_gok == 0) {
             hyul_gok.setPaintFlags(hyul_gok.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -779,7 +801,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_hyul_gok.text = ""
         }
     }
-
     private fun onTextClicked_amakumocho() {
         if(Textflag_amakumocho == 0) {
             amakumocho.setPaintFlags(amakumocho.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -795,7 +816,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_amakumocho.text = ""
         }
     }
-
     private fun onTextClicked_sea_bulocho() {
         if(Textflag_sea_bulocho == 0) {
             sea_bulocho.setPaintFlags(sea_bulocho.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -811,7 +831,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_sea_bulocho.text = ""
         }
     }
-
     private fun onTextClicked_parametric_transformer() {
         if(Textflag_parametic_transformer == 0) {
             parametric_transformer.setPaintFlags(parametric_transformer.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -827,7 +846,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_parametric_transformer.text = ""
         }
     }
-
     private fun onTextClicked_fish_mond() {
         if(Textflag_fish_mond == 0) {
             fish_mond.setPaintFlags(fish_mond.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -843,7 +861,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_fish_mond.text = ""
         }
     }
-
     private fun onTextClicked_fish_liyue() {
         if(Textflag_fish_liyue == 0) {
             fish_liyue.setPaintFlags(fish_liyue.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -859,7 +876,6 @@ class FarmingFragment : Fragment() {
             farming_afterhour_fish_liyue.text = ""
         }
     }
-
     private fun onTextClicked_fish_inazuma() {
         if(Textflag_fish_inazuma == 0) {
             fish_inazuma.setPaintFlags(fish_inazuma.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -875,6 +891,170 @@ class FarmingFragment : Fragment() {
             farming_afterhour_fish_inazuma.text = ""
         }
     }
+    private fun onTextClicked_amethyst_lump() {
+        if(Textflag_amethyst_lump == 0) {
+            amethyst_lump.setPaintFlags(amethyst_lump.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            amethyst_lump.setTextColor(Color.parseColor("#939597"))
+            Textflag_amethyst_lump = 1
+            farming_afterhour_amethyst_lump.text = current_time(72)
+        }
+        else{
+            amethyst_lump.setPaintFlags(0);
+            amethyst_lump.setTextColor(Color.parseColor("#000000"))
+            Textflag_amethyst_lump = 0
+            farming_afterhour_amethyst_lump.text = ""
+        }
+    }
+    private fun onTextClicked_fluorescent_fungus() {
+        if(Textflag_fluorescent_fungus == 0) {
+            fluorescent_fungus.setPaintFlags(fluorescent_fungus.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            fluorescent_fungus.setTextColor(Color.parseColor("#939597"))
+            Textflag_fluorescent_fungus = 1
+            farming_afterhour_fluorescent_fungus.text = current_time(48)
+        }
+        else{
+            fluorescent_fungus.setPaintFlags(0);
+            fluorescent_fungus.setTextColor(Color.parseColor("#000000"))
+            Textflag_fluorescent_fungus = 0
+            farming_afterhour_fluorescent_fungus.text = ""
+        }
+    }
+    private fun onTextClicked_hena_berry() {
+        if(Textflag_hena_berry == 0) {
+            hena_berry.setPaintFlags(hena_berry.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            hena_berry.setTextColor(Color.parseColor("#939597"))
+            Textflag_hena_berry = 1
+            farming_afterhour_hena_berry.text = current_time(48)
+
+        }
+        else{
+            hena_berry.setPaintFlags(0);
+            hena_berry.setTextColor(Color.parseColor("#000000"))
+            Textflag_hena_berry = 0
+            farming_afterhour_hena_berry.text = ""
+        }
+    }
+    private fun onTextClicked_kalpalata_lotus() {
+        if(Textflag_kalpalata_lotus == 0) {
+            kalpalata_lotus.setPaintFlags(kalpalata_lotus.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            kalpalata_lotus.setTextColor(Color.parseColor("#939597"))
+            Textflag_kalpalata_lotus = 1
+            farming_afterhour_kalpalata_lotus.text = current_time(48)
+
+        }
+        else{
+            kalpalata_lotus.setPaintFlags(0);
+            kalpalata_lotus.setTextColor(Color.parseColor("#000000"))
+            Textflag_kalpalata_lotus = 0
+            farming_afterhour_kalpalata_lotus.text = ""
+        }
+    }
+    private fun onTextClicked_mourning_flower() {
+        if(Textflag_mourning_flower == 0) {
+            mourning_flower.setPaintFlags(mourning_flower.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            mourning_flower.setTextColor(Color.parseColor("#939597"))
+            Textflag_mourning_flower = 1
+            farming_afterhour_mourning_flower.text = current_time(48)
+
+        }
+        else{
+            mourning_flower.setPaintFlags(0);
+            mourning_flower.setTextColor(Color.parseColor("#000000"))
+            Textflag_mourning_flower = 0
+            farming_afterhour_mourning_flower.text = ""
+        }
+    }
+    private fun onTextClicked_nilotpala_lotus() {
+        if(Textflag_nilotpala_lotus == 0) {
+            nilotpala_lotus.setPaintFlags(nilotpala_lotus.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            nilotpala_lotus.setTextColor(Color.parseColor("#939597"))
+            Textflag_nilotpala_lotus = 1
+            farming_afterhour_nilotpala_lotus.text = current_time(48)
+
+        }
+        else{
+            nilotpala_lotus.setPaintFlags(0);
+            nilotpala_lotus.setTextColor(Color.parseColor("#000000"))
+            Textflag_nilotpala_lotus = 0
+            farming_afterhour_nilotpala_lotus.text = ""
+        }
+    }
+    private fun onTextClicked_padisarah() {
+        if(Textflag_padisarah == 0) {
+            padisarah.setPaintFlags(padisarah.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            padisarah.setTextColor(Color.parseColor("#939597"))
+            Textflag_padisarah = 1
+            farming_afterhour_padisarah.text = current_time(48)
+
+        }
+        else{
+            padisarah.setPaintFlags(0);
+            padisarah.setTextColor(Color.parseColor("#000000"))
+            Textflag_padisarah = 0
+            farming_afterhour_padisarah.text = ""
+        }
+    }
+    private fun onTextClicked_rukkhashava_mushrooms() {
+        if(Textflag_rukkhashava_mushrooms == 0) {
+            rukkhashava_mushrooms.setPaintFlags(rukkhashava_mushrooms.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            rukkhashava_mushrooms.setTextColor(Color.parseColor("#939597"))
+            Textflag_rukkhashava_mushrooms = 1
+            farming_afterhour_rukkhashava_mushrooms.text = current_time(48)
+
+        }
+        else{
+            rukkhashava_mushrooms.setPaintFlags(0);
+            rukkhashava_mushrooms.setTextColor(Color.parseColor("#000000"))
+            Textflag_rukkhashava_mushrooms = 0
+            farming_afterhour_rukkhashava_mushrooms.text = ""
+        }
+    }
+    private fun onTextClicked_sand_grease_pupa() {
+        if(Textflag_sand_grease_pupa == 0) {
+            sand_grease_pupa.setPaintFlags(sand_grease_pupa.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            sand_grease_pupa.setTextColor(Color.parseColor("#939597"))
+            Textflag_rukkhashava_mushrooms = 1
+            farming_afterhour_sand_grease_pupa.text = current_time(48)
+
+        }
+        else{
+            sand_grease_pupa.setPaintFlags(0);
+            sand_grease_pupa.setTextColor(Color.parseColor("#000000"))
+            Textflag_sand_grease_pupa = 0
+            farming_afterhour_sand_grease_pupa.text = ""
+        }
+    }
+    private fun onTextClicked_scarab() {
+        if(Textflag_scarab == 0) {
+            scarab.setPaintFlags(scarab.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            scarab.setTextColor(Color.parseColor("#939597"))
+            Textflag_scarab = 1
+            farming_afterhour_scarab.text = current_time(48)
+
+        }
+        else{
+            scarab.setPaintFlags(0);
+            scarab.setTextColor(Color.parseColor("#000000"))
+            Textflag_scarab = 0
+            farming_afterhour_scarab.text = ""
+        }
+    }
+    private fun onTextClicked_trishiraite() {
+        if(Textflag_trishiraite == 0) {
+            trishiraite.setPaintFlags(trishiraite.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
+            trishiraite.setTextColor(Color.parseColor("#939597"))
+            Textflag_trishiraite = 1
+            farming_afterhour_trishiraite.text = current_time(48)
+
+        }
+        else{
+            trishiraite.setPaintFlags(0);
+            trishiraite.setTextColor(Color.parseColor("#000000"))
+            Textflag_trishiraite = 0
+            farming_afterhour_trishiraite.text = ""
+        }
+    }
+
 
     fun current_time(material : Int): String {
         val instance = Calendar.getInstance()
@@ -1158,6 +1338,9 @@ class FarmingFragment : Fragment() {
         edit.putInt("crystal_chunk_flag", Textflag_crystal_chunk)
         edit.putInt("crystal_chunk_status", crystal_chunk.paintFlags)
         edit.putString("crystal_chunk_aftertime", farming_afterhour_crystal_chunk.text as String?)
+        edit.putInt("amethyst_lump", Textflag_amethyst_lump)
+        edit.putInt("amethyst_lump_status", amethyst_lump.paintFlags)
+        edit.putString("amethyst_lump_aftertime", farming_afterhour_amethyst_lump.text as String?)
         edit.putInt("gori_gori_flag", Textflag_gori_gori)
         edit.putInt("gori_gori_status", gori_gori.paintFlags)
         edit.putString("gori_gori_aftertime", farming_afterhour_gori_gori.text as String?)
@@ -1221,9 +1404,9 @@ class FarmingFragment : Fragment() {
         edit.putInt("amakumocho_flag", Textflag_amakumocho)
         edit.putInt("amakumocho_status", amakumocho.paintFlags)
         edit.putString("amakumocho_aftertime", farming_afterhour_amakumocho.text as String?)
-        edit.putInt("parametic_transformer_flag", Textflag_parametic_transformer)
-        edit.putInt("parametic_transformer_status", parametric_transformer.paintFlags)
-        edit.putString("parametic_transformer_aftertime", farming_afterhour_parametric_transformer.text as String?)
+        edit.putInt("parametric_transformer_flag", Textflag_parametic_transformer)
+        edit.putInt("parametric_transformer_status", parametric_transformer.paintFlags)
+        edit.putString("parametric_transformer_aftertime", farming_afterhour_parametric_transformer.text as String?)
         edit.putInt("fish_mond_flag", Textflag_fish_mond)
         edit.putInt("fish_mond_status", fish_mond.paintFlags)
         edit.putString("fish_mond_aftertime", farming_afterhour_fish_mond.text as String?)
@@ -1233,263 +1416,357 @@ class FarmingFragment : Fragment() {
         edit.putInt("fish_inazuma_flag", Textflag_fish_inazuma)
         edit.putInt("fish_inazuma_status", fish_inazuma.paintFlags)
         edit.putString("fish_inazuma_aftertime", farming_afterhour_fish_inazuma.text as String?)
-
+        edit.putInt("fish_inazuma_flag", Textflag_fish_inazuma)
+        edit.putInt("fish_inazuma_status", fish_inazuma.paintFlags)
+        edit.putString("fish_inazuma_aftertime", farming_afterhour_fish_inazuma.text as String?)
+        edit.putInt("fluorescent_fungus_flag", Textflag_fluorescent_fungus)
+        edit.putInt("fluorescent_fungus_status", fluorescent_fungus.paintFlags)
+        edit.putString("fluorescent_fungus_aftertime", farming_afterhour_fluorescent_fungus.text as String?)
+        edit.putInt("hena_berry_flag", Textflag_hena_berry)
+        edit.putInt("hena_berry_status", hena_berry.paintFlags)
+        edit.putString("hena_berry_aftertime", farming_afterhour_hena_berry.text as String?)
+        edit.putInt("kalpalata_lotus_flag", Textflag_kalpalata_lotus)
+        edit.putInt("kalpalata_lotus_status", kalpalata_lotus.paintFlags)
+        edit.putString("kalpalata_lotus_aftertime", farming_afterhour_kalpalata_lotus.text as String?)
+        edit.putInt("mourning_flower_flag", Textflag_mourning_flower)
+        edit.putInt("mourning_flower_status", mourning_flower.paintFlags)
+        edit.putString("mourning_flower_aftertime", farming_afterhour_mourning_flower.text as String?)
+        edit.putInt("nilotpala_lotus_flag", Textflag_nilotpala_lotus)
+        edit.putInt("nilotpala_lotus_status", nilotpala_lotus.paintFlags)
+        edit.putString("nilotpala_lotus_aftertime", farming_afterhour_nilotpala_lotus.text as String?)
+        edit.putInt("padisarah_flag", Textflag_padisarah)
+        edit.putInt("padisarah_status", padisarah.paintFlags)
+        edit.putString("padisarah_aftertime", farming_afterhour_padisarah.text as String?)
+        edit.putInt("rukkhashava_mushrooms_flag", Textflag_rukkhashava_mushrooms)
+        edit.putInt("rukkhashava_mushrooms_status", rukkhashava_mushrooms.paintFlags)
+        edit.putString("rukkhashava_mushrooms_aftertime", farming_afterhour_rukkhashava_mushrooms.text as String?)
+        edit.putInt("sand_grease_pupa_flag", Textflag_sand_grease_pupa)
+        edit.putInt("sand_grease_pupa_status", sand_grease_pupa.paintFlags)
+        edit.putString("sand_grease_pupa_aftertime", farming_afterhour_sand_grease_pupa.text as String?)
+        edit.putInt("scarab_flag", Textflag_scarab)
+        edit.putInt("scarab_status", scarab.paintFlags)
+        edit.putString("scarab_aftertime", farming_afterhour_scarab.text as String?)
+        edit.putInt("trishiraite_flag", Textflag_trishiraite)
+        edit.putInt("trishiraite_status", trishiraite.paintFlags)
+        edit.putString("trishiraite_aftertime", farming_afterhour_trishiraite.text as String?)
         edit.putBoolean("farming_switch_isChecked", farming_switch.isChecked)
 //        edit.putString("weekly_flag", weeklysavedday)
 //        edit.putString("weekly_date_flag", weeklysaveddate)
         edit.apply()
     }
 
+    data class Item(val key: String, var flag: Int, val view: TextView, var afterhour: TextView)
+
     private fun loadData() {
         val pref = requireActivity().getSharedPreferences("pref", 0)
 
         isPurchasedRemoveAds = pref.getBoolean("isPurchasedRemoveAds", isPurchasedRemoveAds) //광고제거구매여부
 
-        Textflag_iron_chunk = pref.getInt("iron_chunk_flag", 0)
-        iron_chunk.paintFlags = pref.getInt("iron_chunk_status", 0)
-        farming_afterhour_iron_chunk.text = pref.getString("iron_chunk_aftertime", "")
-        if(Textflag_iron_chunk == 1) {
-            iron_chunk.setTextColor(Color.parseColor("#939597"))
-        }
+        val items = arrayOf(
+            Item("iron_chunk", Textflag_iron_chunk, iron_chunk, farming_afterhour_iron_chunk),
+            Item("white_iron_chunk", Textflag_white_iron_chunk, white_iron_chunk, farming_afterhour_white_iron_chunk),
+            Item("cor_lapis", Textflag_cor_lapis, cor_lapis, farming_afterhour_cor_lapis),
+            Item("yabak", Textflag_yabak, yabak, farming_afterhour_yabak),
+            Item("starsilver", Textflag_starsilver, starsilver, farming_afterhour_starsilver),
+            Item("electro_crystal", Textflag_electro_crystal, electro_crystal, farming_afterhour_electro_crystal),
+            Item("crystal_chunk", Textflag_crystal_chunk, crystal_chunk, farming_afterhour_crystal_chunk),
+            Item("amethyst_lump", Textflag_amethyst_lump, amethyst_lump, farming_afterhour_amethyst_lump),
+            Item("gori_gori", Textflag_gori_gori, gori_gori, farming_afterhour_gori_gori),
+            Item("nakrak", Textflag_nakrak, nakrak, farming_afterhour_nakrak),
+            Item("small_lamp_grass", Textflag_small_lamp_grass, small_lamp_grass, farming_afterhour_small_lamp_grass),
+            Item("dandelion_seed", Textflag_dandelion_seed, dandelion_seed, farming_afterhour_dandelion_seed),
+            Item("mushroom", Textflag_mushroom, mushroom, farming_afterhour_mushroom),
+            Item("cecilia", Textflag_cecilia, cecilia, farming_afterhour_cecilia),
+            Item("yesang_flower", Textflag_yesang_flower, yesang_flower, farming_afterhour_yesang_flower),
+            Item("yuri_lily", Textflag_yuri_lily, yuri_lily, farming_afterhour_yuri_iliy),
+            Item("yuri_zumeoni", Textflag_yuri_zumeoni, yuri_zumeoni, farming_afterhour_yuri_zumeoni),
+            Item("jueyun_chili", Textflag_jueyun_chili, jueyun_chili, farming_afterhour_jueyun_chili),
+            Item("qingxin", Textflag_qingxin, qingxin, farming_afterhour_qingxin),
+            Item("tongtong", Textflag_tongtong, tongtong, farming_afterhour_tongtong),
+            Item("windwheel", Textflag_windwheel, windwheel_aster, farming_afterhour_windwheel_aster),
+            Item("crystal_chunk", Textflag_crystal_chunk, crystal_chunk, farming_afterhour_crystal_chunk),
+            Item("ghost_pungdeng", Textflag_ghost_pungdeng, ghost_pungdeng, farming_afterhour_ghost_pungdeng),
+            Item("cherry_blossom_sugu", Textflag_cherry_blossom_sugu, cherry_blossom_sugu, farming_afterhour_cherry_blossom_sugu),
+            Item("crystal_golsu", Textflag_crystal_golsu, crystal_golsu, farming_afterhour_crystal_golsu),
+            Item("hyul_gok", Textflag_hyul_gok, hyul_gok, farming_afterhour_hyul_gok),
+            Item("yulimple", Textflag_yulimple, yulimple, farming_afterhour_yulimple),
+            Item("sea_bulocho", Textflag_sea_bulocho, sea_bulocho, farming_afterhour_sea_bulocho),
+            Item("sanho_pearl", Textflag_sanho_pearl, sanho_pearl, farming_afterhour_sanho_pearl),
+            Item("amakumocho", Textflag_amakumocho, amakumocho, farming_afterhour_amakumocho),
+            Item("parametric_transformer", Textflag_parametic_transformer, parametric_transformer, farming_afterhour_parametric_transformer),
+            Item("fish_mond", Textflag_fish_mond, fish_mond, farming_afterhour_fish_mond),
+            Item("fish_liyue", Textflag_fish_liyue, fish_liyue, farming_afterhour_fish_liyue),
+            Item("fish_inazuma", Textflag_fish_inazuma, fish_inazuma, farming_afterhour_fish_inazuma),
+            Item("fluorescent_fungus", Textflag_fluorescent_fungus, fluorescent_fungus, farming_afterhour_fluorescent_fungus),
+            Item("hena_berry", Textflag_hena_berry, hena_berry, farming_afterhour_hena_berry),
+            Item("kalpalata_lotus", Textflag_kalpalata_lotus, kalpalata_lotus, farming_afterhour_kalpalata_lotus),
+            Item("mourning_flower", Textflag_mourning_flower, mourning_flower, farming_afterhour_mourning_flower),
+            Item("nilotpala_lotus", Textflag_nilotpala_lotus, nilotpala_lotus, farming_afterhour_nilotpala_lotus),
+            Item("padisarah", Textflag_padisarah, padisarah, farming_afterhour_padisarah),
+            Item("rukkhashava_mushrooms", Textflag_rukkhashava_mushrooms, rukkhashava_mushrooms, farming_afterhour_rukkhashava_mushrooms),
+            Item("sand_grease_pupa", Textflag_sand_grease_pupa, sand_grease_pupa, farming_afterhour_sand_grease_pupa),
+            Item("scarab", Textflag_scarab, scarab, farming_afterhour_scarab),
+            Item("trishiraite", Textflag_trishiraite, trishiraite, farming_afterhour_trishiraite),
+            Item("parametric_transformer", Textflag_parametic_transformer, parametric_transformer, farming_afterhour_parametric_transformer)
+            )
 
-        Textflag_white_iron_chunk = pref.getInt("white_iron_chunk_flag", 0)
-        white_iron_chunk.paintFlags = pref.getInt("white_iron_chunk_status", 0)
-        farming_afterhour_white_iron_chunk.text = pref.getString("white_iron_chunk_aftertime", "")
-        if(Textflag_white_iron_chunk == 1){
-            white_iron_chunk.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_cor_lapis = pref.getInt("cor_lapis_flag", 0)
-        cor_lapis.paintFlags = pref.getInt("cor_lapis_status", 0)
-        farming_afterhour_cor_lapis.text = pref.getString("cor_lapis_aftertime", "")
-        if(Textflag_cor_lapis == 1){
-            cor_lapis.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_yabak = pref.getInt("yabak_flag", 0)
-        yabak.paintFlags = pref.getInt("yabak_status", 0)
-        farming_afterhour_yabak.text = pref.getString("yabak_aftertime", "")
-        if(Textflag_yabak == 1){
-            yabak.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_starsilver = pref.getInt("starsilver_flag", 0)
-        starsilver.paintFlags = pref.getInt("starsilver_status", 0)
-        farming_afterhour_starsilver.text = pref.getString("starsilver_aftertime", "")
-        if(Textflag_starsilver == 1){
-            starsilver.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_electro_crystal = pref.getInt("electro_crystal_flag", 0)
-        electro_crystal.paintFlags = pref.getInt("electro_crystal_status", 0)
-        farming_afterhour_electro_crystal.text = pref.getString("electro_crystal_aftertime", "")
-        if(Textflag_electro_crystal == 1){
-            electro_crystal.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_crystal_chunk = pref.getInt("crystal_chunk_flag", 0)
-        crystal_chunk.paintFlags = pref.getInt("crystal_chunk_status", 0)
-        farming_afterhour_crystal_chunk.text = pref.getString("crystal_chunk_aftertime", "")
-        if(Textflag_crystal_chunk == 1){
-            crystal_chunk.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_gori_gori = pref.getInt("gori_gori_flag", 0)
-        gori_gori.paintFlags = pref.getInt("gori_gori_status", 0)
-        farming_afterhour_gori_gori.text = pref.getString("gori_gori_aftertime", "")
-        if(Textflag_gori_gori == 1){
-            gori_gori.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_nakrak = pref.getInt("nakrak_flag", 0)
-        nakrak.paintFlags = pref.getInt("nakrak_status", 0)
-        farming_afterhour_nakrak.text = pref.getString("nakrak_aftertime", "")
-        if(Textflag_nakrak == 1){
-            nakrak.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_small_lamp_grass = pref.getInt("small_lamp_grass_flag", 0)
-        small_lamp_grass.paintFlags = pref.getInt("small_lamp_grass_status", 0)
-        farming_afterhour_small_lamp_grass.text = pref.getString("small_lamp_grass_aftertime", "")
-        if(Textflag_small_lamp_grass == 1){
-            small_lamp_grass.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_dandelion_seed = pref.getInt("dandelion_seed_flag", 0)
-        dandelion_seed.paintFlags = pref.getInt("dandelion_seed_status", 0)
-        farming_afterhour_dandelion_seed.text = pref.getString("dandelion_seed_aftertime", "")
-        if(Textflag_dandelion_seed == 1){
-            dandelion_seed.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_mushroom = pref.getInt("mushroom_flag", 0)
-        mushroom.paintFlags = pref.getInt("mushroom_status", 0)
-        farming_afterhour_mushroom.text = pref.getString("mushroom_aftertime", "")
-        if(Textflag_mushroom == 1){
-            mushroom.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_cecilia = pref.getInt("cecilia_flag", 0)
-        cecilia.paintFlags = pref.getInt("cecilia_status", 0)
-        farming_afterhour_cecilia.text = pref.getString("cecilia_aftertime", "")
-        if(Textflag_cecilia == 1){
-            cecilia.setTextColor(Color.parseColor("#939597"))
+        for (item in items) {
+            item.flag = pref.getInt("${item.key}_flag", 0)
+            item.view.paintFlags = pref.getInt("${item.key}_status", 0)
+            item.afterhour.text = pref.getString("${item.key}_aftertime", "")
+            if (item.flag == 1) {
+                item.view.setTextColor(Color.parseColor("#939597"))
+            }
         }
 
 
-        Textflag_yesang_flower = pref.getInt("yesang_flower_flag", 0)
-        yesang_flower.paintFlags = pref.getInt("yesang_flower_status", 0)
-        farming_afterhour_yesang_flower.text = pref.getString("yesang_flower_aftertime", "")
-        if(Textflag_yesang_flower == 1){
-            yesang_flower.setTextColor(Color.parseColor("#939597"))
-        }
-
-
-        Textflag_yuri_lily = pref.getInt("yuri_lily_flag", 0)
-        yuri_lily.paintFlags = pref.getInt("yuri_lily_status", 0)
-        farming_afterhour_yuri_iliy.text = pref.getString("yuri_lily_aftertime", "")
-        if(Textflag_yuri_lily == 1){
-            yuri_lily.setTextColor(Color.parseColor("#939597"))
-        }
-
-
-        Textflag_yuri_zumeoni = pref.getInt("yuri_zumeoni_flag", 0)
-        yuri_zumeoni.paintFlags = pref.getInt("yuri_zumeoni_status", 0)
-        farming_afterhour_yuri_zumeoni.text = pref.getString("yuri_zumeoni_aftertime", "")
-        if(Textflag_yuri_zumeoni == 1){
-            yuri_zumeoni.setTextColor(Color.parseColor("#939597"))
-        }
-
-
-        Textflag_jueyun_chili = pref.getInt("jueyun_chili_flag", 0)
-        jueyun_chili.paintFlags = pref.getInt("jueyun_chili_status", 0)
-        farming_afterhour_jueyun_chili.text = pref.getString("jueyun_chili_aftertime", "")
-        if(Textflag_jueyun_chili == 1){
-            jueyun_chili.setTextColor(Color.parseColor("#939597"))
-        }
-
-
-        Textflag_qingxin = pref.getInt("qingxin_flag", 0)
-        qingxin.paintFlags = pref.getInt("qingxin_status", 0)
-        farming_afterhour_qingxin.text = pref.getString("qingxin_aftertime", "")
-        if(Textflag_qingxin == 1){
-            qingxin.setTextColor(Color.parseColor("#939597"))
-        }
-
-
-        Textflag_tongtong = pref.getInt("tongtong_flag", 0)
-        tongtong.paintFlags = pref.getInt("tongtong_status", 0)
-        farming_afterhour_tongtong.text = pref.getString("tongtong_aftertime", "")
-        if(Textflag_tongtong == 1){
-            tongtong.setTextColor(Color.parseColor("#939597"))
-        }
-
-
-        Textflag_windwheel = pref.getInt("windwheel_flag", 0)
-        windwheel_aster.paintFlags = pref.getInt("windwheel_status", 0)
-        farming_afterhour_windwheel_aster.text = pref.getString("windwheel_aftertime", "")
-        if(Textflag_windwheel == 1){
-            windwheel_aster.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_crystal_chunk = pref.getInt("crystal_chunk_flag", 0)
-        crystal_chunk.paintFlags = pref.getInt("crystal_chunk_status", 0)
-        farming_afterhour_crystal_chunk.text = pref.getString("crystal_chunk_aftertime", "")
-        if(Textflag_crystal_chunk == 1){
-            crystal_chunk.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_ghost_pungdeng = pref.getInt("ghost_pungdeng_flag", 0)
-        ghost_pungdeng.paintFlags = pref.getInt("ghost_pungdeng_status", 0)
-        farming_afterhour_ghost_pungdeng.text = pref.getString("ghost_pungdeng_aftertime", "")
-        if(Textflag_ghost_pungdeng == 1){
-            ghost_pungdeng.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_cherry_blossom_sugu = pref.getInt("cherry_blossom_sugu_flag", 0)
-        cherry_blossom_sugu.paintFlags = pref.getInt("cherry_blossom_sugu_status", 0)
-        farming_afterhour_cherry_blossom_sugu.text = pref.getString("cherry_blossom_sugu_aftertime", "")
-        if(Textflag_cherry_blossom_sugu == 1){
-            cherry_blossom_sugu.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_crystal_golsu = pref.getInt("crystal_golsu_flag", 0)
-        crystal_golsu.paintFlags = pref.getInt("crystal_golsu_status", 0)
-        farming_afterhour_crystal_golsu.text = pref.getString("crystal_golsu_aftertime", "")
-        if(Textflag_crystal_golsu == 1){
-            crystal_golsu.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_hyul_gok = pref.getInt("hyul_gok_flag", 0)
-        hyul_gok.paintFlags = pref.getInt("hyul_gok_status", 0)
-        farming_afterhour_hyul_gok.text = pref.getString("hyul_gok_aftertime", "")
-        if(Textflag_hyul_gok == 1){
-            hyul_gok.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_yulimple = pref.getInt("yulimple_flag", 0)
-        yulimple.paintFlags = pref.getInt("yulimple_status", 0)
-        farming_afterhour_yulimple.text = pref.getString("yulimple_aftertime", "")
-        if(Textflag_yulimple == 1){
-            yulimple.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_sea_bulocho = pref.getInt("sea_bulocho_flag", 0)
-        sea_bulocho.paintFlags = pref.getInt("sea_bulocho_status", 0)
-        farming_afterhour_sea_bulocho.text = pref.getString("sea_bulocho_aftertime", "")
-        if(Textflag_sea_bulocho == 1){
-            sea_bulocho.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_sanho_pearl = pref.getInt("sanho_pearl_flag", 0)
-        sanho_pearl.paintFlags = pref.getInt("sanho_pearl_status", 0)
-        farming_afterhour_sanho_pearl.text = pref.getString("sanho_pearl_aftertime", "")
-        if(Textflag_sanho_pearl == 1){
-            sanho_pearl.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_amakumocho = pref.getInt("amakumocho_flag", 0)
-        amakumocho.paintFlags = pref.getInt("amakumocho_status", 0)
-        farming_afterhour_amakumocho.text = pref.getString("amakumocho_aftertime", "")
-        if(Textflag_amakumocho == 1){
-            amakumocho.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_parametic_transformer = pref.getInt("parametic_transformer_flag", 0)
-        parametric_transformer.paintFlags = pref.getInt("parametic_transformer_status", 0)
-        farming_afterhour_parametric_transformer.text = pref.getString("parametic_transformer_aftertime", "")
-        if(Textflag_parametic_transformer == 1){
-            parametric_transformer.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_fish_mond = pref.getInt("fish_mond_flag", 0)
-        fish_mond.paintFlags = pref.getInt("fish_mond_status", 0)
-        farming_afterhour_fish_mond.text = pref.getString("fish_mond_aftertime", "")
-        if(Textflag_fish_mond == 1){
-            fish_mond.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_fish_liyue = pref.getInt("fish_liyue_flag", 0)
-        fish_liyue.paintFlags = pref.getInt("fish_liyue_status", 0)
-        farming_afterhour_fish_liyue.text = pref.getString("fish_liyue_aftertime", "")
-        if(Textflag_fish_liyue == 1){
-            fish_liyue.setTextColor(Color.parseColor("#939597"))
-        }
-
-        Textflag_fish_inazuma = pref.getInt("fish_inazuma_flag", 0)
-        fish_inazuma.paintFlags = pref.getInt("fish_inazuma_status", 0)
-        farming_afterhour_fish_inazuma.text = pref.getString("fish_inazuma_aftertime", "")
-        if(Textflag_fish_inazuma == 1){
-            fish_inazuma.setTextColor(Color.parseColor("#939597"))
-        }
-
-
+//        Textflag_iron_chunk = pref.getInt("iron_chunk_flag", 0)
+//        iron_chunk.paintFlags = pref.getInt("iron_chunk_status", 0)
+//        farming_afterhour_iron_chunk.text = pref.getString("iron_chunk_aftertime", "")
+//        if(Textflag_iron_chunk == 1) {
+//            iron_chunk.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_white_iron_chunk = pref.getInt("white_iron_chunk_flag", 0)
+//        white_iron_chunk.paintFlags = pref.getInt("white_iron_chunk_status", 0)
+//        farming_afterhour_white_iron_chunk.text = pref.getString("white_iron_chunk_aftertime", "")
+//        if(Textflag_white_iron_chunk == 1){
+//            white_iron_chunk.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_cor_lapis = pref.getInt("cor_lapis_flag", 0)
+//        cor_lapis.paintFlags = pref.getInt("cor_lapis_status", 0)
+//        farming_afterhour_cor_lapis.text = pref.getString("cor_lapis_aftertime", "")
+//        if(Textflag_cor_lapis == 1){
+//            cor_lapis.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_yabak = pref.getInt("yabak_flag", 0)
+//        yabak.paintFlags = pref.getInt("yabak_status", 0)
+//        farming_afterhour_yabak.text = pref.getString("yabak_aftertime", "")
+//        if(Textflag_yabak == 1){
+//            yabak.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_starsilver = pref.getInt("starsilver_flag", 0)
+//        starsilver.paintFlags = pref.getInt("starsilver_status", 0)
+//        farming_afterhour_starsilver.text = pref.getString("starsilver_aftertime", "")
+//        if(Textflag_starsilver == 1){
+//            starsilver.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_electro_crystal = pref.getInt("electro_crystal_flag", 0)
+//        electro_crystal.paintFlags = pref.getInt("electro_crystal_status", 0)
+//        farming_afterhour_electro_crystal.text = pref.getString("electro_crystal_aftertime", "")
+//        if(Textflag_electro_crystal == 1){
+//            electro_crystal.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_crystal_chunk = pref.getInt("crystal_chunk_flag", 0)
+//        crystal_chunk.paintFlags = pref.getInt("crystal_chunk_status", 0)
+//        farming_afterhour_crystal_chunk.text = pref.getString("crystal_chunk_aftertime", "")
+//        if(Textflag_crystal_chunk == 1){
+//            crystal_chunk.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_gori_gori = pref.getInt("gori_gori_flag", 0)
+//        gori_gori.paintFlags = pref.getInt("gori_gori_status", 0)
+//        farming_afterhour_gori_gori.text = pref.getString("gori_gori_aftertime", "")
+//        if(Textflag_gori_gori == 1){
+//            gori_gori.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_nakrak = pref.getInt("nakrak_flag", 0)
+//        nakrak.paintFlags = pref.getInt("nakrak_status", 0)
+//        farming_afterhour_nakrak.text = pref.getString("nakrak_aftertime", "")
+//        if(Textflag_nakrak == 1){
+//            nakrak.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_small_lamp_grass = pref.getInt("small_lamp_grass_flag", 0)
+//        small_lamp_grass.paintFlags = pref.getInt("small_lamp_grass_status", 0)
+//        farming_afterhour_small_lamp_grass.text = pref.getString("small_lamp_grass_aftertime", "")
+//        if(Textflag_small_lamp_grass == 1){
+//            small_lamp_grass.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_dandelion_seed = pref.getInt("dandelion_seed_flag", 0)
+//        dandelion_seed.paintFlags = pref.getInt("dandelion_seed_status", 0)
+//        farming_afterhour_dandelion_seed.text = pref.getString("dandelion_seed_aftertime", "")
+//        if(Textflag_dandelion_seed == 1){
+//            dandelion_seed.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_mushroom = pref.getInt("mushroom_flag", 0)
+//        mushroom.paintFlags = pref.getInt("mushroom_status", 0)
+//        farming_afterhour_mushroom.text = pref.getString("mushroom_aftertime", "")
+//        if(Textflag_mushroom == 1){
+//            mushroom.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_cecilia = pref.getInt("cecilia_flag", 0)
+//        cecilia.paintFlags = pref.getInt("cecilia_status", 0)
+//        farming_afterhour_cecilia.text = pref.getString("cecilia_aftertime", "")
+//        if(Textflag_cecilia == 1){
+//            cecilia.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//
+//        Textflag_yesang_flower = pref.getInt("yesang_flower_flag", 0)
+//        yesang_flower.paintFlags = pref.getInt("yesang_flower_status", 0)
+//        farming_afterhour_yesang_flower.text = pref.getString("yesang_flower_aftertime", "")
+//        if(Textflag_yesang_flower == 1){
+//            yesang_flower.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//
+//        Textflag_yuri_lily = pref.getInt("yuri_lily_flag", 0)
+//        yuri_lily.paintFlags = pref.getInt("yuri_lily_status", 0)
+//        farming_afterhour_yuri_iliy.text = pref.getString("yuri_lily_aftertime", "")
+//        if(Textflag_yuri_lily == 1){
+//            yuri_lily.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//
+//        Textflag_yuri_zumeoni = pref.getInt("yuri_zumeoni_flag", 0)
+//        yuri_zumeoni.paintFlags = pref.getInt("yuri_zumeoni_status", 0)
+//        farming_afterhour_yuri_zumeoni.text = pref.getString("yuri_zumeoni_aftertime", "")
+//        if(Textflag_yuri_zumeoni == 1){
+//            yuri_zumeoni.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//
+//        Textflag_jueyun_chili = pref.getInt("jueyun_chili_flag", 0)
+//        jueyun_chili.paintFlags = pref.getInt("jueyun_chili_status", 0)
+//        farming_afterhour_jueyun_chili.text = pref.getString("jueyun_chili_aftertime", "")
+//        if(Textflag_jueyun_chili == 1){
+//            jueyun_chili.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//
+//        Textflag_qingxin = pref.getInt("qingxin_flag", 0)
+//        qingxin.paintFlags = pref.getInt("qingxin_status", 0)
+//        farming_afterhour_qingxin.text = pref.getString("qingxin_aftertime", "")
+//        if(Textflag_qingxin == 1){
+//            qingxin.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//
+//        Textflag_tongtong = pref.getInt("tongtong_flag", 0)
+//        tongtong.paintFlags = pref.getInt("tongtong_status", 0)
+//        farming_afterhour_tongtong.text = pref.getString("tongtong_aftertime", "")
+//        if(Textflag_tongtong == 1){
+//            tongtong.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//
+//        Textflag_windwheel = pref.getInt("windwheel_flag", 0)
+//        windwheel_aster.paintFlags = pref.getInt("windwheel_status", 0)
+//        farming_afterhour_windwheel_aster.text = pref.getString("windwheel_aftertime", "")
+//        if(Textflag_windwheel == 1){
+//            windwheel_aster.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_crystal_chunk = pref.getInt("crystal_chunk_flag", 0)
+//        crystal_chunk.paintFlags = pref.getInt("crystal_chunk_status", 0)
+//        farming_afterhour_crystal_chunk.text = pref.getString("crystal_chunk_aftertime", "")
+//        if(Textflag_crystal_chunk == 1){
+//            crystal_chunk.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_ghost_pungdeng = pref.getInt("ghost_pungdeng_flag", 0)
+//        ghost_pungdeng.paintFlags = pref.getInt("ghost_pungdeng_status", 0)
+//        farming_afterhour_ghost_pungdeng.text = pref.getString("ghost_pungdeng_aftertime", "")
+//        if(Textflag_ghost_pungdeng == 1){
+//            ghost_pungdeng.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_cherry_blossom_sugu = pref.getInt("cherry_blossom_sugu_flag", 0)
+//        cherry_blossom_sugu.paintFlags = pref.getInt("cherry_blossom_sugu_status", 0)
+//        farming_afterhour_cherry_blossom_sugu.text = pref.getString("cherry_blossom_sugu_aftertime", "")
+//        if(Textflag_cherry_blossom_sugu == 1){
+//            cherry_blossom_sugu.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_crystal_golsu = pref.getInt("crystal_golsu_flag", 0)
+//        crystal_golsu.paintFlags = pref.getInt("crystal_golsu_status", 0)
+//        farming_afterhour_crystal_golsu.text = pref.getString("crystal_golsu_aftertime", "")
+//        if(Textflag_crystal_golsu == 1){
+//            crystal_golsu.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_hyul_gok = pref.getInt("hyul_gok_flag", 0)
+//        hyul_gok.paintFlags = pref.getInt("hyul_gok_status", 0)
+//        farming_afterhour_hyul_gok.text = pref.getString("hyul_gok_aftertime", "")
+//        if(Textflag_hyul_gok == 1){
+//            hyul_gok.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_yulimple = pref.getInt("yulimple_flag", 0)
+//        yulimple.paintFlags = pref.getInt("yulimple_status", 0)
+//        farming_afterhour_yulimple.text = pref.getString("yulimple_aftertime", "")
+//        if(Textflag_yulimple == 1){
+//            yulimple.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_sea_bulocho = pref.getInt("sea_bulocho_flag", 0)
+//        sea_bulocho.paintFlags = pref.getInt("sea_bulocho_status", 0)
+//        farming_afterhour_sea_bulocho.text = pref.getString("sea_bulocho_aftertime", "")
+//        if(Textflag_sea_bulocho == 1){
+//            sea_bulocho.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_sanho_pearl = pref.getInt("sanho_pearl_flag", 0)
+//        sanho_pearl.paintFlags = pref.getInt("sanho_pearl_status", 0)
+//        farming_afterhour_sanho_pearl.text = pref.getString("sanho_pearl_aftertime", "")
+//        if(Textflag_sanho_pearl == 1){
+//            sanho_pearl.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_amakumocho = pref.getInt("amakumocho_flag", 0)
+//        amakumocho.paintFlags = pref.getInt("amakumocho_status", 0)
+//        farming_afterhour_amakumocho.text = pref.getString("amakumocho_aftertime", "")
+//        if(Textflag_amakumocho == 1){
+//            amakumocho.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_parametic_transformer = pref.getInt("parametic_transformer_flag", 0)
+//        parametric_transformer.paintFlags = pref.getInt("parametic_transformer_status", 0)
+//        farming_afterhour_parametric_transformer.text = pref.getString("parametic_transformer_aftertime", "")
+//        if(Textflag_parametic_transformer == 1){
+//            parametric_transformer.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_fish_mond = pref.getInt("fish_mond_flag", 0)
+//        fish_mond.paintFlags = pref.getInt("fish_mond_status", 0)
+//        farming_afterhour_fish_mond.text = pref.getString("fish_mond_aftertime", "")
+//        if(Textflag_fish_mond == 1){
+//            fish_mond.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_fish_liyue = pref.getInt("fish_liyue_flag", 0)
+//        fish_liyue.paintFlags = pref.getInt("fish_liyue_status", 0)
+//        farming_afterhour_fish_liyue.text = pref.getString("fish_liyue_aftertime", "")
+//        if(Textflag_fish_liyue == 1){
+//            fish_liyue.setTextColor(Color.parseColor("#939597"))
+//        }
+//
+//        Textflag_fish_inazuma = pref.getInt("fish_inazuma_flag", 0)
+//        fish_inazuma.paintFlags = pref.getInt("fish_inazuma_status", 0)
+//        farming_afterhour_fish_inazuma.text = pref.getString("fish_inazuma_aftertime", "")
+//        if(Textflag_fish_inazuma == 1){
+//            fish_inazuma.setTextColor(Color.parseColor("#939597"))
+//        }
+//        Textflag_fluorescent_fungus = pref.getInt("fluorescent_fungus_flag", 0)
+//        fluorescent_fungus.paintFlags = pref.getInt("fluorescent_fungus_status", 0)
+//        farming_afterhour_fluorescent_fungus.text = pref.getString("fluorescent_fungus_aftertime", "")
+//        if(Textflag_fluorescent_fungus == 1){
+//            fluorescent_fungus.setTextColor(Color.parseColor("#939597"))
+//        }
         farming_switch.isChecked = pref.getBoolean("farming_switch_isChecked", true)
-
 //        weeklysavedday = pref.getString("weekly_flag", "").toString()
 //        weeklysaveddate = pref.getString("weekly_date_flag","").toString()
     }
-
 }
 
 

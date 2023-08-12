@@ -1,5 +1,6 @@
 package com.genshindaily.genshindaily
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -37,6 +39,7 @@ class OptionFragment : Fragment() {
         return view
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadLocate()
@@ -88,31 +91,47 @@ class OptionFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {}
         } //spinner
 
-        //라이트모드
-        btn_light.setOnClickListener {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
-            with (sharedPref.edit()) {
-                putBoolean(getString(R.string.saved_theme), false)
-                apply()
-            }
-        }
-
-        //다크모드
-        btn_dark.setOnClickListener {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
-            with (sharedPref.edit()) {
-                putBoolean(getString(R.string.saved_theme), true)
-                apply()
-            }
-        }
+//        //라이트모드
+//        btn_light.setOnClickListener {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
+//            with (sharedPref.edit()) {
+//                putBoolean(getString(R.string.saved_theme), false)
+//                apply()
+//            }
+//        }
+//
+//        //다크모드
+//        btn_dark.setOnClickListener {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
+//            with (sharedPref.edit()) {
+//                putBoolean(getString(R.string.saved_theme), true)
+//                apply()
+//            }
+//        }
 
         //후원버튼
         btn_purchase.setOnClickListener {
             val intent = Intent(activity, OneTimeActivity::class.java)
             startActivity(intent)
         }
+
+        // buy me a coffee
+
+        btn_buy_me_a_coffee.settings.javaScriptEnabled = true
+
+        val html = """
+            <html>
+            <body>
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="sm524233" data-color="#BD5FFF" data-emoji=""  data-font="Lato" data-text="Buy me a Coffee!" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00"></script>
+            </body>
+            </html>
+            """
+        btn_buy_me_a_coffee.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null)
+
+
+
 
     }//onViewCreated
 

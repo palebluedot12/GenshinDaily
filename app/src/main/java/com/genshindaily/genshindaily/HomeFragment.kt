@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -21,8 +22,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.genshindaily.genshindaily.databinding.FragmentHomeBinding
 import com.google.android.gms.ads.*
 import com.kakao.adfit.ads.AdListener
+import kotlinx.android.synthetic.main.character_five_star.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.illgan
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -35,10 +38,10 @@ import kotlin.reflect.KMutableProperty0
 
 /**
  * TODO : 버전 업데이트마다 체크해야 할 것들.
- * 1. 주간 체크리스트 : 주간보스 추가됐는지. O
- * 2. 캐릭 추가됐는지. (1, 3번 탭)
+ * 1. 주간 체크리스트 : 주간보스 추가됐는지.
+ * 2. 캐릭 추가됐는지.
  * 3. 무기 추가됐는지.
- * 4. 지역 추가됐는지 -> 특산물, 단조 재료
+ * 4. 지역 추가됐는지
  *
  * <수정 필요한거>
  * 광고제거 결제여부 확인 더 안전한 방법으로
@@ -718,41 +721,56 @@ class HomeFragment  : Fragment(){
             the_black_sword, royal_longsword, lions_roar, sacrificial_sword, blackcliff_longsword, sword_of_descension, festering_desire,
             fillet_blade, harbinger_of_dawn, cool_steel, skyrider_sword, travelers_handy_sword, dark_iron_sword, favonius_sword, the_alley_flash,
             freedom_sworn, mistsplitter_reforged, amenoma_kageuta_blade,
+            //ㅇ
             haran_geppaku_futsu, key_of_khaj_nisut, light_of_foliar_incision, xiphos_moonlight, cinnabar_spindle, kagotsurube_isshin, sapwood_blade,
             toukabou_shigure, //여기까지 한손검
             wolf_gravestone, skyward_pride1, the_unforged,favonius_greatsword, serpent_spine, prototype_archaic, whiteblind,royal_greatsword,
             the_bell, blackcliff_slasher, rainslasher, sacrificial_greatsword, snow_tombed_starsilver,
             skyrider_greatsword, debate_club, white_iron_greatsword, bloodtainted_greatsword, ferrous_shadow,
-            lithic_blade, song_of_broken_pines, katsuragi_slasher, luxurious_sea_lord, //양손검
+            lithic_blade, song_of_broken_pines, katsuragi_slasher, luxurious_sea_lord,
+            // ㅇ
+            redhorn_stonethresher, beacon_of_the_reed_sea, akuoumaru, makhaira_aquamarine, mailed_flower, katsuragikiri_nagamasa, forest_regalia, //양손검
             skyward_atlas, lost_prayer,memory_of_dust, prototype_amber,mappa_mare,solar_pearl, royal_grimoire, eye_of_perception, the_widsith, sacrificial_fragments,
             favonius_codex, blackcliff_agate, frostbearer, twin_nephrite, emerald_orb, otherworldly_story, thrilling_tales_of_dragon_slayers, magic_guide,wine_and_song1,
-            everlasting_moonglow, dodoco_tales, white_dragon_ring, //법구
+            everlasting_moonglow, dodoco_tales, white_dragon_ring,
+            // ㅇ
+            kaguras_verity, a_thousand_floating_dreams, tullaytullahs_remeberance,
+            jadefalls_splendor, wandering_evenstar, oathsworn_eye, hakushin_ring, fruit_of_fulfillment, //법구
             primordial_jade_spear, skyward_spine,vortex_vanquisher, prototype_starglitter, crescent_pike, deathmatch,blackcliff_pole,
             favonius_lance,dragons_bane,royal_spear,dragonspine_spear, blacktassel, halberd, white_tassel, lithic_spear,
             engulfing_lightning, kitain_cross_spear, the_catch, skyward_harp, amos_bow, favonius_warbow, prototype_crescent,
             compound_bow, the_viridescent_hunt, royal_bow, rust, sacrificial_bow, the_stringless, blackcliff_warbow,
-            slingshot, messenger, recurve_bow, sharpshooter_oath, raven_bow, staff_of_homa, //창
-            elegy_for_the_end, alley_hunter, windblume_ode, thundering_pulse, demon_slayer_bow, predator, yuya_waltz) //활
+            slingshot, messenger, recurve_bow, sharpshooter_oath, raven_bow, staff_of_homa,
+            // ㅇ
+            calamity_queller, staff_of_the_scarlet_sands,
+            wavebreakers_fin, missive_windspear, moonpiercer, //창
+            elegy_for_the_end, alley_hunter, windblume_ode, thundering_pulse, demon_slayer_bow, predator, yuya_waltz,
+            // ㅇ
+            polar_star,
+            aqua_simulacra, hunters_path, mouuns_moon, fading_twilight, ibis_piercer, end_of_the_line,
+            hamayumi, kings_squire) //활
 
 
             for (w in weapons) {
                 w.visibility = View.GONE
             }
 
-        //고탑 왕, 고운 한림, 먼바다
+        //고탑 왕, 고운 한림, 먼바다, 숲의 이슬
         if(day.text == "월" || day.text == "MONDAY" || day.text == "목" || day.text == "THURSDAY" || day.text == "일" || day.text == "SUNDAY") {
             val weapons1 = arrayOf(aquila, summit_shaper, favonius_sword, royal_longsword, lions_roar,
                 blackcliff_longsword, cool_steel, dark_iron_sword, whiteblind, the_bell, snow_tombed_starsilver,
                 ferrous_shadow, solar_pearl, royal_grimoire, favonius_codex, blackcliff_agate, emerald_orb, magic_guide,
                 primordial_jade_spear, crescent_pike, white_tassel, the_viridescent_hunt, rust, the_stringless,
                 blackcliff_warbow, slingshot, raven_bow, lithic_blade, the_alley_flash, song_of_broken_pines,
-                mistsplitter_reforged, amenoma_kageuta_blade, everlasting_moonglow, white_dragon_ring,yuya_waltz)
+                mistsplitter_reforged, amenoma_kageuta_blade, everlasting_moonglow, white_dragon_ring,yuya_waltz, key_of_khaj_nisut,
+                light_of_foliar_incision, xiphos_moonlight, cinnabar_spindle, sapwood_blade, akuoumaru, forest_regalia, jadefalls_splendor
+                , oathsworn_eye, hakushin_ring, aqua_simulacra, ibis_piercer)
             for (weapon in weapons1) {
                 weapon.visibility = View.VISIBLE
             }
         }
 
-        //칼바람 울프, 안개구름, 나루카미
+        //칼바람 울프, 안개구름, 나루카미, 오아시스
         if(day.text =="화" || day.text =="TUESDAY" || day.text == "금" || day.text =="FRIDAY" || day.text == "일" || day.text =="SUNDAY") {
             val weapons2 = arrayOf(skyward_blade, primordial_jade_cutter, the_flute, prototype_rancour,
                 the_black_sword, sword_of_descension, fillet_blade, harbinger_of_dawn, skyward_pride1, the_unforged,
@@ -760,20 +778,23 @@ class HomeFragment  : Fragment(){
                 skyward_atlas, prototype_amber, eye_of_perception, the_widsith, twin_nephrite, thrilling_tales_of_dragon_slayers,
                 deathmatch, blackcliff_pole, dragons_bane, royal_spear, dragonspine_spear, halberd, skyward_harp, prototype_crescent,
                 sacrificial_bow, sharpshooter_oath,elegy_for_the_end,wine_and_song1,katsuragi_slasher,dodoco_tales,
-                thundering_pulse,demon_slayer_bow,predator)
+                thundering_pulse,demon_slayer_bow,predator, haran_geppaku_futsu, toukabou_shigure, redhorn_stonethresher, katsuragikiri_nagamasa
+                , a_thousand_floating_dreams, wandering_evenstar, fruit_of_fulfillment, calamity_queller, staff_of_the_scarlet_sands, missive_windspear
+                , moonpiercer, mouuns_moon, hamayumi)
             for (weapon in weapons2) {
                 weapon.visibility = View.VISIBLE
             }
         }
 
-        //라이언 투사의 족쇄, 흑운철, 금석극화
+        //라이언 투사의 족쇄, 흑운철, 금석극화, 태양같은권위
         if(day.text =="수" || day.text =="WEDNESDAY" || day.text == "토" || day.text =="SATURDAY" || day.text == "일" || day.text =="SUNDAY") {
             val weapons3 = arrayOf(iron_sting, sacrificial_sword, festering_desire, skyrider_sword, travelers_handy_sword,
                 wolf_gravestone, favonius_greatsword, serpent_spine, prototype_archaic, royal_greatsword, skyrider_greatsword,
                 white_iron_greatsword, lost_prayer, memory_of_dust, mappa_mare, sacrificial_fragments, frostbearer, otherworldly_story,
                 skyward_spine, vortex_vanquisher, prototype_starglitter, favonius_lance, blacktassel, amos_bow, favonius_warbow, compound_bow,
                 royal_bow,messenger,recurve_bow, staff_of_homa,lithic_spear, alley_hunter, windblume_ode, freedom_sworn, engulfing_lightning, luxurious_sea_lord,
-                engulfing_lightning, kitain_cross_spear, the_catch)
+                engulfing_lightning, kitain_cross_spear, the_catch, kagotsurube_isshin, beacon_of_the_reed_sea, makhaira_aquamarine, mailed_flower, kaguras_verity
+                , tullaytullahs_remeberance, wavebreakers_fin, polar_star, hunters_path, fading_twilight, end_of_the_line, kings_squire)
             for (weapon in weapons3) {
                 weapon.visibility = View.VISIBLE
             }
@@ -783,22 +804,30 @@ class HomeFragment  : Fragment(){
             R.string.iron_sting, R.string.prototype_rancour, R.string.the_black_sword, R.string.royal_longsword, R.string.lions_roar,R.string.sacrificial_sword,
             R.string.blackcliff_longsword,R.string.sword_of_descension,R.string.festering_desire,R.string.fillet_blade,R.string.harbinger_of_dawn,R.string.cool_steel,
             R.string.skyrider_sword,R.string.travelers_handy_sword,R.string.dark_iron_sword,R.string.favonius_sword,R.string.the_alley_flash, R.string.freedom_sworn,
-            R.string.mistsplitter_reforged, R.string.amenoma_kageuta_blade,R.string.wolfs_gravestone,R.string.skyward_pride,R.string.the_unforged,R.string.favonius_greatsword,
+            R.string.mistsplitter_reforged, R.string.amenoma_kageuta_blade,R.string.haran_geppaku_futsu, R.string.key_of_khaj_nisut, R.string.light_of_foliar_incision,
+            R.string.xiphos_moonlight, R.string.cinnabar_spindle, R.string.kagotsurube_isshin, R.string.sapwood_blade, R.string.toukabou_shigure, //한손검
+            R.string.wolfs_gravestone,R.string.skyward_pride,R.string.the_unforged,R.string.favonius_greatsword,
             R.string.serpent_spine,R.string.prototype_archaic,R.string.whiteblind,R.string.royal_greatsword,R.string.the_bell,R.string.blackcliff_slasher,R.string.rainslasher,
             R.string.sacrificial_greatsword,R.string.snow_tombed_starsilver,R.string.skyrider_greatsword,R.string.debate_club,R.string.white_iron_greatsword,
             R.string.bloodtainted_greatsword,R.string.ferrous_shadow,R.string.lithic_blade,R.string.song_of_broken_pines, R.string.katsuragis_slasher,
-            R.string.luxurious_sea_lord, R.string.skyward_atlas, R.string.lost_prayer_to_the_sacred_winds, R.string.memory_of_dust, R.string.prototype_amber,
+            R.string.luxurious_sea_lord, R.string.redhorn_stonethresher, R.string.beacon_of_the_reed_sea, R.string.akuoumaru, R.string.makhaira_aquamarine, R.string.mailed_flower,
+            R.string.katsuragikiri_nagamasa, R.string.forest_regalia, // 양손검
+            R.string.skyward_atlas, R.string.lost_prayer_to_the_sacred_winds, R.string.memory_of_dust, R.string.prototype_amber,
             R.string.mappa_mare, R.string.solar_pearl, R.string.royal_grimoire, R.string.eye_of_perception, R.string.the_widsith, R.string.sacrificial_fragments,
             R.string.favonius_codex, R.string.blackcliff_agate, R.string.frostbearer, R.string.twin_nephrite, R.string.emerald_orb, R.string.otherworldly_story,
             R.string.thrilling_tales_of_dragon_slayer, R.string.magic_guide, R.string.wine_and_song, R.string.everlasting_moonglow, R.string.dodoco_tales,
-            R.string.white_dragon_ring, R.string.primordial_jade_winged_spear, R.string.skyward_spine, R.string.vortex_vanquisher,R.string.prototype_starglitter,
+            R.string.white_dragon_ring, R.string.kaguras_verity, R.string.a_thousand_floating_dreams, R.string.tullaytullahs_remeberance, R.string.jadefalls_splendor,
+            R.string.wandering_evenstar, R.string.oathsworn_eye, R.string.hakushin_ring, R.string.fruit_of_fulfillment, //법구
+            R.string.primordial_jade_winged_spear, R.string.skyward_spine, R.string.vortex_vanquisher,R.string.prototype_starglitter,
             R.string.crescent_pike,R.string.deathmatch,R.string.blackcliff_pole,R.string.favonius_lance, R.string.dragons_bane, R.string.royal_spear,
             R.string.dragonspine_spear, R.string.black_tassel, R.string.halberd, R.string.white_tassel, R.string.lithic_spear, R.string.engulfing_lightning,
             R.string.kitain_cross_spear, R.string.the_catch, R.string.skyward_harp, R.string.amoss_bow, R.string.favonius_warbow, R.string.prototype_crescent,
             R.string.compound_bow, R.string.the_virdescent_hunt, R.string.royal_bow, R.string.rust, R.string.sacrificial_bow, R.string.the_stringless,
             R.string.blackcliff_warbow, R.string.slingshot, R.string.messenger, R.string.recurve_bow, R.string.sharpshooters_oath, R.string.raven_bow,
-            R.string.staff_of_homa, R.string.elegy_for_the_end,R.string.alley_hunter, R.string.alley_hunter, R.string.windblume_ode, R.string.thundering_pulse,
-            R.string.demon_slayer_bow, R.string.predator) //yuya_waltz 없음
+            R.string.staff_of_homa, R.string.calamity_queller, R.string.staff_of_the_scarlet_sand, R.string.wavebreakers_fin, R.string.missive_windspear,R.string.moonpiercer,//창
+            R.string.elegy_for_the_end,R.string.alley_hunter, R.string.windblume_ode, R.string.thundering_pulse,
+            R.string.demon_slayer_bow, R.string.predator, R.string.yuya_waltz, R.string.polar_star, R.string.aqua_simulacra, R.string.hunters_path, R.string.mouuns_moon,
+            R.string.fading_twilight, R.string.ibis_piercer, R.string.end_of_the_line, R.string.hamayumi, R.string.kings_squire) //활
 
         for (i in weapons.indices) {
             weapons[i].setOnClickListener {
@@ -1202,12 +1231,14 @@ class HomeFragment  : Fragment(){
         return pair
     }
 
+
     fun getIntent(context: Context, requestCode: Int, name: String? = null, id : Int): PendingIntent? {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("이름", name)
         intent.putExtra("id", id)
-        return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
     }
+
 
     private fun alarm_on(time : Int, param : String,id:Int) {
 //        alarmMgr = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager

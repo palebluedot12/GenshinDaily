@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +29,6 @@
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/black"
                 android:clickable="true"
-                android:id="@+id/iron_chunk"
                 android:layout_marginLeft="8dp"
                 />
             <Spinner
@@ -43,51 +41,6 @@
                 android:spinnerMode="dropdown"
                 />
         </LinearLayout>
-
-         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="다크모드(Dark Mode)"
-                android:includeFontPadding="false"
-                android:fontFamily="@font/notosanscjkkrdemilight"
-                android:textSize="17dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
-                android:clickable="true"
-                android:layout_marginLeft="8dp"
-                />
-
-             <androidx.appcompat.widget.AppCompatButton
-                 android:id="@+id/btn_light"
-                 android:text="Light"
-                 android:layout_marginLeft="30dp"
-                 android:textColor="#000000"
-                 android:textSize="16dp"
-                 android:layout_width="60dp"
-                 android:layout_height="28dp"
-                 android:layout_gravity="center"
-                 android:background="@drawable/buttonshape"
-                 />
-             <androidx.appcompat.widget.AppCompatButton
-                 android:id="@+id/btn_dark"
-                 android:text="Dark"
-                 android:layout_marginLeft="8dp"
-                 android:textColor="#000000"
-                 android:textSize="16dp"
-                 android:layout_width="60dp"
-                 android:layout_height="28dp"
-                 android:layout_gravity="center"
-                 android:background="@drawable/buttonshape"
-                 />
-         </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,8 +58,42 @@
             android:layout_width="200dp"
             android:layout_height="28dp"
             android:layout_gravity="center"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/buttonshape" />
+    </LinearLayout>
+
+        <WebView
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:id="@+id/btn_buy_me_a_coffee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_mail_outline_24"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sm524233@naver.com"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/notosanscjkkrdemilight"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:clickable="true"
+            android:layout_marginLeft="8dp"
             />
+
+
     </LinearLayout>
 
     </LinearLayout>

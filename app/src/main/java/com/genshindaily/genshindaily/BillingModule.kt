@@ -24,17 +24,15 @@ class BillingModule(
 
     // '소비'되어야 하는 sku 들을 적어줍니다.
     private val consumableSkus = setOf(OneTimeActivity.Sku.WELKIN_MOON, OneTimeActivity.Sku.BATTLE_PASS)
+
     private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-        when {
-            billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null -> {
-                // 제대로 구매 완료, 구매 확인 처리를 해야합니다. 3일 이내 구매확인하지 않으면 자동으로 환불됩니다.
-                for (purchase in purchases) {
-                    confirmPurchase(purchase)
+        when (billingResult.responseCode) {
+            BillingClient.BillingResponseCode.OK -> {
+                purchases?.let { purchaseList ->
+                    for (purchase in purchaseList) {
+                        confirmPurchase(purchase)
+                    }
                 }
-            }
-            else -> {
-                // 구매 실패
-                callback.onFailure(billingResult.responseCode)
             }
         }
     }
@@ -47,7 +45,7 @@ class BillingModule(
 
     private fun confirmPurchase(purchase: Purchase) {
         when {
-            consumableSkus.contains(purchase.sku) -> {
+            consumableSkus.contains(purchase.skus[0]) -> {
                 // 소비성 구매는 consume을 해주어야합니다.
                 val consumeParams = ConsumeParams.newBuilder()
                     .setPurchaseToken(purchase.purchaseToken)
@@ -129,43 +127,52 @@ class BillingModule(
     fun purchase(
         skuDetail: SkuDetails
     ) {
-        val flowParams = BillingFlowParams.newBuilder().apply {
-            setSkuDetails(skuDetail)
-        }.build()
+        val flowParams = BillingFlowParams.newBuilder()
+            .setSkuDetails(skuDetail)
+            .build()
 
         // 구매 절차를 시작, OK라면 제대로 된것입니다.
-        val responseCode = billingClient.launchBillingFlow(activity, flowParams).responseCode
-        if (responseCode != BillingClient.BillingResponseCode.OK) {
-            callback.onFailure(responseCode)
+        val launchResult = billingClient.launchBillingFlow(activity, flowParams)
+        if (launchResult.responseCode != BillingClient.BillingResponseCode.OK) {
+            callback.onFailure(launchResult.responseCode)
         }
         // 이후 부터는 purchasesUpdatedListener를 거치게 됩니다.
     }
 
     fun onResume(type: String) {
         if (billingClient.isReady) {
-            billingClient.queryPurchases(type).purchasesList?.let { purchaseList ->
-                for (purchase in purchaseList) {
-                    if (!purchase.isAcknowledged && purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                        confirmPurchase(purchase)
+            billingClient.queryPurchasesAsync(type) { result, purchasesList ->
+                if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                    purchasesList?.let { purchaseList ->
+                        for (purchase in purchaseList) {
+                            if (!purchase.isAcknowledged && purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
+                                confirmPurchase(purchase)
+                            }
+                        }
                     }
                 }
             }
         }
     }
 
+
     fun checkPurchased(
         sku: String,
         resultBlock: (purchased: Boolean) -> Unit
     ) {
-        billingClient.queryPurchases(BillingClient.SkuType.INAPP).purchasesList?.let { purchaseList ->
-            for (purchase in purchaseList) {
-                if (purchase.sku == sku && purchase.isPurchaseConfirmed()) {
-                    return resultBlock(true)
-                }
+        billingClient.queryPurchasesAsync(BillingClient.SkuType.INAPP) { result, purchasesList ->
+            if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                val purchased = purchasesList?.any { purchase ->
+                    purchase.skus?.contains(sku) == true && purchase.isAcknowledged && purchase.purchaseState == Purchase.PurchaseState.PURCHASED
+                } ?: false
+                resultBlock(purchased)
+            } else {
+                resultBlock(false)
             }
-            return resultBlock(false)
         }
     }
+
+
 
     // 구매 확인 검사 Extension
     private fun Purchase.isPurchaseConfirmed(): Boolean {

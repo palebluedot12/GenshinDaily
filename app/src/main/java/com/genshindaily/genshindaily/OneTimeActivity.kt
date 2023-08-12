@@ -45,17 +45,17 @@ class OneTimeActivity : AppCompatActivity() {
 
         bm = BillingModule(this, lifecycleScope, object: BillingModule.Callback {
             override fun onBillingModulesIsReady() {
-                bm.querySkuDetail(BillingClient.SkuType.INAPP, Sku.PURCHASE_NO_ADS, Sku.WELKIN_MOON, Sku.BATTLE_PASS) { skuDetails ->
-                    mSkuDetails = skuDetails
+                bm.querySkuDetail(BillingClient.SkuType.INAPP, Sku.PURCHASE_NO_ADS, Sku.WELKIN_MOON, Sku.BATTLE_PASS) { skuDetailsList ->
+                    mSkuDetails = skuDetailsList
                 }
 
-                bm.checkPurchased(Sku.PURCHASE_NO_ADS) {
-                    isPurchasedRemoveAds = it
+                bm.checkPurchased(Sku.PURCHASE_NO_ADS) { result ->
+                    isPurchasedRemoveAds = result
                 }
             }
 
             override fun onSuccess(purchase: Purchase) {
-                when (purchase.sku) {
+                when (purchase.skus.firstOrNull()) {
                     Sku.PURCHASE_NO_ADS-> {
                         isPurchasedRemoveAds = true
                     }
@@ -123,9 +123,11 @@ class OneTimeActivity : AppCompatActivity() {
     private fun setSkuDetailsView() {
         val builder = StringBuilder()
         for (skuDetail in mSkuDetails) {
-            builder.append("<${skuDetail.title}>\n")
-            builder.append(skuDetail.price)
-            builder.append("\n======================\n\n")
+            for (skuDetail in mSkuDetails) {
+                builder.append("<${skuDetail.title}>\n")
+                builder.append(skuDetail.price)
+                builder.append("\n======================\n\n")
+            }
         }
     }
 
@@ -134,7 +136,7 @@ class OneTimeActivity : AppCompatActivity() {
         bm.onResume(BillingClient.SkuType.INAPP)
     }
 
-    private fun saveData() { //값하고 지우는 행동까지 저장해보자.
+    private fun saveData() {
         val pref : SharedPreferences = getSharedPreferences("pref", 0)
         val edit = pref.edit() //수정모드
         edit.putBoolean("isPurchasedRemoveAds", isPurchasedRemoveAds)

@@ -41,7 +41,7 @@ class Splash : AppCompatActivity() {
                         Log.d(TAG, "Ad was dismissed.")
                     }
 
-                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                    override fun onAdFailedToShowFullScreenContent(p0: AdError) {
                         Log.d(TAG, "Ad failed to show.")
                     }
 

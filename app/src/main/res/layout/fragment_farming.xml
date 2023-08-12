@@ -320,6 +320,47 @@
                 />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/amethyst_lump"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amethyst_lump"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:id="@+id/amethyst_lump"
+                android:layout_marginLeft="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkrdemilight"
+                android:textSize="17dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/farming_afterhour_amethyst_lump"
+                />
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
@@ -1013,6 +1054,24 @@
         </LinearLayout>
 
         <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/fluorescent_fungus"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/fluorescent_fungus"
+                android:id="@+id/fluorescent_fungus" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_fluorescent_fungus"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -1440,25 +1499,185 @@
                 />
         </LinearLayout>
 
-
-
-
-
-        <!-- 카카오광고 -->
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_centerInParent="true"
+            android:background="#939597"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center">
-            <com.kakao.adfit.ads.ba.BannerAdView
-                android:id="@+id/kakaoAdview2"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"/>
+            android:text="@string/specialties_sumeru"
+            android:textSize="11dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/rukkhashava_mushrooms"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/rukkhashava_mushrooms"
+                android:id="@+id/rukkhashava_mushrooms" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_rukkhashava_mushrooms" />
         </LinearLayout>
 
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/padisarah"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/padisarah"
+                android:id="@+id/padisarah" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_padisarah"/>
+        </LinearLayout>
 
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/nilotpala_lotus"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/nilotpala_lotus"
+                android:id="@+id/nilotpala_lotus" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_nilotpala_lotus"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/kalpalata_lotus"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/kalpalata_lotus"
+                android:id="@+id/kalpalata_lotus" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_kalpalata_lotus"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/hena_berry"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/hena_berry"
+                android:id="@+id/hena_berry" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_hena_berry"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/sand_grease_pupa"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/sand_grease_pupa"
+                android:id="@+id/sand_grease_pupa" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_sand_grease_pupa"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/mourning_flower"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/mourning_flower"
+                android:id="@+id/mourning_flower" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_mourning_flower"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/trishiraite"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/trishiraite"
+                android:id="@+id/trishiraite" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_trishiraite"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ListLinearLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/scarab"
+                android:layout_gravity="center"/>
+            <TextView
+                style="@style/ItemTextView"
+                android:text="@string/scarab"
+                android:id="@+id/scarab" />
+            <TextView
+                style="@style/ItemTextViewAfterhour"
+                android:text=""
+                android:id="@+id/farming_afterhour_scarab"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

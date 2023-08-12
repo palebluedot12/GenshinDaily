@@ -43,8 +43,15 @@ class AlarmReceiver() : BroadcastReceiver() {
         }
 
         //알림을 클릭했을때 실행하는 액티비티 지정
+        fun getIntent(context: Context, requestCode: Int, name: String? = null, id : Int): PendingIntent? {
+            val intent = Intent(context, AlarmReceiver::class.java)
+            intent.putExtra("이름", name)
+            intent.putExtra("id", id)
+            return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
+        }
+
         val pendingIntent: PendingIntent =
-                PendingIntent.getActivity(context, 2, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT)
+            PendingIntent.getActivity(context, 2, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
 
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
