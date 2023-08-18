@@ -26,7 +26,6 @@ import com.genshindaily.genshindaily.databinding.ActivityMainBinding
 import com.genshindaily.genshindaily.databinding.FragmentInfoBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
-import com.kakao.adfit.ads.AdListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_info.*
 import kotlinx.android.synthetic.main.fragment_option.*

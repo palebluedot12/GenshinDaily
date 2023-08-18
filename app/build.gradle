@@ -14,7 +14,7 @@ android {
         applicationId "com.genshindaily.genshindaily"
         minSdkVersion 23
         targetSdkVersion 33
-        versionCode 21
+        versionCode 22
         versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -52,7 +52,6 @@ dependencies {
     //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.ads:ads-identifier:1.0.0-alpha04'
-    implementation "com.kakao.adfit:ads-base:$adfit_version"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.android.support:appcompat-v7:33.0.1'

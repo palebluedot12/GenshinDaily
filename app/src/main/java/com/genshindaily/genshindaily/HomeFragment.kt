@@ -24,7 +24,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.genshindaily.genshindaily.databinding.FragmentHomeBinding
 import com.google.android.gms.ads.*
-import com.kakao.adfit.ads.AdListener
 import kotlinx.android.synthetic.main.character_five_star.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.illgan
@@ -126,22 +125,6 @@ class HomeFragment  : Fragment(){
             MobileAds.initialize(requireActivity())
             adView.loadAd(AdRequest.Builder().build()) //구글 배너
 
-//            //카카오 광고
-//            kakaoAdview.run {
-//                setClientId("DAN-ikDQEklRA3qRWh1g")
-//                setAdListener(object : AdListener {
-//                    override fun onAdLoaded() {
-//                        //JoLog.d("ad loaded")
-//                    }
-//
-//                    override fun onAdFailed(p0: Int) {
-//                        //JoLog.d("failed to upload")
-//                    }
-//
-//                    override fun onAdClicked() {}
-//                })
-//                loadAd()
-//            }
         }
 
         Log.d("loadillgan", illganvflag.toString()) //여기서 왜 1?
@@ -858,17 +841,14 @@ class HomeFragment  : Fragment(){
     }*/
     override fun onPause() {
         super.onPause()
-//        kakaoAdview?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-//        kakaoAdview?.resume()
     }
     override fun onStop() {
         super.onStop()
         Log.d("destroy","on")
-//        kakaoAdview?.destroy()
         saveData()
     }
 

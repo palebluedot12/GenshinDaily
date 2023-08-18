@@ -94,24 +94,6 @@ class FarmingFragment : Fragment() {
 
         if(!isPurchasedRemoveAds) {
             adView2.loadAd(AdRequest.Builder().build()) //구글광고
-
-//            //카카오 광고
-//            kakaoAdview2.run {
-//                setClientId("DAN-jx2L2xstDOGjpBcZ")
-//                setAdListener(object : AdListener {
-//                    override fun onAdLoaded() {
-//                        //JoLog.d("ad loaded")
-//                    }
-//
-//                    override fun onAdFailed(p0: Int) {
-//                        //JoLog.d("failed to upload")
-//                    }
-//
-//                    override fun onAdClicked() {}
-//                })
-//                loadAd()
-//            }
-
         }
         //알람 스위치
         farming_switch.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -355,7 +337,6 @@ class FarmingFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-//        kakaoAdview?.destroy()
         saveData()
     }
 
